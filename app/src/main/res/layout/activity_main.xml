@@ -34,7 +34,7 @@
         android:fontFamily="@font/share_tech"
         android:inputType="textEmailAddress"
         android:singleLine="true"
-        android:text="  Email"
+        android:text="  Ian is stupid"
         android:textColor="@color/ternaryColor"
         android:textSize="24sp"
         android:textStyle="bold"

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.logInButton);
         signUpButton = findViewById(R.id.signUpButton);
 
-        //
+        // wait for the user to do something...
 
     }
 
