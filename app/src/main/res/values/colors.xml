@@ -3,9 +3,10 @@
     <color name="colorPrimary">#322066</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="secondaryColor">#3D277B</color>
+    <color name="secondaryColor">#B6A5E4</color>
     <color name="ternaryColor">#9D7AFF</color>
     <color name="lightGray">#AAC7C7C7</color>
     <color name="none">#00C7C7C7</color>
     <color name="quadraryColor">#4D3171</color>
+    <color name="anotherPurple">#684497</color>
 </resources>
