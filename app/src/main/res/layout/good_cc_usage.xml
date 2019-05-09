@@ -20,7 +20,9 @@
             android:textSize="34sp" />
 
         <ListView
+            android:id="@+id/ccListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:onClick="viewOptionSelected" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
