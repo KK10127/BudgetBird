@@ -4,6 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FinancialTipsActivity">
+    tools:context=".CreditCard.CreditCardUsage">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select The Section That Applies"
+            android:textAlignment="center"
+            android:textSize="34sp" />
+
+        <ListView
+            android:id="@+id/ccListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="viewOptionSelected" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
