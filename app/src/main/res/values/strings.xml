@@ -44,4 +44,12 @@ It’s critical to keep track of your spending habits, control your expenses, an
 There is usually minimal benefit to having multiple cardholders on one account. One partner can have spending problems, obtain limit increases, or incur debt, and the other partner will also be liable for this.</string>
     <string name="protip9">9. Be Careful with Promotional Offers
 While some of these promotional offers may be beneficial to the users, you should still be careful and ensure you understand the terms thoroughly.</string>
+    <string name="income">Income</string>
+    <string name="incomeValue">$X,XXX.XX / Month</string>
+    <string name="moneyHint">$00.00</string>
+    <string name="addIncome">Add Income</string>
+    <string name="removeIncome">Remove Income</string>
+    <string name="expenseTitleTextview">Expenses</string>
+    <string name="addExpense">Add Expense</string>
+    <string name="removeExpense">Remove Expense</string>
 </resources>
