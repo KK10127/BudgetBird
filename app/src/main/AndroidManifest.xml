@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".FinancialTipsActivity"></activity>
+        <activity android:name=".UserSettingsActivity" />
+        <activity android:name=".TrendsActivity" />
+        <activity android:name=".StudentFund" />
+        <activity android:name=".MonthlyOverview" />
+        <activity android:name=".AboutUs" />
+        <activity android:name=".SplashScreen" />
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".ExpensesActivity" />
         <activity android:name=".IncomeActivity" />
         <activity android:name=".MainActivity">

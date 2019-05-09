@@ -1,4 +1,4 @@
-package edu.miracosta.financialassistant.funds;
+package edu.miracosta.financialassistant;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

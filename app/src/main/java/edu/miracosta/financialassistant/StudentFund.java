@@ -1,4 +1,4 @@
-package edu.miracosta.financialassistant.funds;
+package edu.miracosta.financialassistant;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,12 +9,9 @@ import android.widget.TextView;
 
 import java.text.NumberFormat;
 
-import edu.miracosta.financialassistant.R;
 import edu.miracosta.financialassistant.model.Account;
 
-
-public class StudentLoanFund extends AppCompatActivity
-{
+public class StudentFund extends AppCompatActivity {
     private TextView mUserNameTextView;
     private TextView mMonthlyIncomeTextView;
     private TextView mBudgetTextView;
