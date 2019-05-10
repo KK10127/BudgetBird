@@ -9,4 +9,6 @@
     <color name="none">#00C7C7C7</color>
     <color name="quadraryColor">#4D3171</color>
     <color name="anotherPurple">#684497</color>
+    <color name="moneyGreen">#165425</color>
+    <color name="emergencyFund">#D55C88</color>
 </resources>

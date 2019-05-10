@@ -52,4 +52,9 @@ While some of these promotional offers may be beneficial to the users, you shoul
     <string name="expenseTitleTextview">Expenses</string>
     <string name="addExpense">Add Expense</string>
     <string name="removeExpense">Remove Expense</string>
+    <string name="zero">$0.00</string>
+    <string name="your_monthly_budget">Your monthly budget:</string>
+    <string name="today">Today\'s Activity</string>
+    <string name="trends">Your trends</string>
+    <string name="emergency_fund">Your emergency fund:</string>
 </resources>
