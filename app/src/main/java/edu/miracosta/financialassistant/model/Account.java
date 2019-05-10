@@ -7,9 +7,8 @@ import java.util.Objects;
 
 public class Account implements Parcelable
 {
-    private Integer mId;
-    private String mUserName;
-    private String mPassWord;
+    private long mId;
+    private String mEmail;
     private double mMonthlyIncome;
     private double mBudget;
     private double mEmergencyFundAmount;
