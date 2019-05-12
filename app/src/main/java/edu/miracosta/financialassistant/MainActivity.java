@@ -1,13 +1,21 @@
 package edu.miracosta.financialassistant;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+/**
+ * The first activity (other than the splash screen) that the user will encounter.
+ * Responsible for authenticating users and adding new ones with firebase when possible.
+ */
 public class MainActivity extends AppCompatActivity {
+
+    public static final String LOG_TAG = "FinancialAssistant";
 
     private ImageView appLogoImageView;
     private EditText emailEditText;
@@ -27,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.logInButton);
         signUpButton = findViewById(R.id.signUpButton);
 
-        // wait for the user to do something...
-
     }
 
     /**
@@ -40,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         // TODO: Gather the details from the 2 EditText fields. Convert to Strings.
         // TODO: Check the credentials with whatever means we're using to store user/password combos.
         // TODO: No idea how to fucking do that.
+
+
+        // for now clicking log-in will just take us to the MonthlyOverviewActivity
+        Intent intent = new Intent(this, MonthlyOverview.class);
+        startActivity(intent);
     }
 
     /**
@@ -48,8 +59,14 @@ public class MainActivity extends AppCompatActivity {
      * @param v The button R.id.signUpActivity
      */
     public void signUp(View v) {
-        // TODO: Immediately launches the sign-up activity.
-        // TODO:
+        // DONE: Immediately launches the sign-up activity.
+        Log.d(LOG_TAG, "Sign-up button clicked!");
+
+        // create explicit intent
+        Intent intent = new Intent(this, SignUpActivity.class);
+
+        // start the new activity
+        startActivity(intent);
     }
 
 }

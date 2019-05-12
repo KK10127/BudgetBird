@@ -20,14 +20,14 @@ public class FinancialTipsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.good_cc_usage);
+        //setContentView(R.layout.good_cc_usage);
 
         mListView = findViewById(R.id.ccListView);
 
         mStringList.add("Tips for Current Credit Card Holders");
         mStringList.add("Tips for new Credit Card Holders");
 
-        mListAdapter = new ListAdapter(this, R.layout.tip_item, mStringList);
+        //mListAdapter = new ListAdapter(this, R.layout.tip_item, mStringList);
         mListView.setAdapter(mListAdapter);
 
     }
