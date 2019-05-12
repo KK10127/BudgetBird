@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+/**
+ * The first activity (other than the splash screen) that the user will encounter.
+ * Responsible for authenticating users and adding new ones with firebase when possible.
+ */
 public class MainActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = "FinancialAssistant";
