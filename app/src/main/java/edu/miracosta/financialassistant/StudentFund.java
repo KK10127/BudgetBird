@@ -9,18 +9,22 @@ import android.widget.TextView;
 
 import java.text.NumberFormat;
 
+import edu.miracosta.financialassistant.database.DBHelper;
 import edu.miracosta.financialassistant.model.Account;
+import edu.miracosta.financialassistant.model.Expenses;
 
 public class StudentFund extends AppCompatActivity {
     private TextView mUserNameTextView;
     private TextView mMonthlyIncomeTextView;
     private TextView mBudgetTextView;
-    private TextView mLoanFundAmountTextView;
-    private EditText mLoanFundDepositEditText;
+    private TextView mStudentFundTotalTextView;
+    private EditText mWithdrawDepositEditText;
 
     private Intent intent;
     private Account mAccount;
-    private double mLoanFundTotal;
+    private double mFundTotal;
+    private Expenses mExpense;
+    private DBHelper mDB;
 
     //NumberFormatters
     NumberFormat mCurrencyFormat = NumberFormat.getCurrencyInstance();
@@ -32,42 +36,67 @@ public class StudentFund extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_loan_fund);
 
-        mUserNameTextView = findViewById(R.id.UserNameTextViewSL);
-        mMonthlyIncomeTextView = findViewById(R.id.MonthlyIncomeTextViewSL);
-        mBudgetTextView = findViewById(R.id.BudgetTextViewSL);
-        mLoanFundAmountTextView = findViewById(R.id.MonthlyAmountToPayTextView);
-        mLoanFundDepositEditText = findViewById(R.id.LoanFundAmountEditText);
+        mUserNameTextView = findViewById(R.id.UserNameTextView);
+        mMonthlyIncomeTextView = findViewById(R.id.MonthlyIncomeTextView);
+        mBudgetTextView = findViewById(R.id.BudgetTextView);
+        mStudentFundTotalTextView = findViewById(R.id.FundTotalTextView);
+        mWithdrawDepositEditText = findViewById(R.id.amountEditTextSF);
 
         intent = getIntent();
         mAccount = intent.getParcelableExtra("Account");
-        mLoanFundTotal = mAccount.getStudentLoanFund();
+        mFundTotal = mAccount.getStudentFundAmount();
 
 
         //Placing all the account info into the Text Views
         mUserNameTextView.setText(mAccount.getUserName());
         mMonthlyIncomeTextView.setText(mCurrencyFormat.format(mAccount.getMonthlyIncome()));
         mBudgetTextView.setText(mCurrencyFormat.format(mAccount.getBudget()));
-        mLoanFundAmountTextView.setText("$ " + String.valueOf(mAccount.getStudentLoanFund()));
+        mStudentFundTotalTextView.setText("$ " + String.valueOf(mAccount.getStudentFundAmount()));
     }
 
     //Adds a deposit to the fund
-    public void addDepositSL(View v)
+    public void addDepositSF(View v)
     {
-        mLoanFundTotal = Double.valueOf(mLoanFundAmountTextView.getText().toString().substring(1));
+        //Grabs the current total(before the deposit)
+        mFundTotal = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1));
 
+        //Grabs the amount to be deposited into the fund
         double deposit;
-        deposit = Double.valueOf(mLoanFundDepositEditText.getText().toString());
+        deposit = Double.valueOf(mWithdrawDepositEditText.getText().toString());
 
-        mLoanFundTotal = mLoanFundTotal + deposit;
+        //create an Expense object from data
+        mExpense = new Expenses(-1, deposit, "Deposited into Student Fund.");
+        //Add the expense to the Expense database
+        mDB.addExpense(mExpense);
+
+        //Calculates new total
+        mFundTotal = mFundTotal + deposit;
 
         //Update model
-        mAccount.setEmergencyFundAmount(mLoanFundTotal);
+        mAccount.setEmergencyFundAmount(mFundTotal);
 
-        mLoanFundAmountTextView.setText(mCurrencyFormat.format(mLoanFundTotal));
+        mStudentFundTotalTextView.setText(mCurrencyFormat.format(mFundTotal));
+    }
+
+    public void withdrawSF(View v)
+    {
+        mFundTotal = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1));
+
+        double withdrawAmount;
+        withdrawAmount = Double.valueOf(mWithdrawDepositEditText.getText().toString());
+
+        //Calculate new balance
+        mFundTotal = mFundTotal - withdrawAmount;
+
+        //Updating model
+        mAccount.setStudentFundAmount(mFundTotal);
+
+        //Display the balance
+        mStudentFundTotalTextView.setText(mCurrencyFormat.format(mFundTotal));
     }
 
     //Returns to the main screen
-    public void backSL(View v)
+    public void backSF(View v)
     {
         this.finish();
     }

@@ -13,7 +13,7 @@ public class Account implements Parcelable
     private double mMonthlyIncome;
     private double mBudget;
     private double mEmergencyFundAmount;
-    private double mStudentLoanFund;
+    private double mStudentFundAmount;
 
     public Account(Integer id, String userName, String passWord, Integer monthlyIncome, Integer budget) {
         mId = id;
@@ -22,7 +22,7 @@ public class Account implements Parcelable
         mMonthlyIncome = monthlyIncome;
         mBudget = budget;
         mEmergencyFundAmount = 0;
-        mStudentLoanFund = 0;
+        mStudentFundAmount = 0;
     }
 
     public Account(String userName, String passWord, Integer monthlyIncome, Integer budget) {
@@ -31,7 +31,7 @@ public class Account implements Parcelable
         mMonthlyIncome = monthlyIncome;
         mBudget = budget;
         mEmergencyFundAmount = 0;
-        mStudentLoanFund = 0;
+        mStudentFundAmount = 0;
     }
 
     public Integer getId() {
@@ -82,12 +82,12 @@ public class Account implements Parcelable
         mEmergencyFundAmount = emergencyFundAmount;
     }
 
-    public double getStudentLoanFund() {
-        return mStudentLoanFund;
+    public double getStudentFundAmount() {
+        return mStudentFundAmount;
     }
 
-    public void setStudentLoanFund(double studentLoanFund) {
-        mStudentLoanFund = studentLoanFund;
+    public void setStudentFundAmount(double studentFundAmount) {
+        mStudentFundAmount = studentFundAmount;
     }
 
     @Override
@@ -132,7 +132,7 @@ public class Account implements Parcelable
         dest.writeDouble(mMonthlyIncome);
         dest.writeDouble(mBudget);
         dest.writeDouble(mEmergencyFundAmount);
-        dest.writeDouble(mStudentLoanFund);
+        dest.writeDouble(mStudentFundAmount);
     }
 
     //Need to make a mechanism to create (Instantiate) a new Account object from a Parcel
@@ -145,7 +145,7 @@ public class Account implements Parcelable
         mMonthlyIncome = parcel.readDouble();
         mBudget = parcel.readDouble();
         mEmergencyFundAmount = parcel.readDouble();
-        mStudentLoanFund = parcel.readDouble();
+        mStudentFundAmount = parcel.readDouble();
 
     }
 

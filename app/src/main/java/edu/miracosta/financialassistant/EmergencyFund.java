@@ -9,21 +9,26 @@ import android.widget.TextView;
 
 import java.text.NumberFormat;
 
-import edu.miracosta.financialassistant.R;
+import edu.miracosta.financialassistant.database.DBHelper;
 import edu.miracosta.financialassistant.model.Account;
+import edu.miracosta.financialassistant.model.Expenses;
 
 
 public class EmergencyFund extends AppCompatActivity
 {
+    //XML variables
     private TextView userNameTextView;
     private TextView budgetTextView;
     private TextView monthlyIncomeTextView;
     private TextView emergencyFundAmountTextView;
-    private EditText amountDepositedEditText;
+    private EditText amountEditText;
 
+    //Member variables
     private double emergencyFundAmount;
     private Intent intent;
     private Account mAccount;
+    private Expenses mExpense;
+    private DBHelper mDB;
 
     //NumberFormatters
     NumberFormat mCurrencyFormat = NumberFormat.getCurrencyInstance();
@@ -36,11 +41,11 @@ public class EmergencyFund extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_fund);
 
-        userNameTextView = findViewById(R.id.usernameTextView);
-        budgetTextView = findViewById(R.id.budgetTextView);
-        monthlyIncomeTextView = findViewById(R.id.incomeTextView);
+        userNameTextView = findViewById(R.id.UserNameTextView);
+        budgetTextView = findViewById(R.id.BudgetTextView);
+        monthlyIncomeTextView = findViewById(R.id.MonthlyIncomeTextView);
         emergencyFundAmountTextView = findViewById(R.id.EmergencyFundAmountTextView);
-        amountDepositedEditText = findViewById(R.id.AmountDepositedEditText);
+        amountEditText = findViewById(R.id.amountEditTextSF);
 
         intent = getIntent();
         mAccount = intent.getParcelableExtra("Account");
@@ -56,16 +61,44 @@ public class EmergencyFund extends AppCompatActivity
     //Adds a deposit to the fund
     public void addDeposit(View v)
     {
+        //Grabs the total fund currently (before the deposit)
         emergencyFundAmount = Double.valueOf(emergencyFundAmountTextView.getText().toString().substring(1));
 
+        //Grabs how much is being deposited
         double deposit;
-        deposit = Double.valueOf(amountDepositedEditText.getText().toString());
+        deposit = Double.valueOf(amountEditText.getText().toString());
+
+        //Creates an expense object from the deopist
+        mExpense = new Expenses(-1, deposit, "Deposited Into Emergency Fund.");
+        //Then stores the expense in the ExpenseDataBase
+        mDB.addExpense(mExpense);
 
         emergencyFundAmount = emergencyFundAmount + deposit;
 
         //Update model
         mAccount.setEmergencyFundAmount(emergencyFundAmount);
 
+        //Displays the new balance
+        emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFundAmount));
+    }
+
+    //Withdraws from the fund
+    public void withdraw(View v)
+    {
+        //Grabs the E.F amount
+        emergencyFundAmount = Double.valueOf(emergencyFundAmountTextView.getText().toString().substring(1));
+
+        //Grabs how much to withdraw
+        double withdrawAmount;
+        withdrawAmount = Double.valueOf(amountEditText.getText().toString());
+
+        //calculates new balance
+        emergencyFundAmount = emergencyFundAmount - withdrawAmount;
+
+        //update model
+        mAccount.setEmergencyFundAmount(emergencyFundAmount);
+
+        //Displays balance
         emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFundAmount));
     }
 
