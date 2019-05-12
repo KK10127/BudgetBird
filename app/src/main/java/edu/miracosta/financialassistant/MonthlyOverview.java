@@ -42,6 +42,9 @@ public class MonthlyOverview extends AppCompatActivity {
 
     // TODO: More variables may need to be defined
 
+    // TODO: A means of navigation needs to be set up! Some way to get to all of our other activities!
+    // TODO: I've been researching navigation views but so far nothing yet.
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
