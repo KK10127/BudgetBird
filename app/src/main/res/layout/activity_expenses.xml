@@ -8,7 +8,7 @@
     tools:context=".ExpensesActivity">
 
     <TextView
-        android:id="@+id/expenseTitleTextView"
+        android:id="@+id/incomesTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -36,8 +36,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/expensesListView"
-        app:layout_constraintTop_toTopOf="@+id/expensesListView" />
+        app:layout_constraintStart_toEndOf="@+id/incomesListView"
+        app:layout_constraintTop_toTopOf="@+id/incomesListView" />
 
     <EditText
         android:id="@+id/expenseAmountEditText"
@@ -52,8 +52,8 @@
         android:hint="@string/moneyHint"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/expensesListView"
-        app:layout_constraintTop_toBottomOf="@+id/expenseDescriptionEditText" />
+        app:layout_constraintStart_toEndOf="@+id/incomesListView"
+        app:layout_constraintTop_toBottomOf="@+id/incomeDescriptionEditText" />
 
     <Button
         android:id="@+id/addExpenseButton"
@@ -68,11 +68,11 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/expensesListView"
+        app:layout_constraintStart_toEndOf="@+id/incomesListView"
         app:layout_constraintTop_toBottomOf="@+id/expenseAmountEditText" />
 
     <ListView
-        android:id="@+id/expensesListView"
+        android:id="@+id/incomesListView"
         android:layout_width="200dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -81,11 +81,11 @@
         android:background="@color/anotherPurple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expenseTitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/incomesTitleTextView"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/expenseNameEditText"
+        android:id="@+id/incomeNameEditText"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
@@ -99,11 +99,11 @@
         android:textColor="@color/gray"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/expensesListView"
+        app:layout_constraintStart_toEndOf="@+id/incomesListView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/expenseDescriptionEditText"
+        android:id="@+id/incomeDescriptionEditText"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
@@ -117,7 +117,7 @@
         android:textColor="@color/gray"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/expensesListView"
-        app:layout_constraintTop_toBottomOf="@+id/expenseNameEditText" />
+        app:layout_constraintStart_toEndOf="@+id/incomesListView"
+        app:layout_constraintTop_toBottomOf="@+id/incomeNameEditText" />
 
 </android.support.constraint.ConstraintLayout>

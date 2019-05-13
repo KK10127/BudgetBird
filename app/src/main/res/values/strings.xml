@@ -60,4 +60,9 @@ While some of these promotional offers may be beneficial to the users, you shoul
     <string name="add_an_expense">Add a Monthly Expense:</string>
     <string name="expense_name">Expense name</string>
     <string name="brief_description">Brief description</string>
+    <string name="incomes">Incomes</string>
+    <string name="add_an_income">Add a monthly income:</string>
+    <string name="add_income">Add a Monthly Income:</string>
+    <string name="income_name">Income name</string>
+    <string name="addIncome">Add Income</string>
 </resources>
