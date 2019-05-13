@@ -65,4 +65,6 @@ While some of these promotional offers may be beneficial to the users, you shoul
     <string name="add_income">Add a Monthly Income:</string>
     <string name="income_name">Income name</string>
     <string name="addIncome">Add Income</string>
+    <string name="your_trends">Your Trends</string>
+    <string name="trends_text_1">Viewing trends for past:</string>
 </resources>
