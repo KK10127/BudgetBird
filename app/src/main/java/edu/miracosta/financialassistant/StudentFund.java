@@ -48,7 +48,7 @@ public class StudentFund extends AppCompatActivity {
 
 
         //Placing all the account info into the Text Views
-        mUserNameTextView.setText(mAccount.getUserName());
+        mUserNameTextView.setText(mAccount.getEmail());
         mMonthlyIncomeTextView.setText(mCurrencyFormat.format(mAccount.getMonthlyIncome()));
         mBudgetTextView.setText(mCurrencyFormat.format(mAccount.getBudget()));
         mStudentFundTotalTextView.setText("$ " + String.valueOf(mAccount.getStudentFundAmount()));

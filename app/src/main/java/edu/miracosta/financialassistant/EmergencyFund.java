@@ -52,7 +52,7 @@ public class EmergencyFund extends AppCompatActivity
         emergencyFundAmount = mAccount.getEmergencyFundAmount();
 
         //Placing all the account info into the Text Views
-        userNameTextView.setText(mAccount.getUserName());
+        userNameTextView.setText(mAccount.getEmail());
         monthlyIncomeTextView.setText(mCurrencyFormat.format(mAccount.getMonthlyIncome()));
         budgetTextView.setText(mCurrencyFormat.format(mAccount.getBudget()));
         emergencyFundAmountTextView.setText("$ " + String.valueOf(mAccount.getEmergencyFundAmount()));

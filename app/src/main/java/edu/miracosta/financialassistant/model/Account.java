@@ -14,26 +14,24 @@ public class Account implements Parcelable
     private double mEmergencyFundAmount;
     private double mStudentFundAmount;
 
-    public Account(Integer id, String userName, String passWord, Integer monthlyIncome, Integer budget) {
+    public Account(Integer id, String email, Integer monthlyIncome, Integer budget) {
         mId = id;
-        mUserName = userName;
-        mPassWord = passWord;
+        mEmail = email;
         mMonthlyIncome = monthlyIncome;
         mBudget = budget;
         mEmergencyFundAmount = 0;
         mStudentFundAmount = 0;
     }
 
-    public Account(String userName, String passWord, Integer monthlyIncome, Integer budget) {
-        mUserName = userName;
-        mPassWord = passWord;
+    public Account(String email, Integer monthlyIncome, Integer budget) {
+        mEmail = email;
         mMonthlyIncome = monthlyIncome;
         mBudget = budget;
         mEmergencyFundAmount = 0;
         mStudentFundAmount = 0;
     }
 
-    public Integer getId() {
+    public long getId() {
         return mId;
     }
 
@@ -41,20 +39,12 @@ public class Account implements Parcelable
         mId = id;
     }
 
-    public String getUserName() {
-        return mUserName;
+    public String getEmail() {
+        return mEmail;
     }
 
-    public void setUserName(String userName) {
-        mUserName = userName;
-    }
-
-    public String getPassWord() {
-        return mPassWord;
-    }
-
-    public void setPassWord(String passWord) {
-        mPassWord = passWord;
+    public void setEmail(String email) {
+        mEmail = email;
     }
 
     public double getMonthlyIncome() {
@@ -94,26 +84,28 @@ public class Account implements Parcelable
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return Objects.equals(mId, account.mId) &&
-                Objects.equals(mUserName, account.mUserName) &&
-                Objects.equals(mPassWord, account.mPassWord) &&
-                Objects.equals(mMonthlyIncome, account.mMonthlyIncome) &&
-                Objects.equals(mBudget, account.mBudget);
+        return mId == account.mId &&
+                Double.compare(account.mMonthlyIncome, mMonthlyIncome) == 0 &&
+                Double.compare(account.mBudget, mBudget) == 0 &&
+                Double.compare(account.mEmergencyFundAmount, mEmergencyFundAmount) == 0 &&
+                Double.compare(account.mStudentFundAmount, mStudentFundAmount) == 0 &&
+                Objects.equals(mEmail, account.mEmail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mId, mUserName, mPassWord, mMonthlyIncome, mBudget);
+        return Objects.hash(mId, mEmail, mMonthlyIncome, mBudget, mEmergencyFundAmount, mStudentFundAmount);
     }
 
     @Override
     public String toString() {
         return "Account{" +
                 "mId=" + mId +
-                ", mUserName='" + mUserName + '\'' +
-                ", mPassWord='" + mPassWord + '\'' +
+                ", mEmail='" + mEmail + '\'' +
                 ", mMonthlyIncome=" + mMonthlyIncome +
                 ", mBudget=" + mBudget +
+                ", mEmergencyFundAmount=" + mEmergencyFundAmount +
+                ", mStudentFundAmount=" + mStudentFundAmount +
                 '}';
     }
 
@@ -125,9 +117,8 @@ public class Account implements Parcelable
     @Override
     public void writeToParcel(Parcel dest, int flags)
     {
-        dest.writeInt(mId);
-        dest.writeString(mUserName);
-        dest.writeString(mPassWord);
+        dest.writeLong(mId);
+        dest.writeString(mEmail);
         dest.writeDouble(mMonthlyIncome);
         dest.writeDouble(mBudget);
         dest.writeDouble(mEmergencyFundAmount);
@@ -139,8 +130,7 @@ public class Account implements Parcelable
     private Account(Parcel parcel)
     {
         mId = parcel.readInt();
-        mUserName = parcel.readString();
-        mPassWord = parcel.readString();
+        mEmail = parcel.readString();
         mMonthlyIncome = parcel.readDouble();
         mBudget = parcel.readDouble();
         mEmergencyFundAmount = parcel.readDouble();
