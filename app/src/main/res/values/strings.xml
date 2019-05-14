@@ -14,8 +14,8 @@ Credit cards are not all alike, and you should choose the card(s) that best fit 
 It might seem like an obvious piece of advice, but enough people ignore it to make it worth stressing.</string>
     <string name="tip3">3. Pay off your bills in full each month - and on time
 If you only charge what you can afford, you\'ll be able to pay your credit card bills off in full each month - and you should absolutely do so.</string>
-    <string name="tip4">4. Understand how dangerous debt can be
-If you let any debt accumulate, it can take on a life of its own - especially when it's high-interest-rate debt.</string>
+    <string name="tip4">4. Understand how dangerous debt can be If you let any debt accumulate, it can take on a life of its own - especially when it
+        \'s high-interest-rate debt.</string>
     <string name="tip5">5. Beware of fees
 Credit card issuers rake in a lot of money from fees.</string>
     <string name="tip6">6. Don\'t just make minimum payments
@@ -23,13 +23,13 @@ If you end up with significant credit card debt at some point in your life, pay 
     <string name="tip7">7. Check your statements for problems
 Take a minute to review all the charges. Are they all yours? If an identity thief has been using your credit card (or just the information on the card) to buy things, let the company know. </string>
     <string name="tip8">8. Don\'t be afraid to ask for breaks
-Credit card contracts are full of terms and conditions and fine print, but don't assume they're all set in stone.</string>
+Credit card contracts are full of terms and conditions and fine print, but don\'t assume they\'re all set in stone.</string>
     <string name="tip9">9. Keep an eye out for changes
 Finally, remember that regulations on credit cards can and do change over time.</string>
     <string name="protip1">1. Keep Your Credit Utilization Low
-Don’t max out your line of credit.</string>
+Don\’t max out your line of credit.</string>
     <string name="protip2">2. Use a Secured Credit Card to Build Your Credit
-Using a credit card is an effective method to build your credit. If you don’t have credit yet, getting a loan is often difficult.</string>
+Using a credit card is an effective method to build your credit. If you don\’t have credit yet, getting a loan is often difficult.</string>
     <string name="protip3">3. Pay Off Your Card Each Month to Maximize Rewards Value
 If you get a rewards card, but carry a balance, the interest you pay will cancel out the rewards you earn.</string>
     <string name="protip4">4. Pay Off High-Interest Credit Cards First
@@ -40,7 +40,7 @@ Credit cards should not be treated as a bank account that you can get cash from 
 To help monitor and control your credit card usage, use a personal finance app on your cell phone that tracks, in real-time, your purchases by category.</string>
     <string name="protip7">7. Use Online Reporting from Your Credit Card to Monitor Spending Habits
 It’s critical to keep track of your spending habits, control your expenses, and avoid getting into debt.</string>
-    <string name="protip8">8. Don’t Share Credit Card Accounts with Your Spouse
+    <string name="protip8">8. Don\’t Share Credit Card Accounts with Your Spouse
 There is usually minimal benefit to having multiple cardholders on one account. One partner can have spending problems, obtain limit increases, or incur debt, and the other partner will also be liable for this.</string>
     <string name="protip9">9. Be Careful with Promotional Offers
 While some of these promotional offers may be beneficial to the users, you should still be careful and ensure you understand the terms thoroughly.</string>
@@ -64,7 +64,12 @@ While some of these promotional offers may be beneficial to the users, you shoul
     <string name="add_an_income">Add a monthly income:</string>
     <string name="add_income">Add a Monthly Income:</string>
     <string name="income_name">Income name</string>
-    <string name="addIncome">Add Income</string>
     <string name="your_trends">Your Trends</string>
     <string name="trends_text_1">Viewing trends for past:</string>
+    <string name="zero">$00.00</string>
+    <string name="your_monthly_budget">Your Monthly Budget</string>
+    <string name="emergency_fund">Emergency Fund</string>
+    <string name="today">Today</string>
+    <string name="trends">Your Trends</string>
+    <string name="signMeUp">Sign me up!</string>
 </resources>

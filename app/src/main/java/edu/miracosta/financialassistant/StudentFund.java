@@ -34,7 +34,7 @@ public class StudentFund extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_loan_fund);
+        //setContentView(R.layout.activity_student_loan_fund);
 
         mUserNameTextView = findViewById(R.id.UserNameTextView);
         mMonthlyIncomeTextView = findViewById(R.id.MonthlyIncomeTextView);

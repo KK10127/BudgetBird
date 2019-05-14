@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import edu.miracosta.financialassistant.CreditCard.NewCreditCardUser;
+//import edu.miracosta.financialassistant.CreditCard.NewCreditCardUser;
 
 public class FinancialTipsActivity extends AppCompatActivity {
     private ListView mListView;
@@ -38,13 +38,13 @@ public class FinancialTipsActivity extends AppCompatActivity {
 
         if(mStringList.get(0) == selectedString)
         {
-            Intent intent = new Intent(this, CurrentlyACardHolder.class);
-            startActivity(intent);
+            //Intent intent = new Intent(this, CurrentlyACardHolder.class);
+            //startActivity(intent);
         }
         else if(mStringList.get(1) == selectedString)
         {
-            Intent intent = new Intent(this, NewCreditCardUser.class);
-            startActivity(intent);
+            //Intent intent = new Intent(this, NewCreditCardUser.class);
+            //startActivity(intent);
         }
     }
 }
