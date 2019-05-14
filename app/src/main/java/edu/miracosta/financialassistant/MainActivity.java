@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
         // TODO: Gather the details from the 2 EditText fields. Convert to Strings.
         // TODO: Check the credentials with whatever means we're using to store user/password combos.
         // TODO: No idea how to fucking do that.
-
+        signIn(emailEditText.getText().toString(), passwordEditText.getText().toString());
 
         // for now clicking log-in will just take us to the MonthlyOverviewActivity
-        Intent intent = new Intent(this, MonthlyOverview.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, MonthlyOverview.class);
+        //startActivity(intent);
     }
 
     /**
@@ -90,13 +90,12 @@ public class MainActivity extends AppCompatActivity {
     public void signUp(View v) {
         // DONE: Immediately launches the sign-up activity.
         Log.d(LOG_TAG, "Sign-up button clicked!");
-        signIn(emailEditText.getText().toString(), passwordEditText.getText().toString());
 
         // create explicit intent
-        //Intent intent = new Intent(this, SignUpActivity.class);
+        Intent intent = new Intent(this, SignUpActivity.class);
 
         // start the new activity
-        //startActivity(intent);
+        startActivity(intent);
     }
 
     /**

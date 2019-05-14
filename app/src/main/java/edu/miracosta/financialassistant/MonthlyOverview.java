@@ -93,6 +93,7 @@ public class MonthlyOverview extends AppCompatActivity {
         setSupportActionBar(toolBar);
 
         final ActionBar actionBar = getSupportActionBar();
+
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
@@ -112,7 +113,7 @@ public class MonthlyOverview extends AppCompatActivity {
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         return true;
-                    case R.id.finacial_tips:
+                    case R.id.financial_tips:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         return true;

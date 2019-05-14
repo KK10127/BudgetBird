@@ -11,7 +11,7 @@
             android:icon="@drawable/ic_expenses24dp"
             android:title="All Expenses"/>
         <item
-            android:id="@+id/finacial_tips"
+            android:id="@+id/financial_tips"
             android:icon="@drawable/ic_help24dp"
             android:title="Finacial Tips"/>
         <item

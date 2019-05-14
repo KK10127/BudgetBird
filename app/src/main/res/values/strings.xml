@@ -79,4 +79,5 @@ While some of these promotional offers may be beneficial to the users, you shoul
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="email">E-mail</string>
 </resources>
