@@ -90,12 +90,13 @@ public class MainActivity extends AppCompatActivity {
     public void signUp(View v) {
         // DONE: Immediately launches the sign-up activity.
         Log.d(LOG_TAG, "Sign-up button clicked!");
+        signIn(emailEditText.getText().toString(), passwordEditText.getText().toString());
 
         // create explicit intent
-        Intent intent = new Intent(this, SignUpActivity.class);
+        //Intent intent = new Intent(this, SignUpActivity.class);
 
         // start the new activity
-        startActivity(intent);
+        //startActivity(intent);
     }
 
     /**
