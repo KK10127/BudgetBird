@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/emergency_fund"
+            android:icon="@drawable/ic_emergency_fund24dp"
+            android:title="Emergency Fund"/>
+        <item
+            android:id="@+id/expenses"
+            android:icon="@drawable/ic_expenses24dp"
+            android:title="All Expenses"/>
+        <item
+            android:id="@+id/finacial_tips"
+            android:icon="@drawable/ic_help24dp"
+            android:title="Finacial Tips"/>
+        <item
+            android:id="@+id/income"
+            android:icon="@drawable/ic_income24dp"
+            android:title="Income"/>
+        <item
+            android:id="@+id/user_settings"
+            android:icon="@drawable/ic_settings24dp"
+            android:title="User Settings"/>
+        <item
+            android:id="@+id/student_fund"
+            android:icon="@drawable/ic_student_fund24dp"
+            android:title="Student Fund"/>
+        <item
+            android:id="@+id/today"
+            android:icon="@drawable/ic_today24dp"
+            android:title="Today"/>
+        <item
+            android:id="@+id/trends"
+            android:icon="@drawable/ic_trends24dp"
+            android:title="Trends"/>
+
+
+    </group>
+</menu>

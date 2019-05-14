@@ -14,9 +14,27 @@ import edu.miracosta.financialassistant.model.Expenses;
 public class DBHelper extends SQLiteOpenHelper
 {
     //Define the data base version, name and table name
-    public static final String DATABASE_NAME = "AllExpenses";
-    private static final String DATABASE_TABLE = "Expenses";
+    public static final String DATABASE_NAME = "BudgetBirdDatabase";
     private static final int DATABASE_VERSION = 1;
+
+    public static final String DATABASE_TABLE = "BudgetBirdDatabase";
+
+    // DEFINE THE FIELDS FOR THE ACCOUNT TABLE
+    private static final String ACCOUNT_TABLE = "AccountInfo";
+    private static final String ACCOUNTS_KEY_FIELD_ID = "_id";
+    private static final String FIELD_FIRST_NAME = "first_name";
+    private static final String FIELD_LAST_NAME = "last_name";
+    private static final String FIELD_EMERGENCY_FUND = "emergency_fund";
+    private static final String FIELD_STUDENT_FUND = "student_fund";
+
+    // DEFINE THE FIELDS FOR THE ONTHLY EXPENSES TABLE
+    private static final String MONTHLY_EXPENSES_TABLE = "MonthlyExpenses";
+
+
+
+    private static final String DATABASE_TABLE3 = "MonthlyExpenses";
+    private static final String DATABASE_TABLE4 = "PastActivity";
+    //private static final int DATABASE_VERSION = 1;
 
     //Define the fields (Column Names) for the table
     private static final String KEY_FIELD_ID = "_id";

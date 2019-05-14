@@ -2,16 +2,14 @@ package edu.miracosta.financialassistant;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +47,10 @@ public class MonthlyOverview extends AppCompatActivity {
     private Button trendsButton;
     private TextView emergencyFundTextView;
 
+    private Toolbar toolBar;
+    private DrawerLayout mDrawerLayout;
+    private NavigationView mNavigationView;
+
     // TODO: More variables may need to be defined
 
     // TODO: A means of navigation needs to be set up! Some way to get to all of our other activities!
@@ -58,7 +60,7 @@ public class MonthlyOverview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_monthly_overview);
+        setContentView(R.layout.monthly_overview);
 
         // wire up necessary components
         pieChartView = findViewById(R.id.pieChartView);
@@ -87,6 +89,60 @@ public class MonthlyOverview extends AppCompatActivity {
 
         // TODO: update the chart update views accordingly
 
+        toolBar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolBar);
+
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        mNavigationView = findViewById(R.id.navigationView);
+
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId())
+                {
+                    case R.id.emergency_fund:
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    case R.id.expenses:
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    case R.id.finacial_tips:
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    case R.id.income:
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    case R.id.user_settings:
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    case R.id.student_fund:
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    case R.id.today:
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    case R.id.trends:
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                }
+
+
+
+                return false;
+            }
+        });
 
 
     }
@@ -114,6 +170,20 @@ public class MonthlyOverview extends AppCompatActivity {
 
         // TODO: Decide if any data needs to be sent to TrendsActivity.java
         // TODO: Update this block if necessary
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

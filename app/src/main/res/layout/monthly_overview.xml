@@ -7,6 +7,7 @@
     android:background="@color/secondaryColor"
     tools:context=".MonthlyOverview">
 
+    <include layout="@layout/navigation_menu"/>
     <lecho.lib.hellocharts.view.PieChartView
         android:id="@+id/pieChartView"
         android:layout_width="0dp"
