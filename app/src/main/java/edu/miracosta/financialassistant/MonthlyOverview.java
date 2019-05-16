@@ -43,8 +43,6 @@ public class MonthlyOverview extends AppCompatActivity {
     // define all interacting components
     private PieChartView pieChartView;
     private TextView budgetTextView;
-    private Button todayButton;
-    private Button trendsButton;
     private TextView emergencyFundTextView;
 
     private Toolbar toolBar;
@@ -65,8 +63,6 @@ public class MonthlyOverview extends AppCompatActivity {
         // wire up necessary components
         pieChartView = findViewById(R.id.pieChartView);
         budgetTextView = findViewById(R.id.budgetTextView);
-        todayButton = findViewById(R.id.todayButton);
-        trendsButton = findViewById(R.id.trendsButton);
         emergencyFundTextView = findViewById(R.id.emergencyFundTextView);
 
         // create slices list for the pieData
@@ -102,74 +98,46 @@ public class MonthlyOverview extends AppCompatActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId())
-                {
+                switch (menuItem.getItemId()) {
                     case R.id.emergency_fund:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
-                        return true;
+                        break;
                     case R.id.expenses:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
-                        return true;
+                        break;
                     case R.id.finacial_tips:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
-                        return true;
+                        break;
                     case R.id.income:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
-                        return true;
+                        break;
                     case R.id.user_settings:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
-                        return true;
+                        break;
                     case R.id.student_fund:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
-                        return true;
+                        break;
                     case R.id.today:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
-                        return true;
+                        break;
                     case R.id.trends:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
-                        return true;
+                        break;
+                    default:
+                        break;
                 }
 
-
-
-                return false;
+                return true;
             }
         });
-
-
-    }
-
-    /**
-     * This method takes users to the 'Today' activity
-     * @param v
-     */
-    public void todayClicked(View v) {
-        Intent intent = new Intent(this, TodayActivity.class);
-        startActivity(intent);
-
-        // TODO: Decide if any data needs to be sent to TodayActivity.java
-        // TODO: Update this block if necessary.
-
-    }
-
-    /**
-     * This method takes users to the 'Trends' activity
-     * @param v
-     */
-    public void trendsClicked(View v) {
-        Intent intent = new Intent(this, TrendsActivity.class);
-        startActivity(intent);
-
-        // TODO: Decide if any data needs to be sent to TrendsActivity.java
-        // TODO: Update this block if necessary
     }
 
     @Override
@@ -179,6 +147,8 @@ public class MonthlyOverview extends AppCompatActivity {
         {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
+                mDrawerLayout.bringToFront();
+                mDrawerLayout.invalidate();
                 return true;
         }
 
