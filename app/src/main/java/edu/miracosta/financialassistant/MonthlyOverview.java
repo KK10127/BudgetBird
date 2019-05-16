@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.miracosta.financialassistant.database.DBHelper;
 import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.view.PieChartView;
@@ -50,6 +51,11 @@ public class MonthlyOverview extends AppCompatActivity {
     private NavigationView mNavigationView;
 
     // TODO: More variables may need to be defined
+    private double emergencyFund;
+    private double studentFund;
+    private double incomeTotal;
+    private double budgetGap;
+
 
     // TODO: A means of navigation needs to be set up! Some way to get to all of our other activities!
     // TODO: I've been researching navigation views but so far nothing yet.
@@ -81,9 +87,13 @@ public class MonthlyOverview extends AppCompatActivity {
 
         // TODO: gather needed details from the database
         // TODO: The user's monthly budget, monthly expenses, emergency fund amount
+        DBHelper db = new DBHelper(this);
 
 
-        // TODO: update the chart update views accordingly
+
+
+
+        // TODO: update the chart/update views accordingly
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);

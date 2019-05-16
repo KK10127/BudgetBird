@@ -17,23 +17,34 @@ public class DBHelper extends SQLiteOpenHelper
     public static final String DATABASE_NAME = "BudgetBirdDatabase";
     private static final int DATABASE_VERSION = 1;
 
-    public static final String DATABASE_TABLE = "BudgetBirdDatabase";
 
     // DEFINE THE FIELDS FOR THE ACCOUNT TABLE
     private static final String ACCOUNT_TABLE = "AccountInfo";
-    private static final String ACCOUNTS_KEY_FIELD_ID = "_id";
+    private static final String ACCOUNT_KEY_FIELD_ID = "_id";
     private static final String FIELD_FIRST_NAME = "first_name";
     private static final String FIELD_LAST_NAME = "last_name";
     private static final String FIELD_EMERGENCY_FUND = "emergency_fund";
     private static final String FIELD_STUDENT_FUND = "student_fund";
 
-    // DEFINE THE FIELDS FOR THE ONTHLY EXPENSES TABLE
+    // DEFINE THE MONTHLY EXPENSES TABLE
     private static final String MONTHLY_EXPENSES_TABLE = "MonthlyExpenses";
+    private static final String MONTHLY_EXPENSES_KEY_FIELD_ID = "_id";
+    private static final String FIELD_EXPENSE_NAME = "expense_name";
+    private static final String FIELD_EXPENSE_VALUE = "expense_value;"
+
+    // DEFINE THE MONTHLY INCOMES TABLE
+    private static final String MONTHLY_INCOMES_TABLE = "MonthlyIncomes";
+    private static final String MONTHLY_INCOMES_KEY_FIELD_ID = "_id";
+    private static final String FIELD_INCOME_NAME = "income_name";
+    private static final String FIELD_INCOME_VALUE = "income_value;"
+
+    // DEFINE THE ACTIVITY TABLE
+    private static final String ACTIVITY_TABLE = "Activity";
+    private static final String ACTIVITY_KEY_FIELD_ID = "_id";
+    private static final String FIELD_DATE = "date";
+    private static final String FIELD_TOTAL_SPENDING = "total_spending";
 
 
-
-    private static final String DATABASE_TABLE3 = "MonthlyExpenses";
-    private static final String DATABASE_TABLE4 = "PastActivity";
     //private static final int DATABASE_VERSION = 1;
 
     //Define the fields (Column Names) for the table
@@ -48,12 +59,45 @@ public class DBHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        String table = "CREATE TABLE IF NOT EXISTS " + DATABASE_TABLE + "("
-                + KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
-                + FIELD_DESCRIPTION + " TEXT, "
-                + FIELD_COST + " INTEGER" + ")";
+        // Create the account table
+        String accountTable = "CREATE TABLE IF NOT EXISTS " + ACCOUNT_TABLE + "("
+                + ACCOUNT_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + FIELD_EMERGENCY_FUND + " REAL, "
+                + FIELD_STUDENT_FUND + " REAL "
+                + ")";
 
-        db.execSQL(table);
+        // execute the command
+        db.execSQL(accountTable);
+
+        // Create the monthly expenses table
+        String monthlyExpensesTable = "CREATE TABLE IF NOT EXISTS " + MONTHLY_EXPENSES_TABLE + "("
+                + MONTHLY_EXPENSES_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + FIELD_EXPENSE_NAME + " TEXT, "
+                + FIELD_EXPENSE_VALUE + " REAL "
+                + ")";
+
+        // execute the command
+        db.execSQL(monthlyExpensesTable);
+
+        // Create the monthly incomes table
+        String monthlyIncomesTable = "CREATE TABLE IF NOT EXISTS " + MONTHLY_INCOMES_TABLE + "("
+                + MONTHLY_INCOMES_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + FIELD_INCOME_NAME + " TEXT, "
+                + FIELD_INCOME_VALUE + " REAL "
+                + ")";
+
+        // execute the command
+        db.execSQL(monthlyIncomesTable);
+
+        // Create the activity table
+        String activityTable = "CREATE TABLE IF NOT EXISTS " + ACTIVITY_TABLE + "("
+                + ACTIVITY_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + FIELD_INCOME_NAME + " TEXT, "
+                + FIELD_INCOME_VALUE + " REAL "
+                + ")";
+
+        // execute the command
+        db.execSQL(activityTable);
     }
 
     @Override
@@ -92,7 +136,7 @@ public class DBHelper extends SQLiteOpenHelper
         SQLiteDatabase database = getReadableDatabase();
 
         //A cursor is the result of a database query
-        Cursor cursor = database.query(DATABASE_TABLE, new String[]{KEY_FIELD_ID, FIELD_COST, FIELD_DESCRIPTION},
+        Cursor cursor = database.query(MONTHLY_EXPENSES_TABLE, new String[]{KEY_FIELD_ID, FIELD_EXPENSE_NAME, FIELD_EXPENSE_VALUE},
                 null,
                 null,
                 null,
