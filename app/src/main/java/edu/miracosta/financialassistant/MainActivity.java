@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     //Adding FireBase variables
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    FirebaseApp app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.logInButton);
         signUpButton = findViewById(R.id.signUpButton);
 
+        app = FirebaseApp.initializeApp(this);
         //instantiate the firebase authenticator
         mAuth = FirebaseAuth.getInstance();
 
