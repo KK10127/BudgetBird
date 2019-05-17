@@ -11,7 +11,7 @@ import java.text.NumberFormat;
 
 import edu.miracosta.financialassistant.database.DBHelper;
 import edu.miracosta.financialassistant.model.Account;
-import edu.miracosta.financialassistant.model.Expenses;
+import edu.miracosta.financialassistant.model.Expense;
 
 public class StudentFund extends AppCompatActivity {
     private TextView mUserNameTextView;
@@ -23,7 +23,7 @@ public class StudentFund extends AppCompatActivity {
     private Intent intent;
     private Account mAccount;
     private double mFundTotal;
-    private Expenses mExpense;
+    private Expense mExpense;
     private DBHelper mDB;
 
     //NumberFormatters
@@ -65,7 +65,7 @@ public class StudentFund extends AppCompatActivity {
         deposit = Double.valueOf(mWithdrawDepositEditText.getText().toString());
 
         //create an Expense object from data
-        mExpense = new Expenses(-1, deposit, "Deposited into Student Fund.");
+        mExpense = new Expense(-1, deposit, "Deposited into Student Fund.");
         //Add the expense to the Expense database
         mDB.addExpense(mExpense);
 

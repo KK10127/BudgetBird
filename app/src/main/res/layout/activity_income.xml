@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="@+id/incomesListView" />
 
     <EditText
-        android:id="@+id/expenseAmountEditText"
+        android:id="@+id/incomeAmountEditText"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
@@ -69,7 +69,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/incomesListView"
-        app:layout_constraintTop_toBottomOf="@+id/expenseAmountEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/incomeAmountEditText" />
 
     <ListView
         android:id="@+id/incomesListView"

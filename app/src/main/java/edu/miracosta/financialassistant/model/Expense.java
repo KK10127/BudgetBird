@@ -3,20 +3,20 @@ package edu.miracosta.financialassistant.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Expenses implements Parcelable
+public class Expense implements Parcelable
 {
     private long mId;
     private String expenseName;
     private double expenseValue;
 
-    public Expenses()
+    public Expense()
     {
         mId = -1;
         expenseName = "";
         expenseValue = 0;
     }
 
-    public Expenses(long id, double expenseCost, String expenseDescription) {
+    public Expense(long id, double expenseCost, String expenseDescription) {
         this.mId = id;
         this.expenseName = expenseDescription;
         this.expenseValue = expenseCost;
@@ -66,22 +66,22 @@ public class Expenses implements Parcelable
     }
 
     //Need a mechanism to create a new expense object form a parcel
-    private Expenses(Parcel parcel)
+    private Expense(Parcel parcel)
     {
         mId = parcel.readLong();
         expenseName = parcel.readString();
         expenseValue = parcel.readDouble();
     }
 
-    public static final Parcelable.Creator<Expenses> CREATOR = new Creator<Expenses>() {
+    public static final Parcelable.Creator<Expense> CREATOR = new Creator<Expense>() {
         @Override
-        public Expenses createFromParcel(Parcel source) {
-            return new Expenses(source);
+        public Expense createFromParcel(Parcel source) {
+            return new Expense(source);
         }
 
         @Override
-        public Expenses[] newArray(int size) {
-            return new Expenses[size];
+        public Expense[] newArray(int size) {
+            return new Expense[size];
         }
     };
 

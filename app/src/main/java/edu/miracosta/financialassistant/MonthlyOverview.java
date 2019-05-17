@@ -117,7 +117,7 @@ public class MonthlyOverview extends AppCompatActivity {
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         break;
-                    case R.id.finacial_tips:
+                    case R.id.financial_tips:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         break;

@@ -16,11 +16,10 @@
         <activity android:name=".StudentFund" />
         <activity android:name=".MonthlyOverview" />
         <activity android:name=".AboutUs" />
-        <activity android:name=".SplashScreen" />
-        <activity android:name=".SignUpActivity" />
         <activity android:name=".ExpensesActivity" />
         <activity android:name=".IncomeActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

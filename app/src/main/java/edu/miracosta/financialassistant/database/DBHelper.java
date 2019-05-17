@@ -1,3 +1,4 @@
+
 package edu.miracosta.financialassistant.database;
 
 import android.content.ContentValues;
@@ -9,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.miracosta.financialassistant.model.Expenses;
+import edu.miracosta.financialassistant.model.Expense;
 
 public class DBHelper extends SQLiteOpenHelper
 {
@@ -30,13 +31,13 @@ public class DBHelper extends SQLiteOpenHelper
     private static final String MONTHLY_EXPENSES_TABLE = "MonthlyExpenses";
     private static final String MONTHLY_EXPENSES_KEY_FIELD_ID = "_id";
     private static final String FIELD_EXPENSE_NAME = "expense_name";
-    private static final String FIELD_EXPENSE_VALUE = "expense_value;"
+    private static final String FIELD_EXPENSE_VALUE = "expense_value";
 
     // DEFINE THE MONTHLY INCOMES TABLE
     private static final String MONTHLY_INCOMES_TABLE = "MonthlyIncomes";
     private static final String MONTHLY_INCOMES_KEY_FIELD_ID = "_id";
     private static final String FIELD_INCOME_NAME = "income_name";
-    private static final String FIELD_INCOME_VALUE = "income_value;"
+    private static final String FIELD_INCOME_VALUE = "income_value";
 
     // DEFINE THE ACTIVITY TABLE
     private static final String ACTIVITY_TABLE = "Activity";
@@ -49,7 +50,7 @@ public class DBHelper extends SQLiteOpenHelper
 
     //Define the fields (Column Names) for the table
     private static final String KEY_FIELD_ID = "_id";
-    private static final String FIELD_DESCRIPTION= "desctiption";
+    private static final String FIELD_DESCRIPTION= "description";
     private static final String FIELD_COST = "ExpenseCost";
 
     public DBHelper(Context context)
@@ -109,7 +110,7 @@ public class DBHelper extends SQLiteOpenHelper
 
     //DataBase operations ADD, UPDATE, EDIT, DELETE
 
-    public void addExpense(Expenses expense)
+    public void addExpense(Expense expense)
     {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -130,9 +131,9 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
-    public List<Expenses> getAllExpenses()
+    public List<Expense> getAllExpenses()
     {
-        List<Expenses> expensesList = new ArrayList<Expenses>();
+        List<Expense> expensesList = new ArrayList<Expense>();
         SQLiteDatabase database = getReadableDatabase();
 
         //A cursor is the result of a database query
@@ -149,7 +150,7 @@ public class DBHelper extends SQLiteOpenHelper
         {
             do
             {
-                Expenses expense = new Expenses(cursor.getLong(0),
+                Expense expense = new Expense(cursor.getLong(0),
                                                 cursor.getInt(1),
                                                 cursor.getString(2));
                 expensesList.add(expense);
@@ -161,7 +162,7 @@ public class DBHelper extends SQLiteOpenHelper
         return expensesList;
     }
 
-    public void deleteExpense(Expenses expense)
+    public void deleteExpense(Expense expense)
     {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -178,7 +179,7 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
-    public void updateExpenses(Expenses expense)
+    public void updateExpenses(Expense expense)
     {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -191,7 +192,7 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
-    public Expenses getExpense(int id)
+    public Expense getExpense(int id)
     {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(DATABASE_TABLE,
@@ -199,12 +200,12 @@ public class DBHelper extends SQLiteOpenHelper
                 KEY_FIELD_ID + " = ?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
 
-        Expenses expense = null;
+        Expense expense = null;
         if(cursor != null)
         {
             cursor.moveToFirst();
 
-            expense = new Expenses(cursor.getLong(0),
+            expense = new Expense(cursor.getLong(0),
                                    cursor.getInt(1),
                                    cursor.getString(2));
 

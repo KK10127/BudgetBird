@@ -11,7 +11,7 @@ import java.text.NumberFormat;
 
 import edu.miracosta.financialassistant.database.DBHelper;
 import edu.miracosta.financialassistant.model.Account;
-import edu.miracosta.financialassistant.model.Expenses;
+import edu.miracosta.financialassistant.model.Expense;
 
 
 public class EmergencyFund extends AppCompatActivity
@@ -27,7 +27,7 @@ public class EmergencyFund extends AppCompatActivity
     private double emergencyFundAmount;
     private Intent intent;
     private Account mAccount;
-    private Expenses mExpense;
+    private Expense mExpense;
     private DBHelper mDB;
 
     //NumberFormatters
@@ -69,7 +69,7 @@ public class EmergencyFund extends AppCompatActivity
         deposit = Double.valueOf(amountEditText.getText().toString());
 
         //Creates an expense object from the deopist
-        mExpense = new Expenses(-1, deposit, "Deposited Into Emergency Fund.");
+        mExpense = new Expense(-1, deposit, "Deposited Into Emergency Fund.");
         //Then stores the expense in the ExpenseDataBase
         mDB.addExpense(mExpense);
 
