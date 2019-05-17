@@ -1,4 +1,3 @@
-
 package edu.miracosta.financialassistant.database;
 
 import android.content.ContentValues;
@@ -8,9 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 import edu.miracosta.financialassistant.model.Expense;
+import edu.miracosta.financialassistant.model.SpendingEachDay;
 
 public class DBHelper extends SQLiteOpenHelper
 {
@@ -31,13 +32,13 @@ public class DBHelper extends SQLiteOpenHelper
     private static final String MONTHLY_EXPENSES_TABLE = "MonthlyExpenses";
     private static final String MONTHLY_EXPENSES_KEY_FIELD_ID = "_id";
     private static final String FIELD_EXPENSE_NAME = "expense_name";
-    private static final String FIELD_EXPENSE_VALUE = "expense_value";
+    private static final String FIELD_EXPENSE_VALUE = "expense_value;"
 
     // DEFINE THE MONTHLY INCOMES TABLE
     private static final String MONTHLY_INCOMES_TABLE = "MonthlyIncomes";
     private static final String MONTHLY_INCOMES_KEY_FIELD_ID = "_id";
     private static final String FIELD_INCOME_NAME = "income_name";
-    private static final String FIELD_INCOME_VALUE = "income_value";
+    private static final String FIELD_INCOME_VALUE = "income_value;"
 
     // DEFINE THE ACTIVITY TABLE
     private static final String ACTIVITY_TABLE = "Activity";
@@ -50,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper
 
     //Define the fields (Column Names) for the table
     private static final String KEY_FIELD_ID = "_id";
-    private static final String FIELD_DESCRIPTION= "description";
+    private static final String FIELD_DESCRIPTION= "desctiption";
     private static final String FIELD_COST = "ExpenseCost";
 
     public DBHelper(Context context)
@@ -104,7 +105,7 @@ public class DBHelper extends SQLiteOpenHelper
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
-        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + MONTHLY_EXPENSES_TABLE);
         onCreate(db);
     }
 
@@ -122,7 +123,7 @@ public class DBHelper extends SQLiteOpenHelper
         values.put(FIELD_COST, expense.getExpenseCost());
 
         //insert row in the table
-        long id = db.insert(DATABASE_TABLE, null, values);
+        long id = db.insert(MONTHLY_EXPENSES_TABLE, null, values);
 
         //Update the expense with the newly assigned id from the database
         expense.setId(id);
@@ -151,8 +152,8 @@ public class DBHelper extends SQLiteOpenHelper
             do
             {
                 Expense expense = new Expense(cursor.getLong(0),
-                                                cursor.getInt(1),
-                                                cursor.getString(2));
+                                                cursor.getString(1),
+                                                cursor.getDouble(2));
                 expensesList.add(expense);
             }
             while(cursor.moveToNext());
@@ -162,12 +163,14 @@ public class DBHelper extends SQLiteOpenHelper
         return expensesList;
     }
 
+
+
     public void deleteExpense(Expense expense)
     {
         SQLiteDatabase db = getWritableDatabase();
 
         //Delete the table row
-        db.delete(DATABASE_TABLE, KEY_FIELD_ID + " = ?",
+        db.delete(MONTHLY_EXPENSES_TABLE, KEY_FIELD_ID + " = ?",
                 new String[] {String.valueOf(expense.getId())});
         db.close();
     }
@@ -175,7 +178,7 @@ public class DBHelper extends SQLiteOpenHelper
     public void deleteAllExpenses()
     {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(DATABASE_TABLE, null, null);
+        db.delete(MONTHLY_EXPENSES_TABLE, null, null);
         db.close();
     }
 
@@ -187,7 +190,7 @@ public class DBHelper extends SQLiteOpenHelper
         values.put(FIELD_DESCRIPTION, expense.getExpenseDescription());
         values.put(FIELD_COST, expense.getExpenseCost());
 
-        db.update(DATABASE_TABLE, values, KEY_FIELD_ID + " = ?",
+        db.update(MONTHLY_EXPENSES_TABLE, values, KEY_FIELD_ID + " = ?",
                 new String[] {String.valueOf(expense.getId())});
         db.close();
     }
@@ -195,8 +198,8 @@ public class DBHelper extends SQLiteOpenHelper
     public Expense getExpense(int id)
     {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(DATABASE_TABLE,
-                new String[]{KEY_FIELD_ID, FIELD_COST, FIELD_DESCRIPTION},
+        Cursor cursor = db.query(MONTHLY_EXPENSES_TABLE,
+                new String[]{KEY_FIELD_ID, FIELD_EXPENSE_NAME, FIELD_EXPENSE_VALUE},
                 KEY_FIELD_ID + " = ?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
 
@@ -206,12 +209,47 @@ public class DBHelper extends SQLiteOpenHelper
             cursor.moveToFirst();
 
             expense = new Expense(cursor.getLong(0),
-                                   cursor.getInt(1),
-                                   cursor.getString(2));
+                                   cursor.getString(1),
+                                   cursor.getDouble(2));
 
             cursor.close();
         }
         db.close();
         return expense;
+    }
+
+    // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
+    // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
+    // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
+
+    public Deque<SpendingEachDay> getTrends() {
+        List<Expense> expensesList = new ArrayList<Expense>();
+        SQLiteDatabase database = getReadableDatabase();
+
+        //A cursor is the result of a database query
+        Cursor cursor = database.query(MONTHLY_EXPENSES_TABLE, new String[]{KEY_FIELD_ID, FIELD_EXPENSE_NAME, FIELD_EXPENSE_VALUE},
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        //Collect each row in the table
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                Expense expense = new Expense(cursor.getLong(0),
+                        cursor.getString(1),
+                        cursor.getDouble(2));
+                expensesList.add(expense);
+            }
+            while(cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return expensesList;
+        // TODO: THIS METHOD IS BROKEN
     }
 }
