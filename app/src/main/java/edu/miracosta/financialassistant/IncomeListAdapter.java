@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -36,6 +37,19 @@ public class IncomeListAdapter extends ArrayAdapter<Income> {
         View view = inflater.inflate(mResourceID, null);
 
         //TODO: Finish the getView method
+        LinearLayout incomesListLinearLayout =
+                view.findViewById(R.id.incomeListLinearLayout);
+
+        TextView incomeValueTextView =
+                view.findViewById(R.id.incomeValueTextView);
+        TextView incomeNameTextView =
+                view.findViewById(R.id.incomeNameTextView);
+
+        //Set the each text view
+        incomeValueTextView.setText(String.valueOf(selectedIncome.getIncomeValue()));
+        incomeNameTextView.setText(selectedIncome.getIncomeName());
+
+        incomesListLinearLayout.setTag(selectedIncome);
         return view;
     }
 }
