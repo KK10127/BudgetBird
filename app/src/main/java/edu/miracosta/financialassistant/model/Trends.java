@@ -3,19 +3,19 @@ package edu.miracosta.financialassistant.model;
 import java.util.Date;
 import java.util.Objects;
 
-public class SpendingEachDay
+public class Trends
 {
-    private Long mId;
-    private Double value;
-    private Date date;
+    private long mId;
+    private double value;
+    private String date;
 
-    public SpendingEachDay()
+    public Trends()
     {
-        mId = null;
-        this.value = null;
+        mId = 0;
+        this.value = 0.0;
         this.date = null;
     }
-    public SpendingEachDay(long id, double value, Date date) {
+    public Trends(long id, String date, double value) {
         mId = id;
         this.value = value;
         this.date = date;
@@ -37,11 +37,11 @@ public class SpendingEachDay
         this.value = value;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -49,7 +49,7 @@ public class SpendingEachDay
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SpendingEachDay that = (SpendingEachDay) o;
+        Trends that = (Trends) o;
         return Objects.equals(mId, that.mId) &&
                 Objects.equals(value, that.value) &&
                 Objects.equals(date, that.date);
@@ -62,7 +62,7 @@ public class SpendingEachDay
 
     @Override
     public String toString() {
-        return "SpendingEachDay{" +
+        return "Trends{" +
                 "mId=" + mId +
                 ", value=" + value +
                 ", date=" + date +

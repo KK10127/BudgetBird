@@ -15,12 +15,16 @@ public class FinancialTipsActivity extends AppCompatActivity {
     private ListView mListView;
     private List<String> mStringList;
     private ListAdapter mListAdapter;
+    private Intent mIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.good_cc_usage);
+
+        mIntent = getIntent();
+        mIntent.getParcelableExtra("Account");
 
         mListView = findViewById(R.id.ccListView);
 

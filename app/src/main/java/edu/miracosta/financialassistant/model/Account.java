@@ -127,7 +127,7 @@ public class Account implements Parcelable
 
     //Need to make a mechanism to create (Instantiate) a new Account object from a Parcel
     //Private constructor to create a new Account from the parcel
-    private Account(Parcel parcel)
+    public Account(Parcel parcel)
     {
         mId = parcel.readInt();
         mEmail = parcel.readString();

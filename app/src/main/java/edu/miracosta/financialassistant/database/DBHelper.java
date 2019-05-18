@@ -7,12 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
-import java.util.Queue;
 
 import edu.miracosta.financialassistant.model.Expense;
-import edu.miracosta.financialassistant.model.SpendingEachDay;
+import edu.miracosta.financialassistant.model.Income;
+import edu.miracosta.financialassistant.model.Trends;
 
 public class DBHelper extends SQLiteOpenHelper
 {
@@ -41,24 +40,26 @@ public class DBHelper extends SQLiteOpenHelper
     private static final String FIELD_INCOME_NAME = "income_name";
     private static final String FIELD_INCOME_VALUE = "income_value";
 
-    // DEFINE THE ACTIVITY TABLE
-    private static final String ACTIVITY_TABLE = "Activity";
-    private static final String ACTIVITY_KEY_FIELD_ID = "_id";
-    private static final String FIELD_DATE = "date";
-    private static final String FIELD_TOTAL_SPENDING = "total_spending";
+    // DEFINE THE TREND TABLE
+    private static final String TRENDS_TABLE = "Activity";
+    private static final String TRENDS_KEY_FIELD_ID = "_id";
+    private static final String FIELD_TREND_DATE = "date";
+    private static final String FIELD_TREND_SPENT = "how_much_spent";
 
 
     //private static final int DATABASE_VERSION = 1;
 
     //Define the fields (Column Names) for the table
     private static final String KEY_FIELD_ID = "_id";
-    private static final String FIELD_DESCRIPTION= "description";
+    private static final String FIELD_DESCRIPTION= "desctiption";
     private static final String FIELD_COST = "ExpenseCost";
 
+    //Contructor for the DB
     public DBHelper(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
     @Override
     public void onCreate(SQLiteDatabase db)
     {
@@ -92,11 +93,11 @@ public class DBHelper extends SQLiteOpenHelper
         // execute the command
         db.execSQL(monthlyIncomesTable);
 
-        // Create the activity table
-        String activityTable = "CREATE TABLE IF NOT EXISTS " + ACTIVITY_TABLE + "("
-                + ACTIVITY_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
-                + FIELD_INCOME_NAME + " TEXT, "
-                + FIELD_INCOME_VALUE + " REAL "
+        // Create the Trends table
+        String activityTable = "CREATE TABLE IF NOT EXISTS " + TRENDS_TABLE + "("
+                + TRENDS_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + FIELD_TREND_DATE + " TEXT, "
+                + FIELD_TREND_SPENT + " REAL "
                 + ")";
 
         // execute the command
@@ -223,13 +224,36 @@ public class DBHelper extends SQLiteOpenHelper
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
 
-    /**
-    public List<SpendingEachDay> getTrends() {
-        List<SpendingEachDay> expensesList = new ArrayList<SpendingEachDay>();
+
+    //Trends database methods
+    public void addTrend(Trends trend)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        //Add key-value pair information for the ExpenseDescription
+        values.put(FIELD_TREND_DATE, trend.getDate().toString());
+
+        //Add key-value pair information for the expense cost
+        values.put(FIELD_COST, trend.getValue());
+
+        //insert row in the table
+        long id = db.insert(TRENDS_TABLE, null, values);
+
+        //Update the expense with the newly assigned id from the database
+        trend.setId(id);
+
+        //Close the connection
+        db.close();
+    }
+
+    public List<Trends> getAllTrends()
+    {
+        List<Trends> trendsList = new ArrayList<Trends>();
         SQLiteDatabase database = getReadableDatabase();
 
         //A cursor is the result of a database query
-        Cursor cursor = database.query(MONTHLY_EXPENSES_TABLE, new String[]{KEY_FIELD_ID, FIELD_EXPENSE_NAME, FIELD_EXPENSE_VALUE},
+        Cursor cursor = database.query(TRENDS_TABLE, new String[]{TRENDS_KEY_FIELD_ID, FIELD_TREND_DATE, FIELD_TREND_SPENT},
                 null,
                 null,
                 null,
@@ -242,17 +266,176 @@ public class DBHelper extends SQLiteOpenHelper
         {
             do
             {
-                Expense expense = new Expense(cursor.getLong(0),
+                Trends trend = new Trends(cursor.getLong(0),
                         cursor.getString(1),
                         cursor.getDouble(2));
-                expensesList.add(expense);
+                trendsList.add(trend);
             }
             while(cursor.moveToNext());
         }
         cursor.close();
         database.close();
-        return expensesList;
-        // TODO: THIS METHOD IS BROKEN
+        return trendsList;
     }
-     **/
+
+    public void deleteTrend(Trends trend)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+
+        //Delete the table row
+        db.delete(TRENDS_TABLE, TRENDS_KEY_FIELD_ID + " = ?",
+                new String[] {String.valueOf(trend.getId())});
+        db.close();
+    }
+
+    public void deleteAllTrends()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TRENDS_TABLE, null, null);
+        db.close();
+    }
+
+    public void updateTrend(Trends trend)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(FIELD_TREND_DATE, trend.getDate());
+        values.put(FIELD_TREND_SPENT, trend.getValue());
+
+        db.update(TRENDS_TABLE, values, TRENDS_KEY_FIELD_ID + " = ?",
+                new String[] {String.valueOf(trend.getId())});
+        db.close();
+    }
+
+    public Trends getTrend(int id)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TRENDS_TABLE,
+                new String[]{TRENDS_KEY_FIELD_ID, FIELD_TREND_DATE, FIELD_TREND_SPENT},
+                TRENDS_KEY_FIELD_ID + " = ?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+
+        Trends trend = null;
+        if(cursor != null)
+        {
+            cursor.moveToFirst();
+
+            trend = new Trends(cursor.getLong(0),
+                    cursor.getString(1),
+                    cursor.getDouble(2));
+
+            cursor.close();
+        }
+        db.close();
+        return trend;
+    }
+
+    //Income database methods
+
+    public void addIncome(Income income)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        //Add key-value pair information for the ExpenseDescription
+        values.put(FIELD_INCOME_NAME, income.getIncomeName());
+
+        //Add key-value pair information for the expense cost
+        values.put(FIELD_INCOME_VALUE, income.getIncomeValue());
+
+        //insert row in the table
+        long id = db.insert(MONTHLY_INCOMES_TABLE, null, values);
+
+        //Update the expense with the newly assigned id from the database
+        income.setId(id);
+
+        //Close the connection
+        db.close();
+    }
+
+    public List<Income> getAllIncomes()
+    {
+        List<Income> incomesList = new ArrayList<Income>();
+        SQLiteDatabase database = getReadableDatabase();
+
+        //A cursor is the result of a database query
+        Cursor cursor = database.query(MONTHLY_INCOMES_TABLE, new String[]{MONTHLY_INCOMES_KEY_FIELD_ID, FIELD_INCOME_NAME, FIELD_INCOME_VALUE},
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        //Collect each row in the table
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                Income income = new Income(cursor.getLong(0),
+                        cursor.getString(1),
+                        cursor.getDouble(2));
+
+                incomesList.add(income);
+            }
+            while(cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return incomesList;
+    }
+
+    public void deleteIncome(Income income)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+
+        //Delete the table row
+        db.delete(MONTHLY_INCOMES_TABLE, MONTHLY_INCOMES_KEY_FIELD_ID + " = ?",
+                new String[] {String.valueOf(income.getId())});
+        db.close();
+    }
+
+    public void deleteAllIncomes()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(MONTHLY_INCOMES_TABLE, null, null);
+        db.close();
+    }
+
+    public void updateIncome(Income income)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(FIELD_INCOME_NAME, income.getIncomeName());
+        values.put(FIELD_INCOME_VALUE, income.getIncomeValue());
+
+        db.update(MONTHLY_INCOMES_TABLE, values, MONTHLY_INCOMES_KEY_FIELD_ID + " = ?",
+                new String[] {String.valueOf(income.getId())});
+        db.close();
+    }
+
+    public Income getIncome(int id)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TRENDS_TABLE,
+                new String[]{TRENDS_KEY_FIELD_ID, FIELD_TREND_DATE, FIELD_TREND_SPENT},
+                TRENDS_KEY_FIELD_ID + " = ?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+
+        Income income = null;
+        if(cursor != null)
+        {
+            cursor.moveToFirst();
+
+            income = new Income(cursor.getLong(0),
+                    cursor.getString(1),
+                    cursor.getDouble(2));
+
+            cursor.close();
+        }
+        db.close();
+        return income;
+    }
 }
