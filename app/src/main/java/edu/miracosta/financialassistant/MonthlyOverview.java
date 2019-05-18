@@ -15,10 +15,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.miracosta.financialassistant.database.DBHelper;
+import edu.miracosta.financialassistant.model.Expense;
+import edu.miracosta.financialassistant.model.Income;
 import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.view.PieChartView;
@@ -45,20 +48,28 @@ public class MonthlyOverview extends AppCompatActivity {
     private PieChartView pieChartView;
     private TextView budgetTextView;
     private TextView emergencyFundTextView;
+    private TextView studentFundTextView;
 
     private Toolbar toolBar;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
 
-    // TODO: More variables may need to be defined
-    private double emergencyFund;
-    private double studentFund;
-    private double incomeTotal;
+    // variables pertaining to the database
+    private double emergencyFund, studentFund;
+    private double incomeTotal, expenseTotal;
     private double budgetGap;
 
+    // for use with handling incoming database values
+    private List<Expense> allExpenses;
+    private List<Income> allIncomes;
 
-    // TODO: A means of navigation needs to be set up! Some way to get to all of our other activities!
-    // TODO: I've been researching navigation views but so far nothing yet.
+    //
+    private static int EXPENSE_COLOR = Color.GRAY;
+    private static int EMERGENCY_COLOR = Color.GRAY;
+    private static int STUDENT_COLOR = Color.GRAY;
+    private static int
+
+    NumberFormat format = NumberFormat.getCurrencyInstance();
 
 
     @Override
@@ -70,30 +81,59 @@ public class MonthlyOverview extends AppCompatActivity {
         pieChartView = findViewById(R.id.pieChartView);
         budgetTextView = findViewById(R.id.budgetTextView);
         emergencyFundTextView = findViewById(R.id.emergencyFundTextView);
-
-        // create slices list for the pieData
-        List<SliceValue> pieData = new ArrayList<>();
-
-        // test slices
-        pieData.add(new SliceValue(15, Color.BLUE));
-        pieData.add(new SliceValue(25, Color.GRAY));
-        pieData.add(new SliceValue(10, Color.RED));
-        pieData.add(new SliceValue(60, Color.MAGENTA));
-
-        // create pieChartData using the list of pie slices
-        PieChartData pieChartData = new PieChartData(pieData);
-        // set the pieCharData to update the pieChart
-        pieChartView.setPieChartData(pieChartData);
+        studentFundTextView = findViewById(R.id.studentFundTextView);
 
         // TODO: gather needed details from the database
         // TODO: The user's monthly budget, monthly expenses, emergency fund amount
         DBHelper db = new DBHelper(this);
 
+        allExpenses = db.getAllExpenses();
+        allIncomes = db.getAllIncomes();
+        studentFund = db.getStudentFund();
+        emergencyFund = db.getEmergencyFund();
 
+        // DONE: Total up the expenses/incomes
+        for (Expense item : allExpenses) {
+            expenseTotal += item.getExpenseCost();
+        }
+        for(Income item : allIncomes) {
+            incomeTotal += item.getIncomeValue();
+        }
 
+        // create slices list for the pieData
+        List<SliceValue> pieData = new ArrayList<>();
 
+        // creating slices
+        SliceValue expensesSlice = new SliceValue((float) expenseTotal, EXPENSE_COLOR);
+        SliceValue studentSlice = new SliceValue((float) studentFund, STUDENT_COLOR);
+        SliceValue emergencySlice = new SliceValue((float) emergencyFund, EMERGENCY_COLOR);
 
-        // TODO: update the chart/update views accordingly
+        expensesSlice.setLabel("Expenses");
+        studentSlice.setLabel("Student Spending");
+        emergencySlice.setLabel("Emergencies");
+
+        pieData.add(expensesSlice);
+        pieData.add(studentSlice);
+        pieData.add(emergencySlice);
+
+        // calculate the budget gap
+        budgetGap = incomeTotal - expenseTotal;
+        if (budgetGap > 0) {
+            SliceValue budgetSlice = new SliceValue((float) budgetGap, Color.MAGENTA);
+            budgetSlice.setLabel("Budget Gap");
+            pieData.add(budgetSlice);
+        }
+
+        // create pieChartData using the list of pie slices
+        PieChartData pieChartData = new PieChartData(pieData);
+
+        // set the pieCharData to update the pieChartView
+        pieChartView.setPieChartData(pieChartData);
+
+        // update the rest of the views
+        budgetTextView.setText(format.format(budgetGap));
+        emergencyFundTextView.setText(format.format(emergencyFund));
+        studentFundTextView.setText(format.format(studentFund));
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);

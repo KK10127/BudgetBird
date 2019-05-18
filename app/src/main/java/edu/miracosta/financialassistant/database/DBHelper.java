@@ -220,6 +220,10 @@ public class DBHelper extends SQLiteOpenHelper
         return expense;
     }
 
+    public double getStudentFund() {
+
+    }
+
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
