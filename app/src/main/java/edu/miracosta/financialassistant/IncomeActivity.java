@@ -1,5 +1,6 @@
 package edu.miracosta.financialassistant;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,7 +46,6 @@ public class IncomeActivity extends AppCompatActivity {
         incomesListView = findViewById(R.id.expensesListView);
         mIncomeListAdapter = new IncomeListAdapter(this, R.layout.income_list_item, allIncomesList);
         incomesListView.setAdapter(mIncomeListAdapter);
-
     }
 
     public void addIncome(View v){
@@ -57,5 +57,12 @@ public class IncomeActivity extends AppCompatActivity {
         db.addIncome(income);
         mIncomeListAdapter.add(income);
         mIncomeListAdapter.notifyDataSetChanged();
+    }
+
+    public void viewIncomeDetails(View v){
+        Income income = (Income) v.getTag();
+        Intent detailsIntent = new Intent(this, IncomeDetails.class);
+        detailsIntent.putExtra("Income", income);
+        startActivity(detailsIntent);
     }
 }
