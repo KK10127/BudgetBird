@@ -231,13 +231,7 @@ public class DBHelper extends SQLiteOpenHelper
         if(cursor != null)
         {
             cursor.moveToFirst();
-
-            cursor.getLong(0);
-            cursor.getDouble(1);
-
-            studentFund = cursor.getDouble(2);
-
-
+            studentFund = cursor.getDouble(1);
             cursor.close();
         }
         db.close();
@@ -256,8 +250,6 @@ public class DBHelper extends SQLiteOpenHelper
         {
             cursor.moveToFirst();
 
-            cursor.getLong(0);
-            cursor.getDouble(1);
 
             emergencyFund = cursor.getDouble(2);
 
