@@ -64,6 +64,7 @@
         android:layout_marginEnd="8dp"
         android:background="@color/colorPrimary"
         android:fontFamily="@font/share_tech"
+        android:onClick="addIncome"
         android:text="@string/addIncome"
         android:textSize="18sp"
         android:textStyle="bold"

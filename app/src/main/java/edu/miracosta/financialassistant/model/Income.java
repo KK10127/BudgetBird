@@ -29,9 +29,10 @@ public class Income implements Parcelable {
         incomeValue = incomeCost;
     }
 
-    public Income(double incomeCost, String incomeDescription){
+    public Income(double incomeCost, String incomeDescription, String Name){
         incomeName = incomeDescription;
         incomeValue = incomeCost;
+        incomeName = Name;
     }
 
     public String getIncomeName() {

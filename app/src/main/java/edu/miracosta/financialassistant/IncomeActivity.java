@@ -49,6 +49,13 @@ public class IncomeActivity extends AppCompatActivity {
     }
 
     public void addIncome(View v){
-        String
+        String name = incomeNameEditText.getText().toString();
+        String desc = incomeDescriptionEditText.getText().toString();
+        Double value = Double.parseDouble(incomeAmountEditText.getText().toString());
+
+        Income income = new Income(value, desc, name);
+        db.addIncome(income);
+        mIncomeListAdapter.add(income);
+        mIncomeListAdapter.notifyDataSetChanged();
     }
 }
