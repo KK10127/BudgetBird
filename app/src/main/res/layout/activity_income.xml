@@ -8,7 +8,7 @@
     tools:context=".ExpensesActivity">
 
     <TextView
-        android:id="@+id/incomesTitleTextView"
+        android:id="@+id/expensesTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -36,11 +36,11 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/incomesListView"
-        app:layout_constraintTop_toTopOf="@+id/incomesListView" />
+        app:layout_constraintStart_toEndOf="@+id/expensesListView"
+        app:layout_constraintTop_toTopOf="@+id/expensesListView" />
 
     <EditText
-        android:id="@+id/incomeAmountEditText"
+        android:id="@+id/expenseAmountEditText"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
@@ -52,8 +52,8 @@
         android:hint="@string/moneyHint"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/incomesListView"
-        app:layout_constraintTop_toBottomOf="@+id/incomeDescriptionEditText" />
+        app:layout_constraintStart_toEndOf="@+id/expensesListView"
+        app:layout_constraintTop_toBottomOf="@+id/expenseDescriptionEditText" />
 
     <Button
         android:id="@+id/addIncomeButton"
@@ -69,11 +69,11 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/incomesListView"
-        app:layout_constraintTop_toBottomOf="@+id/incomeAmountEditText" />
+        app:layout_constraintStart_toEndOf="@+id/expensesListView"
+        app:layout_constraintTop_toBottomOf="@+id/expenseAmountEditText" />
 
     <ListView
-        android:id="@+id/incomesListView"
+        android:id="@+id/expensesListView"
         android:layout_width="200dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -82,11 +82,11 @@
         android:background="@color/anotherPurple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/incomesTitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/expensesTitleTextView"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/incomeNameEditText"
+        android:id="@+id/expenseNameEditText"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
@@ -95,16 +95,16 @@
         android:background="@color/ternaryColor"
         android:ems="10"
         android:fontFamily="@font/share_tech"
+        android:hint="@string/income_name"
         android:inputType="textPersonName"
-        android:text="@string/income_name"
         android:textColor="@color/gray"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/incomesListView"
+        app:layout_constraintStart_toEndOf="@+id/expensesListView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/incomeDescriptionEditText"
+        android:id="@+id/expenseDescriptionEditText"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
@@ -113,12 +113,12 @@
         android:background="@color/ternaryColor"
         android:ems="10"
         android:fontFamily="@font/share_tech"
+        android:hint="@string/brief_description"
         android:inputType="textPersonName"
-        android:text="@string/brief_description"
         android:textColor="@color/gray"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/incomesListView"
-        app:layout_constraintTop_toBottomOf="@+id/incomeNameEditText" />
+        app:layout_constraintStart_toEndOf="@+id/expensesListView"
+        app:layout_constraintTop_toBottomOf="@+id/expenseNameEditText" />
 
 </android.support.constraint.ConstraintLayout>
