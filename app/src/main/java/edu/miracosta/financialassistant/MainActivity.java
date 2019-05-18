@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //temporary
     public void logIn(View v){
         Intent intent= new Intent(this, MonthlyOverview.class);
         startActivity(intent);
