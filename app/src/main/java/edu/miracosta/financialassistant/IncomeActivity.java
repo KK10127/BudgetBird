@@ -11,6 +11,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import edu.miracosta.financialassistant.database.DBHelper;
+import edu.miracosta.financialassistant.model.Account;
 import edu.miracosta.financialassistant.model.Income;
 
 public class IncomeActivity extends AppCompatActivity {
@@ -24,6 +25,8 @@ public class IncomeActivity extends AppCompatActivity {
     private Button addIncomeButton;
     private IncomeListAdapter mIncomeListAdapter;
     private ListView incomesListView;
+    private Intent mIntent;
+    private Account mAccount;
 
 
     @Override
@@ -36,6 +39,10 @@ public class IncomeActivity extends AppCompatActivity {
         incomeDescriptionEditText = findViewById(R.id.expenseDescriptionEditText);
         incomeAmountEditText = findViewById(R.id.expenseAmountEditText);
         addIncomeButton = findViewById(R.id.addIncomeButton);
+
+        //Dont change this. This works to receive the account info
+        mIntent = getIntent();
+        mAccount = mIntent.getParcelableExtra("Account");
 
         //create the database
         db = new DBHelper(this);

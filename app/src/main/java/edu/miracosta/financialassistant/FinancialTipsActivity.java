@@ -7,32 +7,39 @@ import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import edu.miracosta.financialassistant.model.Account;
 
 //import edu.miracosta.financialassistant.CreditCard.NewCreditCardUser;
 
 public class FinancialTipsActivity extends AppCompatActivity {
     private ListView mListView;
     private List<String> mStringList;
-    private ListAdapter mListAdapter;
+    private FinancialTipsListAdapter mListAdapter;
     private Intent mIntent;
+    private Account mAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.good_cc_usage);
+        setContentView(R.layout.activity_financial_tips);
 
+        //Dont change this. This works so you can receive the account info
         mIntent = getIntent();
+        mAccount = mIntent.getParcelableExtra("Account");
 
-        mListView = findViewById(R.id.ccListView);
+
+        mStringList = new ArrayList<>();
 
         mStringList.add("Tips for Current Credit Card Holders");
         mStringList.add("Tips for new Credit Card Holders");
 
-        //mListAdapter = new ListAdapter(this, R.layout.tip_item, mStringList);
+        mListView = findViewById(R.id.financeListView);
+        mListAdapter = new FinancialTipsListAdapter(this, R.layout.activity_financial_tips_list_adapter, mStringList);
         mListView.setAdapter(mListAdapter);
-
     }
 
     public void viewOptionSelected(View v)

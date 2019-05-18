@@ -7,6 +7,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.miracosta.financialassistant.model.Account;
 import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
@@ -17,13 +18,16 @@ public class TrendsActivity extends AppCompatActivity {
 
     private LineChartView lineChartView;
     private Intent mIntent;
+    private Account mAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trends);
 
+        //Don't change this.
         mIntent = getIntent();
+        mAccount = mIntent.getParcelableExtra("Account");
 
         // wiring up the line chart
         lineChartView = findViewById(R.id.trendsLineChart);

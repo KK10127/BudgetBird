@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.miracosta.financialassistant.model.Account;
 import edu.miracosta.financialassistant.model.Expense;
 import edu.miracosta.financialassistant.model.Income;
 import edu.miracosta.financialassistant.model.Trends;
@@ -23,8 +24,10 @@ public class DBHelper extends SQLiteOpenHelper
     // DEFINE THE FIELDS FOR THE ACCOUNT TABLE
     private static final String ACCOUNT_TABLE = "AccountInfo";
     private static final String ACCOUNT_KEY_FIELD_ID = "_id";
-    private static final String FIELD_FIRST_NAME = "first_name";
-    private static final String FIELD_LAST_NAME = "last_name";
+    private static final String FIELD_EMAIL = "email";
+    private static final String FIELD_PASSWORD = "password";
+    private static final String FIELD_INCOME = "income";
+    private static final String FIELD_BUDGET = "budget";
     private static final String FIELD_EMERGENCY_FUND = "emergency_fund";
     private static final String FIELD_STUDENT_FUND = "student_fund";
 
@@ -32,6 +35,7 @@ public class DBHelper extends SQLiteOpenHelper
     private static final String MONTHLY_EXPENSES_TABLE = "MonthlyExpenses";
     private static final String MONTHLY_EXPENSES_KEY_FIELD_ID = "_id";
     private static final String FIELD_EXPENSE_NAME = "expense_name";
+    private static final String FIELD_EXPENSE_DESCRIPTION = "expense_description";
     private static final String FIELD_EXPENSE_VALUE = "expense_value";
 
     // DEFINE THE MONTHLY INCOMES TABLE
@@ -51,7 +55,7 @@ public class DBHelper extends SQLiteOpenHelper
 
     //Define the fields (Column Names) for the table
     private static final String KEY_FIELD_ID = "_id";
-    private static final String FIELD_DESCRIPTION= "description";
+    private static final String FIELD_DESCRIPTION= "desctiption";
     private static final String FIELD_COST = "ExpenseCost";
 
     //Contructor for the DB
@@ -65,7 +69,11 @@ public class DBHelper extends SQLiteOpenHelper
     {
         // Create the account table
         String accountTable = "CREATE TABLE IF NOT EXISTS " + ACCOUNT_TABLE + "("
-                + ACCOUNT_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + ACCOUNT_KEY_FIELD_ID + " REAL PRIMARY KEY, "
+                + FIELD_EMAIL + " TEXT, "
+                + FIELD_PASSWORD + " TEXT, "
+                + FIELD_INCOME + " REAL, "
+                + FIELD_BUDGET + " TEXT, "
                 + FIELD_EMERGENCY_FUND + " REAL, "
                 + FIELD_STUDENT_FUND + " REAL "
                 + ")";
@@ -75,8 +83,9 @@ public class DBHelper extends SQLiteOpenHelper
 
         // Create the monthly expenses table
         String monthlyExpensesTable = "CREATE TABLE IF NOT EXISTS " + MONTHLY_EXPENSES_TABLE + "("
-                + MONTHLY_EXPENSES_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + MONTHLY_EXPENSES_KEY_FIELD_ID + " REAL PRIMARY KEY, "
                 + FIELD_EXPENSE_NAME + " TEXT, "
+                + FIELD_EXPENSE_DESCRIPTION + " TEXT, "
                 + FIELD_EXPENSE_VALUE + " REAL "
                 + ")";
 
@@ -85,7 +94,7 @@ public class DBHelper extends SQLiteOpenHelper
 
         // Create the monthly incomes table
         String monthlyIncomesTable = "CREATE TABLE IF NOT EXISTS " + MONTHLY_INCOMES_TABLE + "("
-                + MONTHLY_INCOMES_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + MONTHLY_INCOMES_KEY_FIELD_ID + " REAL PRIMARY KEY, "
                 + FIELD_INCOME_NAME + " TEXT, "
                 + FIELD_INCOME_VALUE + " REAL "
                 + ")";
@@ -95,7 +104,7 @@ public class DBHelper extends SQLiteOpenHelper
 
         // Create the Trends table
         String activityTable = "CREATE TABLE IF NOT EXISTS " + TRENDS_TABLE + "("
-                + TRENDS_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + TRENDS_KEY_FIELD_ID + " REAL PRIMARY KEY, "
                 + FIELD_TREND_DATE + " TEXT, "
                 + FIELD_TREND_SPENT + " REAL "
                 + ")";
@@ -118,11 +127,13 @@ public class DBHelper extends SQLiteOpenHelper
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
+        values.put(FIELD_EXPENSE_NAME, expense.getExpenseName());
+
         //Add key-value pair information for the ExpenseDescription
-        values.put(FIELD_EXPENSE_NAME, expense.getExpenseDescription());
+        values.put(FIELD_EXPENSE_DESCRIPTION, expense.getExpenseDescription());
 
         //Add key-value pair information for the expense cost
-        values.put(FIELD_EXPENSE_VALUE, expense.getExpenseCost());
+        values.put(FIELD_COST, expense.getExpenseCost());
 
         //insert row in the table
         long id = db.insert(MONTHLY_EXPENSES_TABLE, null, values);
@@ -438,4 +449,71 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
         return income;
     }
+
+    public void addAccount(Account account)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        //Add key-value pair information for the ExpenseDescription
+        values.put(FIELD_EMAIL, account.getEmail());
+
+        //Adds password field
+        values.put(FIELD_PASSWORD, account.getPassword());
+
+        values.put(FIELD_BUDGET, account.getBudget());
+
+        //Add key-value pair information for the expense cost
+        values.put(FIELD_EMERGENCY_FUND, account.getEmergencyFundAmount());
+
+        //Adds a student fund value to the table
+        values.put(FIELD_STUDENT_FUND, account.getStudentFundAmount());
+
+        //insert row in the table
+        long id = db.insert(ACCOUNT_TABLE, null, values);
+
+        //Update the expense with the newly assigned id from the database
+        account.setId(id);
+
+        //Close the connection
+        db.close();
+    }
+
+    public List<Account> getAllAccounts()
+    {
+        List<Account> accountList = new ArrayList<Account>();
+        SQLiteDatabase database = getReadableDatabase();
+
+        //A cursor is the result of a database query
+        Cursor cursor = database.query(ACCOUNT_TABLE, new String[]{ACCOUNT_KEY_FIELD_ID, FIELD_EMAIL, FIELD_PASSWORD, FIELD_INCOME, FIELD_BUDGET, FIELD_EMERGENCY_FUND, FIELD_STUDENT_FUND},
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        //Collect each row in the table
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                Account account = new Account(cursor.getLong(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getDouble(3),
+                        cursor.getDouble(4),
+                        cursor.getDouble(5),
+                        cursor.getDouble(6));
+
+                accountList.add(account);
+            }
+            while(cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return accountList;
+    }
+
+
 }

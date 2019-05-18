@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreditCard.CreditCardUsage">
+    tools:context=".FinancialTipsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,9 +20,9 @@
             android:textSize="34sp" />
 
         <ListView
-            android:id="@+id/ccListView"
+            android:id="@+id/financeListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="viewOptionSelected" />
+            android:onClick="viewOptionSelected"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -6,28 +6,28 @@ import android.os.Parcelable;
 public class Expense implements Parcelable
 {
     private long mId;
-    private String expenseName;
-    private String expenseDescription;
-    private double expenseCost;
+    private String mExpenseName;
+    private String mExpenseDescription;
+    private double mExpenseCost;
 
 
     public Expense()
     {
         mId = -1;
-        expenseName = "";
-        expenseCost = 0;
+        mExpenseName = "";
+        mExpenseCost = 0;
     }
 
     public Expense(long id, String expenseDescription, double expenseCost) {
         this.mId = id;
-        this.expenseName = expenseDescription;
-        this.expenseCost = expenseCost;
+        this.mExpenseName = expenseDescription;
+        this.mExpenseCost = expenseCost;
     }
 
     public Expense(double value, String description, String name){
-        expenseCost = value;
-        expenseDescription = description;
-        expenseName = name;
+        mExpenseCost = value;
+        mExpenseDescription = description;
+        mExpenseName = name;
     }
 
     public long getId() {
@@ -39,23 +39,28 @@ public class Expense implements Parcelable
     }
 
     public String getExpenseDescription() {
-        return expenseName;
+        return mExpenseDescription;
     }
 
     public void setExpenseDescription(String expenseDescription) {
-        expenseName = expenseDescription;
+        mExpenseDescription = expenseDescription;
     }
 
     public String getExpenseName(){
-        return expenseName;
+        return mExpenseName;
+    }
+
+    public void setExpenseName(String expenseName)
+    {
+        mExpenseName = expenseName;
     }
 
     public double getExpenseCost() {
-        return expenseCost;
+        return mExpenseCost;
     }
 
-    public void setExpenseCost(Integer expenseCost) {
-        expenseCost = expenseCost;
+    public void setExpenseCost(double expenseCost) {
+        mExpenseCost = expenseCost;
     }
 
     @Override
@@ -73,16 +78,16 @@ public class Expense implements Parcelable
     public void writeToParcel(Parcel dest, int flags)
     {
         dest.writeLong(mId);
-        dest.writeString(expenseName);
-        dest.writeDouble(expenseCost);
+        dest.writeString(mExpenseName);
+        dest.writeDouble(mExpenseCost);
     }
 
     //Need a mechanism to create a new expense object form a parcel
     private Expense(Parcel parcel)
     {
         mId = parcel.readLong();
-        expenseName = parcel.readString();
-        expenseCost = parcel.readDouble();
+        mExpenseName = parcel.readString();
+        mExpenseCost = parcel.readDouble();
     }
 
     public static final Parcelable.Creator<Expense> CREATOR = new Creator<Expense>() {
