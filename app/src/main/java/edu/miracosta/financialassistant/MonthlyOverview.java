@@ -116,6 +116,8 @@ public class MonthlyOverview extends AppCompatActivity {
                     case R.id.expenses:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
+                        Intent expenseIntent = new Intent(MonthlyOverview.this, ExpensesActivity.class);
+                        startActivity(expenseIntent);
                         break;
                     case R.id.financial_tips:
                         menuItem.setChecked(true);
@@ -124,8 +126,8 @@ public class MonthlyOverview extends AppCompatActivity {
                     case R.id.income:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
-                        Intent intent = new Intent(MonthlyOverview.this, IncomeActivity.class);
-                        startActivity(intent);
+                        Intent incomeIntent = new Intent(MonthlyOverview.this, IncomeActivity.class);
+                        startActivity(incomeIntent);
                         break;
                     case R.id.user_settings:
                         menuItem.setChecked(true);

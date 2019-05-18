@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 import edu.miracosta.financialassistant.model.Expense;
@@ -45,6 +46,7 @@ public class ExpenseListAdapter extends ArrayAdapter<Expense> {
                 view.findViewById(R.id.expenseNameTextView);
 
         //Set the each text view
+        NumberFormat format = NumberFormat.getCurrencyInstance();
         ExpenseValueTextView.setText(String.valueOf(selectedExpense.getExpenseCost()));
         ExpenseNameTextView.setText(selectedExpense.getExpenseName());
 

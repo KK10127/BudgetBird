@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 import edu.miracosta.financialassistant.database.DBHelper;
@@ -51,6 +52,7 @@ public class ExpensesActivity extends AppCompatActivity {
         String name = expenseNameEditText.getText().toString();
         String desc = expenseDescriptionEditText.getText().toString();
         Double value = Double.parseDouble(expenseAmountEditText.getText().toString());
+
 
         Expense expense = new Expense(value, desc, name);
         db.addExpense(expense);
