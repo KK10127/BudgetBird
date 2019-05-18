@@ -24,7 +24,6 @@ public class FinancialTipsActivity extends AppCompatActivity {
         //setContentView(R.layout.good_cc_usage);
 
         mIntent = getIntent();
-        mIntent.getParcelableExtra("Account");
 
         mListView = findViewById(R.id.ccListView);
 

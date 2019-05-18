@@ -13,6 +13,5 @@ public class UserSettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_settings);
 
         mIntent = getIntent();
-        mIntent.getParcelableArrayExtra("Account");
     }
 }

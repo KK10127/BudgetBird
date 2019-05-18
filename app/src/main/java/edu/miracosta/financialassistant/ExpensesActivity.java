@@ -14,6 +14,6 @@ public class ExpensesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_expenses);
 
         mIntent = getIntent();
-        mIntent.getParcelableExtra("Account");
+
     }
 }

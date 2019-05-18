@@ -13,6 +13,5 @@ public class TodayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_today);
 
         mIntent = getIntent();
-        mIntent.getParcelableArrayExtra("Account");
     }
 }
