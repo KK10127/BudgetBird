@@ -1,5 +1,6 @@
 package edu.miracosta.financialassistant;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -15,11 +16,15 @@ import lecho.lib.hellocharts.view.LineChartView;
 public class TrendsActivity extends AppCompatActivity {
 
     private LineChartView lineChartView;
+    private Intent mIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trends);
+
+        mIntent = getIntent();
+        mIntent.getParcelableArrayExtra("Account");
 
         // wiring up the line chart
         lineChartView = findViewById(R.id.trendsLineChart);
