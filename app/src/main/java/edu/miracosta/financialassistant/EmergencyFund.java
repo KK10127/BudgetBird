@@ -69,7 +69,7 @@ public class EmergencyFund extends AppCompatActivity
         deposit = Double.valueOf(amountEditText.getText().toString());
 
         //Creates an expense object from the deopist
-        mExpense = new Expense(-1, deposit, "Deposited Into Emergency Fund.");
+        mExpense = new Expense("Deposited Into Emergency Fund.", deposit);
         //Then stores the expense in the ExpenseDataBase
         mDB.addExpense(mExpense);
 

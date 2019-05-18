@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+import java.util.Queue;
 
 import edu.miracosta.financialassistant.model.Expense;
 import edu.miracosta.financialassistant.model.SpendingEachDay;
@@ -32,13 +33,13 @@ public class DBHelper extends SQLiteOpenHelper
     private static final String MONTHLY_EXPENSES_TABLE = "MonthlyExpenses";
     private static final String MONTHLY_EXPENSES_KEY_FIELD_ID = "_id";
     private static final String FIELD_EXPENSE_NAME = "expense_name";
-    private static final String FIELD_EXPENSE_VALUE = "expense_value;"
+    private static final String FIELD_EXPENSE_VALUE = "expense_value";
 
     // DEFINE THE MONTHLY INCOMES TABLE
     private static final String MONTHLY_INCOMES_TABLE = "MonthlyIncomes";
     private static final String MONTHLY_INCOMES_KEY_FIELD_ID = "_id";
     private static final String FIELD_INCOME_NAME = "income_name";
-    private static final String FIELD_INCOME_VALUE = "income_value;"
+    private static final String FIELD_INCOME_VALUE = "income_value";
 
     // DEFINE THE ACTIVITY TABLE
     private static final String ACTIVITY_TABLE = "Activity";
@@ -51,7 +52,7 @@ public class DBHelper extends SQLiteOpenHelper
 
     //Define the fields (Column Names) for the table
     private static final String KEY_FIELD_ID = "_id";
-    private static final String FIELD_DESCRIPTION= "desctiption";
+    private static final String FIELD_DESCRIPTION= "description";
     private static final String FIELD_COST = "ExpenseCost";
 
     public DBHelper(Context context)
@@ -222,8 +223,9 @@ public class DBHelper extends SQLiteOpenHelper
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
 
-    public Deque<SpendingEachDay> getTrends() {
-        List<Expense> expensesList = new ArrayList<Expense>();
+    /**
+    public List<SpendingEachDay> getTrends() {
+        List<SpendingEachDay> expensesList = new ArrayList<SpendingEachDay>();
         SQLiteDatabase database = getReadableDatabase();
 
         //A cursor is the result of a database query
@@ -252,4 +254,5 @@ public class DBHelper extends SQLiteOpenHelper
         return expensesList;
         // TODO: THIS METHOD IS BROKEN
     }
+     **/
 }

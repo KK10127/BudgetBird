@@ -65,7 +65,7 @@ public class StudentFund extends AppCompatActivity {
         deposit = Double.valueOf(mWithdrawDepositEditText.getText().toString());
 
         //create an Expense object from data
-        mExpense = new Expense(-1, deposit, "Deposited into Student Fund.");
+        mExpense = new Expense("Deposited into Student Fund.", deposit);
         //Add the expense to the Expense database
         mDB.addExpense(mExpense);
 

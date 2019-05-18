@@ -7,7 +7,7 @@ public class PastTrends
     private Deque<SpendingEachDay> mSpendingDeque;
 
     public PastTrends(Deque<SpendingEachDay> spendingDeque) {
-        spendingDeque = new Deque<SpendingEachDay>()
+       // spendingDeque = new Deque<SpendingEachDay>()
         mSpendingDeque = spendingDeque;
     }
 }

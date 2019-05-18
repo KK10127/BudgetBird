@@ -7,19 +7,24 @@ public class Expense implements Parcelable
 {
     private long mId;
     private String expenseName;
-    private double ExpenseCost;
+    private double expenseCost;
 
     public Expense()
     {
         mId = -1;
         expenseName = "";
-        ExpenseCost = 0;
+        expenseCost = 0;
     }
 
     public Expense(long id, String expenseDescription, double expenseCost) {
         this.mId = id;
         this.expenseName = expenseDescription;
-        this.ExpenseCost = expenseCost;
+        this.expenseCost = expenseCost;
+    }
+
+    public Expense(String expenseDescription, double expenseCost){
+        expenseName = expenseDescription;
+        this.expenseCost = expenseCost;
     }
 
     public long getId() {
@@ -39,11 +44,11 @@ public class Expense implements Parcelable
     }
 
     public double getExpenseCost() {
-        return ExpenseCost;
+        return expenseCost;
     }
 
     public void setExpenseCost(Integer expenseCost) {
-        ExpenseCost = expenseCost;
+        expenseCost = expenseCost;
     }
 
     @Override
@@ -62,7 +67,7 @@ public class Expense implements Parcelable
     {
         dest.writeLong(mId);
         dest.writeString(expenseName);
-        dest.writeDouble(ExpenseCost);
+        dest.writeDouble(expenseCost);
     }
 
     //Need a mechanism to create a new expense object form a parcel
@@ -70,7 +75,7 @@ public class Expense implements Parcelable
     {
         mId = parcel.readLong();
         expenseName = parcel.readString();
-        ExpenseCost = parcel.readDouble();
+        expenseCost = parcel.readDouble();
     }
 
     public static final Parcelable.Creator<Expense> CREATOR = new Creator<Expense>() {
