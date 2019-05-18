@@ -31,18 +31,18 @@ public class IncomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_income);
 
         //Connect the EditTexts, and Button
-        incomeNameEditText = findViewById(R.id.incomeNameEditText);
-        incomeDescriptionEditText = findViewById(R.id.incomeDescriptionEditText);
-        incomeAmountEditText = findViewById(R.id.incomeAmountEditText);
+        incomeNameEditText = findViewById(R.id.expenseNameEditText);
+        incomeDescriptionEditText = findViewById(R.id.expenseDescriptionEditText);
+        incomeAmountEditText = findViewById(R.id.expenseAmountEditText);
         addIncomeButton = findViewById(R.id.addIncomeButton);
 
         //create the database
         db = new DBHelper(this);
 
-        //TODO: Add getAllIncomes method to DBHelper
+        //get all incomes from the DB
         allIncomesList = db.getAllIncomes();
 
-        incomesListView = findViewById(R.id.incomesListView);
+        incomesListView = findViewById(R.id.expensesListView);
         mIncomeListAdapter = new IncomeListAdapter(this, R.layout.income_list_item, allIncomesList);
         incomesListView.setAdapter(mIncomeListAdapter);
 

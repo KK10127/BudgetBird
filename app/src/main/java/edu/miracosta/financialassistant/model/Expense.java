@@ -7,7 +7,9 @@ public class Expense implements Parcelable
 {
     private long mId;
     private String expenseName;
+    private String expenseDescription;
     private double expenseCost;
+
 
     public Expense()
     {
@@ -22,9 +24,10 @@ public class Expense implements Parcelable
         this.expenseCost = expenseCost;
     }
 
-    public Expense(String expenseDescription, double expenseCost){
-        expenseName = expenseDescription;
-        this.expenseCost = expenseCost;
+    public Expense(double value, String description, String name){
+        expenseCost = value;
+        expenseDescription = description;
+        expenseName = name;
     }
 
     public long getId() {
@@ -41,6 +44,10 @@ public class Expense implements Parcelable
 
     public void setExpenseDescription(String expenseDescription) {
         expenseName = expenseDescription;
+    }
+
+    public String getExpenseName(){
+        return expenseName;
     }
 
     public double getExpenseCost() {
