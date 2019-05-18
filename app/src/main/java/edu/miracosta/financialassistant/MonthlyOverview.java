@@ -67,15 +67,15 @@ public class MonthlyOverview extends AppCompatActivity {
     private static int EXPENSE_COLOR = Color.GRAY;
     private static int EMERGENCY_COLOR = Color.GRAY;
     private static int STUDENT_COLOR = Color.GRAY;
-    private static int
-
-    NumberFormat format = NumberFormat.getCurrencyInstance();
+    private static int BUDGET_COLOR = Color.MAGENTA;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.monthly_overview);
+
+        NumberFormat format = NumberFormat.getCurrencyInstance();
 
         // wire up necessary components
         pieChartView = findViewById(R.id.pieChartView);

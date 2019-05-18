@@ -221,7 +221,51 @@ public class DBHelper extends SQLiteOpenHelper
     }
 
     public double getStudentFund() {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(ACCOUNT_TABLE,
+                new String[]{ACCOUNT_KEY_FIELD_ID, FIELD_EMERGENCY_FUND, FIELD_STUDENT_FUND},
+                KEY_FIELD_ID + " = ?",
+                new String[]{String.valueOf(0)}, null, null, null, null);
 
+        double studentFund = -1;
+        if(cursor != null)
+        {
+            cursor.moveToFirst();
+
+            cursor.getLong(0);
+            cursor.getDouble(1);
+
+            studentFund = cursor.getDouble(2);
+
+
+            cursor.close();
+        }
+        db.close();
+        return studentFund;
+    }
+
+    public double getEmergencyFund() {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(ACCOUNT_TABLE,
+                new String[]{ACCOUNT_KEY_FIELD_ID, FIELD_EMERGENCY_FUND, FIELD_STUDENT_FUND},
+                KEY_FIELD_ID + " = ?",
+                new String[]{String.valueOf(0)}, null, null, null, null);
+
+        double emergencyFund = -1;
+        if(cursor != null)
+        {
+            cursor.moveToFirst();
+
+            cursor.getLong(0);
+            cursor.getDouble(1);
+
+            emergencyFund = cursor.getDouble(2);
+
+
+            cursor.close();
+        }
+        db.close();
+        return emergencyFund;
     }
 
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
