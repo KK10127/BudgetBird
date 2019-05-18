@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EmergencyFund"/>
+        <activity android:name=".IncomeDetails"></activity>
+        <activity android:name=".ExpenseDetails" />
+        <activity android:name=".EmergencyFund" />
         <activity android:name=".TodayActivity" />
         <activity android:name=".FinancialTipsActivity" />
         <activity android:name=".UserSettingsActivity" />
@@ -19,7 +21,7 @@
         <activity android:name=".AboutUs" />
         <activity android:name=".ExpensesActivity" />
         <activity android:name=".IncomeActivity" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

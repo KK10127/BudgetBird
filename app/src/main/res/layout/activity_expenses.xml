@@ -8,7 +8,7 @@
     tools:context=".ExpensesActivity">
 
     <TextView
-        android:id="@+id/expensesTitleTextView"
+        android:id="@+id/expenseDetailsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -82,7 +82,7 @@
         android:background="@color/anotherPurple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expensesTitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/expenseDetailsTitle"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText

@@ -3,6 +3,7 @@
     android:id="@+id/incomeListLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:onClick="viewIncomeDetails"
     android:paddingBottom="@dimen/nav_header_vertical_spacing">
 
     <LinearLayout

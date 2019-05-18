@@ -3,6 +3,7 @@
     android:id="@+id/expenseListLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:onClick="viewExpenseDetails"
     android:paddingBottom="@dimen/nav_header_vertical_spacing">
 
     <LinearLayout

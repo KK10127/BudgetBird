@@ -51,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper
 
     //Define the fields (Column Names) for the table
     private static final String KEY_FIELD_ID = "_id";
-    private static final String FIELD_DESCRIPTION= "desctiption";
+    private static final String FIELD_DESCRIPTION= "description";
     private static final String FIELD_COST = "ExpenseCost";
 
     //Contructor for the DB
@@ -119,10 +119,10 @@ public class DBHelper extends SQLiteOpenHelper
         ContentValues values = new ContentValues();
 
         //Add key-value pair information for the ExpenseDescription
-        values.put(FIELD_DESCRIPTION, expense.getExpenseDescription());
+        values.put(FIELD_EXPENSE_NAME, expense.getExpenseDescription());
 
         //Add key-value pair information for the expense cost
-        values.put(FIELD_COST, expense.getExpenseCost());
+        values.put(FIELD_EXPENSE_VALUE, expense.getExpenseCost());
 
         //insert row in the table
         long id = db.insert(MONTHLY_EXPENSES_TABLE, null, values);

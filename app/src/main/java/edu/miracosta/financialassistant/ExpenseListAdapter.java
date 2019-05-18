@@ -47,7 +47,7 @@ public class ExpenseListAdapter extends ArrayAdapter<Expense> {
 
         //Set the each text view
         NumberFormat format = NumberFormat.getCurrencyInstance();
-        ExpenseValueTextView.setText(String.valueOf(selectedExpense.getExpenseCost()));
+        ExpenseValueTextView.setText(format.format(selectedExpense.getExpenseCost()));
         ExpenseNameTextView.setText(selectedExpense.getExpenseName());
 
         ExpensesListLinearLayout.setTag(selectedExpense);

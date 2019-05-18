@@ -12,4 +12,7 @@
     <color name="moneyGreen">#165425</color>
     <color name="emergencyFund">#D55C88</color>
     <color name="gray">#4F4F4F</color>
+    <color name="pastelGreen">#A5E4B0</color>
+    <color name="pastelRED">#DFAEC1</color>
+    <color name="pastelPink">#DFAEC1</color>
 </resources>
