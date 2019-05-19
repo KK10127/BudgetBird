@@ -34,7 +34,7 @@ public class StudentFund extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_student_loan_fund);
+        setContentView(R.layout.activity_student_fund);
 
         mUserNameTextView = findViewById(R.id.UserNameTextView);
         mMonthlyIncomeTextView = findViewById(R.id.MonthlyIncomeTextView);
@@ -42,8 +42,10 @@ public class StudentFund extends AppCompatActivity {
         mStudentFundTotalTextView = findViewById(R.id.FundTotalTextView);
         mWithdrawDepositEditText = findViewById(R.id.amountEditTextSF);
 
+        //Dont change this.
         intent = getIntent();
         mAccount = intent.getParcelableExtra("Account");
+
         mFundTotal = mAccount.getStudentFundAmount();
 
 

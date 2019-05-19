@@ -82,4 +82,8 @@ While some of these promotional offers may be beneficial to the users, you shoul
     <string name="email">E-mail</string>
     <string name="expense_description">Expense Description</string>
     <string name="student_fund">Student Fund</string>
+    <string name="expense_details">Expense Details</string>
+    <string name="expense_desc">A Description of an Expense Item</string>
+    <string name="income_details">Income Details</string>
+    <string name="income_description">This is a description of a Income item</string>
 </resources>

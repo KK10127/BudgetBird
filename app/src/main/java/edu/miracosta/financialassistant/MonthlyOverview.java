@@ -22,6 +22,7 @@ import java.util.List;
 import edu.miracosta.financialassistant.database.DBHelper;
 import edu.miracosta.financialassistant.model.Expense;
 import edu.miracosta.financialassistant.model.Income;
+import edu.miracosta.financialassistant.model.Account;
 import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.view.PieChartView;
@@ -58,6 +59,8 @@ public class MonthlyOverview extends AppCompatActivity {
     private double emergencyFund, studentFund;
     private double incomeTotal, expenseTotal;
     private double budgetGap;
+    private Intent mIntent;
+    private Account mAccount;
 
     // for use with handling incoming database values
     private List<Expense> allExpenses;
@@ -82,6 +85,12 @@ public class MonthlyOverview extends AppCompatActivity {
         budgetTextView = findViewById(R.id.budgetTextView);
         emergencyFundTextView = findViewById(R.id.emergencyFundTextView);
         studentFundTextView = findViewById(R.id.studentFundTextView);
+
+        //intent stuff
+        mIntent = getIntent();
+        mAccount = mIntent.getParcelableExtra("Account");
+
+        emergencyFundTextView.setText(String.valueOf(mAccount.getEmergencyFundAmount()));
 
         // TODO: gather needed details from the database
         // TODO: The user's monthly budget, monthly expenses, emergency fund amount
@@ -152,38 +161,58 @@ public class MonthlyOverview extends AppCompatActivity {
                     case R.id.emergency_fund:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
+                        mIntent = new Intent(MonthlyOverview.this, EmergencyFund.class);
+                        mIntent.putExtra("Account", mAccount);
+                        startActivity(mIntent);
                         break;
                     case R.id.expenses:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
-                        Intent expenseIntent = new Intent(MonthlyOverview.this, ExpensesActivity.class);
-                        startActivity(expenseIntent);
+                        mIntent = new Intent(MonthlyOverview.this, ExpensesActivity.class);
+                        mIntent.putExtra("Account", mAccount);
+                        startActivity(mIntent);
                         break;
                     case R.id.financial_tips:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
+                        mIntent = new Intent(MonthlyOverview.this, FinancialTipsActivity.class);
+                        mIntent.putExtra("Account", mAccount);
+                        startActivity(mIntent);
                         break;
                     case R.id.income:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
-                        Intent incomeIntent = new Intent(MonthlyOverview.this, IncomeActivity.class);
-                        startActivity(incomeIntent);
+                        mIntent = new Intent(MonthlyOverview.this, IncomeActivity.class);
+                        mIntent.putExtra("Account", mAccount);
+                        startActivity(mIntent);
                         break;
                     case R.id.user_settings:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
+                        mIntent = new Intent(MonthlyOverview.this, UserSettingsActivity.class);
+                        mIntent.putExtra("Account", mAccount);
+                        startActivity(mIntent);
                         break;
                     case R.id.student_fund:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
+                        mIntent = new Intent(MonthlyOverview.this, StudentFund.class);
+                        mIntent.putExtra("Account", mAccount);
+                        startActivity(mIntent);
                         break;
                     case R.id.today:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
+                        mIntent = new Intent(MonthlyOverview.this, TodayActivity.class);
+                        mIntent.putExtra("Account", mAccount);
+                        startActivity(mIntent);
                         break;
                     case R.id.trends:
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
+                        mIntent = new Intent(MonthlyOverview.this, TrendsActivity.class);
+                        mIntent.putExtra("Account", mAccount);
+                        startActivity(mIntent);
                         break;
                     default:
                         break;

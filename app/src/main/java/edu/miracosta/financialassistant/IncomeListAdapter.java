@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 import edu.miracosta.financialassistant.model.Income;
@@ -46,7 +47,8 @@ public class IncomeListAdapter extends ArrayAdapter<Income> {
                 view.findViewById(R.id.incomeNameTextView);
 
         //Set the each text view
-        incomeValueTextView.setText(String.valueOf(selectedIncome.getIncomeValue()));
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+        incomeValueTextView.setText(format.format(selectedIncome.getIncomeValue()));
         incomeNameTextView.setText(selectedIncome.getIncomeName());
 
         incomesListLinearLayout.setTag(selectedIncome);

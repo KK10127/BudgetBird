@@ -1,5 +1,6 @@
 package edu.miracosta.financialassistant;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import edu.miracosta.financialassistant.database.DBHelper;
+import edu.miracosta.financialassistant.model.Account;
 import edu.miracosta.financialassistant.model.Income;
 
 public class IncomeActivity extends AppCompatActivity {
@@ -23,6 +25,8 @@ public class IncomeActivity extends AppCompatActivity {
     private Button addIncomeButton;
     private IncomeListAdapter mIncomeListAdapter;
     private ListView incomesListView;
+    private Intent mIntent;
+    private Account mAccount;
 
 
     @Override
@@ -36,6 +40,10 @@ public class IncomeActivity extends AppCompatActivity {
         incomeAmountEditText = findViewById(R.id.expenseAmountEditText);
         addIncomeButton = findViewById(R.id.addIncomeButton);
 
+        //Dont change this. This works to receive the account info
+        mIntent = getIntent();
+        mAccount = mIntent.getParcelableExtra("Account");
+
         //create the database
         db = new DBHelper(this);
 
@@ -45,7 +53,6 @@ public class IncomeActivity extends AppCompatActivity {
         incomesListView = findViewById(R.id.expensesListView);
         mIncomeListAdapter = new IncomeListAdapter(this, R.layout.income_list_item, allIncomesList);
         incomesListView.setAdapter(mIncomeListAdapter);
-
     }
 
     public void addIncome(View v){
@@ -57,5 +64,12 @@ public class IncomeActivity extends AppCompatActivity {
         db.addIncome(income);
         mIncomeListAdapter.add(income);
         mIncomeListAdapter.notifyDataSetChanged();
+    }
+
+    public void viewIncomeDetails(View v){
+        Income income = (Income) v.getTag();
+        Intent detailsIntent = new Intent(this, IncomeDetails.class);
+        detailsIntent.putExtra("Income", income);
+        startActivity(detailsIntent);
     }
 }

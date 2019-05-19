@@ -9,33 +9,37 @@ public class Account implements Parcelable
 {
     private long mId;
     private String mEmail;
+    private String mPassword;
     private double mMonthlyIncome;
     private double mBudget;
     private double mEmergencyFundAmount;
     private double mStudentFundAmount;
 
-    public Account(Integer id, String email, Integer monthlyIncome, Integer budget) {
+    public Account(long id, String email, String password, double monthlyIncome, double budget, double emergencyFund, double studentFund) {
         mId = id;
         mEmail = email;
+        mPassword = password;
         mMonthlyIncome = monthlyIncome;
         mBudget = budget;
-        mEmergencyFundAmount = 0;
-        mStudentFundAmount = 0;
+        mEmergencyFundAmount = emergencyFund;
+        mStudentFundAmount = studentFund;
     }
 
-    public Account(String email, Integer monthlyIncome, Integer budget) {
+    public Account(String email, String password) {
+        mId = 0;
         mEmail = email;
-        mMonthlyIncome = monthlyIncome;
-        mBudget = budget;
-        mEmergencyFundAmount = 0;
-        mStudentFundAmount = 0;
+        mPassword = password;
+        mMonthlyIncome = 0.0;
+        mBudget = 0.0;
+        mEmergencyFundAmount = 0.0;
+        mStudentFundAmount = 0.0;
     }
 
     public long getId() {
         return mId;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         mId = id;
     }
 
@@ -45,6 +49,14 @@ public class Account implements Parcelable
 
     public void setEmail(String email) {
         mEmail = email;
+    }
+
+    public String getPassword() {
+        return mPassword;
+    }
+
+    public void setPassword(String password) {
+        mPassword = password;
     }
 
     public double getMonthlyIncome() {

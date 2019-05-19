@@ -49,8 +49,8 @@ public class EmergencyFund extends AppCompatActivity
         amountEditText = findViewById(R.id.amountEditTextSF);
 
         intent = getIntent();
-        Parcel p =  intent.getParcelableExtra("Account");
-        mAccount = new Account(p);
+        mAccount = intent.getParcelableExtra("Account");
+
         emergencyFundAmount = mAccount.getEmergencyFundAmount();
 
         //Placing all the account info into the Text Views
