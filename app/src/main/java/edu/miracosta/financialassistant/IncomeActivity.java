@@ -69,7 +69,7 @@ public class IncomeActivity extends AppCompatActivity {
     public void viewIncomeDetails(View v){
         Income income = (Income) v.getTag();
         Intent detailsIntent = new Intent(this, IncomeDetails.class);
-        detailsIntent.putExtra("Income", income);
+        detailsIntent.putExtra("SelectedIncome", income);
         startActivity(detailsIntent);
     }
 }

@@ -14,23 +14,25 @@ public class Income implements Parcelable {
 
     private long mId;
     private String incomeName;
+    private String incomeDesc;
     private double incomeValue;
 
 
     public Income(){
         mId = -1;
         incomeName = "";
+        incomeDesc = "";
         incomeValue = 0;
     }
 
-    public Income(long id, String incomeDescription, double incomeCost){
+    public Income(long id, String incomeName, double incomeCost){
         mId = id;
-        incomeName = incomeDescription;
+        this.incomeName = incomeName;
         incomeValue = incomeCost;
     }
 
     public Income(double incomeCost, String incomeDescription, String Name){
-        incomeName = incomeDescription;
+        incomeDesc = incomeDescription;
         incomeValue = incomeCost;
         incomeName = Name;
     }
@@ -57,6 +59,14 @@ public class Income implements Parcelable {
 
     public long getId(){
         return mId;
+    }
+
+    public String getIncomeDesc() {
+        return incomeDesc;
+    }
+
+    public void setIncomeDesc(String incomeDesc) {
+        this.incomeDesc = incomeDesc;
     }
 
     protected Income(Parcel in) {
