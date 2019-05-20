@@ -24,7 +24,7 @@ public class SplashScreen extends AppCompatActivity {
             }
         };
         Timer timer = new Timer();
-        timer.schedule(task, 3000);
+        timer.schedule(task, 4000);
 
         //Can load things in background here
     }
