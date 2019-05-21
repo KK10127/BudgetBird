@@ -98,8 +98,8 @@ public class MonthlyOverview extends AppCompatActivity {
 
         allExpenses = db.getAllExpenses();
         allIncomes = db.getAllIncomes();
-        studentFund = db.getStudentFund();
-        emergencyFund = db.getEmergencyFund();
+        studentFund = 15.00;//db.getStudentFund();
+        emergencyFund = 15.00;//db.getEmergencyFund();
 
         // DONE: Total up the expenses/incomes
         for (Expense item : allExpenses) {
