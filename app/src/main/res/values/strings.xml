@@ -86,6 +86,5 @@ While some of these promotional offers may be beneficial to the users, you shoul
     <string name="expense_desc">A Description of an Expense Item</string>
     <string name="income_details">Income Details</string>
     <string name="income_description">This is a description of a Income item</string>
-    <string name="today">Today</string>
     <string name="add_a_purchase">Enter a purchase value:</string>
 </resources>
