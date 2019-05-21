@@ -18,5 +18,20 @@ public class TodayActivity extends AppCompatActivity {
         //Dont change this
         mIntent = getIntent();
         mAccount = mIntent.getParcelableExtra("Account");
+
+
     }
+
+    /**
+     * This method adds an amount to
+     */
+    public void addAmount( ) {
+        // TODO: Make sure the amount in the amountEditText is not zero or negative
+
+        // TODO: Grab the amount in the edit text, use the Date class to get the current date as a
+        // TODO: string. Store the string/value in the 'Activity database table' using the DB helper.
+
+        // TODO: Make a toast indicating success to the user.
+    }
+
 }

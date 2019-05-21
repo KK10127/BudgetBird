@@ -238,14 +238,11 @@ public class DBHelper extends SQLiteOpenHelper
                 KEY_FIELD_ID + " = ?",
                 new String[]{String.valueOf(0)}, null, null, null, null);
 
-
-        int count = cursor.getColumnCount();
-
         double studentFund = -1;
         if(cursor != null)
         {
-
-            studentFund = cursor.getDouble(2);
+            cursor.moveToFirst();
+            studentFund = cursor.getDouble(1);
             cursor.close();
         }
         db.close();
@@ -264,7 +261,9 @@ public class DBHelper extends SQLiteOpenHelper
         {
             cursor.moveToFirst();
 
-            emergencyFund = cursor.getDouble(1);
+
+            emergencyFund = cursor.getDouble(2);
+
 
             cursor.close();
         }
