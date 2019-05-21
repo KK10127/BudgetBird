@@ -3,6 +3,8 @@ package edu.miracosta.financialassistant;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 
 import edu.miracosta.financialassistant.model.Account;
 
@@ -10,6 +12,11 @@ public class TodayActivity extends AppCompatActivity {
 
     private Intent mIntent;
     private Account mAccount;
+
+
+    private EditText amountEditText;
+    private Button addAmountButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +26,8 @@ public class TodayActivity extends AppCompatActivity {
         mIntent = getIntent();
         mAccount = mIntent.getParcelableExtra("Account");
 
+        amountEditText = findViewById(R.id.amountEditText);
+        addAmountButton = findViewById(R.id.addAmountButton);
 
     }
 
