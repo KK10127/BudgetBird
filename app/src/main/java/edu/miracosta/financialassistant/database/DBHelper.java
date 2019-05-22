@@ -56,7 +56,7 @@ public class DBHelper extends SQLiteOpenHelper
     //Define the fields (Column Names) for the table
     private static final String KEY_FIELD_ID = "_id";
     private static final String FIELD_DESCRIPTION= "desctiption";
-    private static final String FIELD_COST = "ExpenseCost";
+    //private static final String FIELD_COST = "ExpenseCost";
 
     //Contructor for the DB
     public DBHelper(Context context)
@@ -151,7 +151,7 @@ public class DBHelper extends SQLiteOpenHelper
         SQLiteDatabase database = getReadableDatabase();
 
         //A cursor is the result of a database query
-        Cursor cursor = database.query(MONTHLY_EXPENSES_TABLE, new String[]{KEY_FIELD_ID, FIELD_EXPENSE_NAME, FIELD_EXPENSE_VALUE},
+        Cursor cursor = database.query(MONTHLY_EXPENSES_TABLE, new String[]{MONTHLY_EXPENSES_KEY_FIELD_ID, FIELD_EXPENSE_NAME, FIELD_EXPENSE_VALUE},
                 null,
                 null,
                 null,
@@ -201,7 +201,7 @@ public class DBHelper extends SQLiteOpenHelper
         ContentValues values = new ContentValues();
 
         values.put(FIELD_DESCRIPTION, expense.getExpenseDescription());
-        values.put(FIELD_COST, expense.getExpenseCost());
+        values.put(FIELD_EXPENSE_VALUE, expense.getExpenseCost());
 
         db.update(MONTHLY_EXPENSES_TABLE, values, KEY_FIELD_ID + " = ?",
                 new String[] {String.valueOf(expense.getId())});
@@ -301,7 +301,7 @@ public class DBHelper extends SQLiteOpenHelper
         values.put(FIELD_TREND_DATE, trend.getDate().toString());
 
         //Add key-value pair information for the expense cost
-        values.put(FIELD_COST, trend.getValue());
+        values.put(FIELD_TREND_SPENT, trend.getValue());
 
         //insert row in the table
         long id = db.insert(TRENDS_TABLE, null, values);

@@ -54,5 +54,6 @@ public class ExpenseDetails extends AppCompatActivity {
         db.deleteExpense(mExpense);
         Intent intent = new Intent(this, ExpensesActivity.class);
         startActivity(intent);
+        finish();
     }
 }
