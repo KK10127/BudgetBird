@@ -16,4 +16,6 @@
     <color name="pastelRED">#DFAEC1</color>
     <color name="pastelPink">#DFAEC1</color>
     <color name="pastelBlue">#FAA5E1E4</color>
+    <color name="lighterGray">#D9ECECEC</color>
+
 </resources>
