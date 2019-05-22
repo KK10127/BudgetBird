@@ -121,14 +121,14 @@ public class MonthlyOverview extends AppCompatActivity {
         SliceValue emergencySlice = new SliceValue((float) emergencyFund, EMERGENCY_COLOR);
 
         if (studentFund != 0)
-            studentSlice.setLabel("Student Spending");
+            studentSlice.setLabel("Student Fund: " + format.format(studentFund));
         else
             studentSlice.setLabel("");
 
-        expensesSlice.setLabel("Expenses");
+        expensesSlice.setLabel("Expenses: " + format.format(expenseTotal));
 
         if (emergencyFund != 0)
-            emergencySlice.setLabel("Emergencies");
+            emergencySlice.setLabel("Emergency Fund: " + format.format(emergencyFund));
         else
             emergencySlice.setLabel("");
 
@@ -140,7 +140,7 @@ public class MonthlyOverview extends AppCompatActivity {
         budgetGap = incomeTotal - expenseTotal;
         if (budgetGap > 0) {
             SliceValue budgetSlice = new SliceValue((float) budgetGap, BUDGET_COLOR);
-            budgetSlice.setLabel("Budget Gap");
+            budgetSlice.setLabel("Budget: " + format.format(budgetGap));
             pieData.add(budgetSlice);
         }
 
@@ -149,6 +149,7 @@ public class MonthlyOverview extends AppCompatActivity {
         pieChartData.setHasLabels(true);
         pieChartData.setHasLabelsOutside(false);
         pieChartData.setHasCenterCircle(true);
+        pieChartView.setInteractive(false);
 
         // set the pieCharData to update the pieChartView
         pieChartView.setPieChartData(pieChartData);

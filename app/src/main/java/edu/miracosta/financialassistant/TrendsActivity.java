@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.miracosta.financialassistant.model.Account;
+import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
 
 public class TrendsActivity extends AppCompatActivity {
@@ -42,14 +44,14 @@ public class TrendsActivity extends AppCompatActivity {
 
         // lists for the values
         List yAxisValues = new ArrayList();
-        List xAxisValues = new ArrayList();
+        List axisValues = new ArrayList();
 
         //
         Line line = new Line(yAxisValues);
 
         //
         for(int i = 0; i < xAxisData.length; i++){
-            xAxisValues.add(i, new AxisValue(i).setLabel(xAxisData[i]));
+            axisValues.add(i, new AxisValue(i).setLabel(xAxisData[i]));
         }
 
         for (int i = 0; i < yAxisData.length; i++){
@@ -66,5 +68,18 @@ public class TrendsActivity extends AppCompatActivity {
 
         //
         lineChartView.setLineChartData(data);
+
+        Axis axis = new Axis();
+        axis.setValues(axisValues);
+        data.setAxisXBottom(axis);
+
+        Axis yAxis = new Axis();
+        data.setAxisYLeft(yAxis);
+
+        Viewport v = lineChartView.getMaximumViewport();
+        float dy = v.height() * 0.2f;
+        v.inset(0, -dy);
+        lineChartView.setMaximumViewport(v);
+        lineChartView.setCurrentViewport(v);
     }
 }
