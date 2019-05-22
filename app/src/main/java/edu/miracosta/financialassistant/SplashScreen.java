@@ -48,7 +48,7 @@ public class SplashScreen extends AppCompatActivity {
         slideUp = AnimationUtils.loadAnimation(this,R.anim.slide_up);
         logo.startAnimation(slideUp);
 
-        timer.schedule(task, 2500);
+        timer.schedule(task, 2250);
 
         //Can load things in background here
     }
