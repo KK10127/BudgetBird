@@ -22,7 +22,7 @@ public class StudentFund extends AppCompatActivity {
 
     private Intent intent;
     private Account mAccount;
-    private double mFundTotal;
+    private double studentFundAmount;
     private Expense mExpense;
     private DBHelper mDB;
 
@@ -48,7 +48,7 @@ public class StudentFund extends AppCompatActivity {
         intent = getIntent();
         mAccount = intent.getParcelableExtra("Account");
 
-        mFundTotal = mAccount.getStudentFundAmount();
+        studentFundAmount = mAccount.getStudentFundAmount();
 
 
         //Placing all the account info into the Text Views
@@ -61,47 +61,65 @@ public class StudentFund extends AppCompatActivity {
     //Adds a deposit to the fund
     public void addDepositSF(View v)
     {
-        //Grabs the current total(before the deposit)
-        mFundTotal = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1).replaceAll(",", ""));
+        //Grabs the total fund currently (before the deposit)
+        studentFundAmount = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1).replaceAll(",", ""));
 
-        //Grabs the amount to be deposited into the fund
+        //Grabs how much is being deposited
         double deposit;
         deposit = Double.valueOf(mWithdrawDepositEditText.getText().toString());
 
-        //create an Expense object from data
-        mExpense = new Expense(deposit, "Deposited into Student Fund.", "Student Fund");
-        //Add the expense to the Expense database
-        mDB.addExpense(mExpense);
+        //Creates an expense object from the deopist
+        //mExpense = new Expense(deposit, "Deposited Into Emergency Fund.", "Emergency Fund");
 
-        //Calculates new total
-        mFundTotal = mFundTotal + deposit;
+        //Then stores the expense in the ExpenseDataBase
+
+
+        double studentFund = mDB.getStudentFund(mAccount.getId());
+        studentFund += deposit;
+        mDB.setStudentFund(mAccount.getId(), studentFund);
+
+        //emergencyFundAmount = emergencyFundAmount + deposit;
 
         //Update model
-        mAccount.setStudentFundAmount(mFundTotal);
+        mAccount.setEmergencyFundAmount(studentFund);
 
-        mStudentFundTotalTextView.setText(mCurrencyFormat.format(mFundTotal));
+        //Displays the new balance
+        mStudentFundTotalTextView.setText(mCurrencyFormat.format(studentFund));
     }
 
     public void withdrawSF(View v)
     {
-        mFundTotal = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1).replaceAll(",", ""));
+        //Grabs the sf amount
+        studentFundAmount = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1).replaceAll(",", ""));
 
+        //Grabs how much to withdraw
         double withdrawAmount;
         withdrawAmount = Double.valueOf(mWithdrawDepositEditText.getText().toString());
 
-        //Calculate new balance
-        mFundTotal = mFundTotal - withdrawAmount;
+        double studentFund = mDB.getEmergencyFund(mAccount.getId());
+        studentFund -= withdrawAmount;
+        if (studentFund < 0)
+            studentFund = 0.0;
+        mDB.setStudentFund(mAccount.getId(), studentFund);
 
-        //Updating model
-        mAccount.setStudentFundAmount(mFundTotal);
+        //emergencyFundAmount = emergencyFundAmount + deposit;
 
-        //Display the balance
-        mStudentFundTotalTextView.setText(mCurrencyFormat.format(mFundTotal));
+        //Update model
+        mAccount.setStudentFundAmount(studentFund);
+
+        //Displays the new balance
+        mStudentFundTotalTextView.setText(mCurrencyFormat.format(studentFund));
     }
 
     //Returns to the main screen
     public void backSF(View v)
     {
+        this.finish();
+    }
+
+
+    @Override
+    public void onBackPressed() {
         this.finish();
     }
 }

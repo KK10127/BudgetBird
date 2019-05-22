@@ -36,6 +36,7 @@ public class EmergencyFund extends AppCompatActivity
     NumberFormat mNumberFormat = NumberFormat.getNumberInstance();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -61,6 +62,8 @@ public class EmergencyFund extends AppCompatActivity
         budgetTextView.setText(mCurrencyFormat.format(mAccount.getBudget()));
         emergencyFundAmountTextView.setText("$ " + String.valueOf(emergencyFundAmount));
     }
+
+
 
     //Adds a deposit to the fund
     public void addDeposit(View v)
