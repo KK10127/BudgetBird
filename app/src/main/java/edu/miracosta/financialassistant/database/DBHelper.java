@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper
 
 
     // DEFINE THE FIELDS FOR THE ACCOUNT TABLE
-    private static final String ACCOUNT_TABLE = "AccountInfo";
+    public static final String ACCOUNT_TABLE = "AccountInfo";
     private static final String ACCOUNT_KEY_FIELD_ID = "_id";
     private static final String FIELD_EMAIL = "email";
     private static final String FIELD_PASSWORD = "password";
@@ -32,20 +32,20 @@ public class DBHelper extends SQLiteOpenHelper
     private static final String FIELD_STUDENT_FUND = "student_fund";
 
     // DEFINE THE MONTHLY EXPENSES TABLE
-    private static final String MONTHLY_EXPENSES_TABLE = "MonthlyExpenses";
+    public static final String MONTHLY_EXPENSES_TABLE = "MonthlyExpenses";
     private static final String MONTHLY_EXPENSES_KEY_FIELD_ID = "_id";
     private static final String FIELD_EXPENSE_NAME = "expense_name";
     private static final String FIELD_EXPENSE_DESCRIPTION = "expense_description";
     private static final String FIELD_EXPENSE_VALUE = "expense_value";
 
     // DEFINE THE MONTHLY INCOMES TABLE
-    private static final String MONTHLY_INCOMES_TABLE = "MonthlyIncomes";
+    public static final String MONTHLY_INCOMES_TABLE = "MonthlyIncomes";
     private static final String MONTHLY_INCOMES_KEY_FIELD_ID = "_id";
     private static final String FIELD_INCOME_NAME = "income_name";
     private static final String FIELD_INCOME_VALUE = "income_value";
 
     // DEFINE THE TREND TABLE
-    private static final String TRENDS_TABLE = "Activity";
+    public static final String TRENDS_TABLE = "Activity";
     private static final String TRENDS_KEY_FIELD_ID = "_id";
     private static final String FIELD_TREND_DATE = "date";
     private static final String FIELD_TREND_SPENT = "how_much_spent";
@@ -69,8 +69,8 @@ public class DBHelper extends SQLiteOpenHelper
     {
         // Create the account table
         String accountTable = "CREATE TABLE IF NOT EXISTS " + ACCOUNT_TABLE + "("
-                + ACCOUNT_KEY_FIELD_ID + " REAL PRIMARY KEY, "
-                + FIELD_EMAIL + " TEXT, "
+                + ACCOUNT_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + FIELD_EMAIL + " TEXT UNIQUE, "
                 + FIELD_PASSWORD + " TEXT, "
                 + FIELD_INCOME + " REAL, "
                 + FIELD_BUDGET + " TEXT, "
@@ -83,8 +83,8 @@ public class DBHelper extends SQLiteOpenHelper
 
         // Create the monthly expenses table
         String monthlyExpensesTable = "CREATE TABLE IF NOT EXISTS " + MONTHLY_EXPENSES_TABLE + "("
-                + MONTHLY_EXPENSES_KEY_FIELD_ID + " REAL PRIMARY KEY, "
-                + FIELD_EXPENSE_NAME + " TEXT, "
+                + MONTHLY_EXPENSES_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + FIELD_EXPENSE_NAME + " TEXT UNIQUE, "
                 + FIELD_EXPENSE_DESCRIPTION + " TEXT, "
                 + FIELD_EXPENSE_VALUE + " REAL "
                 + ")";
@@ -94,8 +94,8 @@ public class DBHelper extends SQLiteOpenHelper
 
         // Create the monthly incomes table
         String monthlyIncomesTable = "CREATE TABLE IF NOT EXISTS " + MONTHLY_INCOMES_TABLE + "("
-                + MONTHLY_INCOMES_KEY_FIELD_ID + " REAL PRIMARY KEY, "
-                + FIELD_INCOME_NAME + " TEXT, "
+                + MONTHLY_INCOMES_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + FIELD_INCOME_NAME + " TEXT UNIQUE, "
                 + FIELD_INCOME_VALUE + " REAL "
                 + ")";
 
@@ -104,7 +104,7 @@ public class DBHelper extends SQLiteOpenHelper
 
         // Create the Trends table
         String activityTable = "CREATE TABLE IF NOT EXISTS " + TRENDS_TABLE + "("
-                + TRENDS_KEY_FIELD_ID + " REAL PRIMARY KEY, "
+                + TRENDS_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + FIELD_TREND_DATE + " TEXT, "
                 + FIELD_TREND_SPENT + " REAL "
                 + ")";
@@ -208,7 +208,7 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
-    public Expense getExpense(int id)
+    public Expense getExpense(long id)
     {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(MONTHLY_EXPENSES_TABLE,
@@ -231,38 +231,39 @@ public class DBHelper extends SQLiteOpenHelper
         return expense;
     }
 
-    public double getStudentFund() {
+    public double getStudentFund(long id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(ACCOUNT_TABLE,
                 new String[]{ACCOUNT_KEY_FIELD_ID, FIELD_EMERGENCY_FUND, FIELD_STUDENT_FUND},
-                KEY_FIELD_ID + " = ?",
-                new String[]{String.valueOf(0)}, null, null, null, null);
+                ACCOUNT_KEY_FIELD_ID + " = ?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
 
         double studentFund = -1;
-        if(cursor != null)
+        if(cursor.getCount() > 0)
         {
             cursor.moveToFirst();
-            studentFund = cursor.getDouble(1);
+
+            studentFund = cursor.getDouble(2);
             cursor.close();
         }
         db.close();
         return studentFund;
     }
 
-    public double getEmergencyFund() {
+    public double getEmergencyFund(long id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(ACCOUNT_TABLE,
                 new String[]{ACCOUNT_KEY_FIELD_ID, FIELD_EMERGENCY_FUND, FIELD_STUDENT_FUND},
-                KEY_FIELD_ID + " = ?",
-                new String[]{String.valueOf(0)}, null, null, null, null);
+                ACCOUNT_KEY_FIELD_ID + " = ?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
 
         double emergencyFund = -1;
-        if(cursor != null)
+        if(cursor.getCount() > 0)
         {
             cursor.moveToFirst();
 
 
-            emergencyFund = cursor.getDouble(2);
+            emergencyFund = cursor.getDouble(1);
 
 
             cursor.close();
@@ -519,13 +520,43 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    public Account getAccount(String email, String password) {
+        Account account = null;
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(ACCOUNT_TABLE,
+                null,
+                FIELD_EMAIL + " = ?",
+                new String[]{email}, null, null, null, null);
+
+        if(cursor.getCount() == 1)
+        {
+            cursor.moveToFirst();
+            Long id = cursor.getLong(0);
+            String dbPassword = cursor.getString(2);
+
+            if (password.equals(dbPassword)) {
+                account = new Account(cursor.getLong(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getDouble(3),
+                        cursor.getDouble(4),
+                        cursor.getDouble(5),
+                        cursor.getDouble(6));
+            }
+        }
+
+        return account;
+    }
+
     public List<Account> getAllAccounts()
     {
         List<Account> accountList = new ArrayList<Account>();
         SQLiteDatabase database = getReadableDatabase();
 
         //A cursor is the result of a database query
-        Cursor cursor = database.query(ACCOUNT_TABLE, new String[]{ACCOUNT_KEY_FIELD_ID, FIELD_EMAIL, FIELD_PASSWORD, FIELD_INCOME, FIELD_BUDGET, FIELD_EMERGENCY_FUND, FIELD_STUDENT_FUND},
+        Cursor cursor = database.query(ACCOUNT_TABLE,
+                null,
                 null,
                 null,
                 null,
@@ -538,7 +569,7 @@ public class DBHelper extends SQLiteOpenHelper
         {
             do
             {
-                Account account = new Account(cursor.getLong(0),
+                Account account = new Account(cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getDouble(3),
@@ -555,5 +586,14 @@ public class DBHelper extends SQLiteOpenHelper
         return accountList;
     }
 
+    public void deleteAccounts()
+    {
+        SQLiteDatabase database = getReadableDatabase();
+
+        //A cursor is the result of a database query
+        int count = database.delete(ACCOUNT_TABLE, "1", null);
+
+        database.close();
+    }
 
 }

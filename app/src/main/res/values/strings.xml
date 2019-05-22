@@ -69,7 +69,6 @@ While some of these promotional offers may be beneficial to the users, you shoul
     <string name="zero">$00.00</string>
     <string name="your_monthly_budget">Your Monthly Budget</string>
     <string name="emergency_fund">Emergency Fund</string>
-    <string name="today">Today</string>
     <string name="trends">Your Trends</string>
     <string name="signMeUp">Sign me up!</string>
     <string name="title_activity_monthy_overview2">MonthyOverview2</string>
@@ -86,4 +85,6 @@ While some of these promotional offers may be beneficial to the users, you shoul
     <string name="expense_desc">A Description of an Expense Item</string>
     <string name="income_details">Income Details</string>
     <string name="income_description">This is a description of a Income item</string>
+    <string name="add_a_purchase">Enter a purchase value:</string>
+    <string name="today">Today</string>
 </resources>

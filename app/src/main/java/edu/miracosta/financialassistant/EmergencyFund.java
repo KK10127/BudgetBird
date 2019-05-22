@@ -48,6 +48,8 @@ public class EmergencyFund extends AppCompatActivity
         emergencyFundAmountTextView = findViewById(R.id.EmergencyFundAmountTextView);
         amountEditText = findViewById(R.id.amountEditTextSF);
 
+        mDB = new DBHelper(this);
+
         intent = getIntent();
         mAccount = intent.getParcelableExtra("Account");
 
@@ -57,14 +59,14 @@ public class EmergencyFund extends AppCompatActivity
         userNameTextView.setText(mAccount.getEmail());
         monthlyIncomeTextView.setText(mCurrencyFormat.format(mAccount.getMonthlyIncome()));
         budgetTextView.setText(mCurrencyFormat.format(mAccount.getBudget()));
-        emergencyFundAmountTextView.setText("$ " + String.valueOf(mAccount.getEmergencyFundAmount()));
+        emergencyFundAmountTextView.setText("$ " + String.valueOf(emergencyFundAmount));
     }
 
     //Adds a deposit to the fund
     public void addDeposit(View v)
     {
         //Grabs the total fund currently (before the deposit)
-        emergencyFundAmount = Double.valueOf(emergencyFundAmountTextView.getText().toString().substring(1));
+        emergencyFundAmount = Double.valueOf(emergencyFundAmountTextView.getText().toString().substring(1).replaceAll(",", ""));
 
         //Grabs how much is being deposited
         double deposit;
@@ -72,6 +74,7 @@ public class EmergencyFund extends AppCompatActivity
 
         //Creates an expense object from the deopist
         mExpense = new Expense(deposit, "Deposited Into Emergency Fund.", "Emergency Fund");
+
         //Then stores the expense in the ExpenseDataBase
         mDB.addExpense(mExpense);
 
@@ -88,7 +91,7 @@ public class EmergencyFund extends AppCompatActivity
     public void withdraw(View v)
     {
         //Grabs the E.F amount
-        emergencyFundAmount = Double.valueOf(emergencyFundAmountTextView.getText().toString().substring(1));
+        emergencyFundAmount = Double.valueOf(emergencyFundAmountTextView.getText().toString().substring(1).replaceAll(",", ""));
 
         //Grabs how much to withdraw
         double withdrawAmount;

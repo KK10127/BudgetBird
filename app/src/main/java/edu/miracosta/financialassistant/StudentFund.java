@@ -42,6 +42,8 @@ public class StudentFund extends AppCompatActivity {
         mStudentFundTotalTextView = findViewById(R.id.FundTotalTextView);
         mWithdrawDepositEditText = findViewById(R.id.amountEditTextSF);
 
+        mDB = new DBHelper(this);
+
         //Dont change this.
         intent = getIntent();
         mAccount = intent.getParcelableExtra("Account");
@@ -60,7 +62,7 @@ public class StudentFund extends AppCompatActivity {
     public void addDepositSF(View v)
     {
         //Grabs the current total(before the deposit)
-        mFundTotal = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1));
+        mFundTotal = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1).replaceAll(",", ""));
 
         //Grabs the amount to be deposited into the fund
         double deposit;
@@ -75,14 +77,14 @@ public class StudentFund extends AppCompatActivity {
         mFundTotal = mFundTotal + deposit;
 
         //Update model
-        mAccount.setEmergencyFundAmount(mFundTotal);
+        mAccount.setStudentFundAmount(mFundTotal);
 
         mStudentFundTotalTextView.setText(mCurrencyFormat.format(mFundTotal));
     }
 
     public void withdrawSF(View v)
     {
-        mFundTotal = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1));
+        mFundTotal = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1).replaceAll(",", ""));
 
         double withdrawAmount;
         withdrawAmount = Double.valueOf(mWithdrawDepositEditText.getText().toString());
