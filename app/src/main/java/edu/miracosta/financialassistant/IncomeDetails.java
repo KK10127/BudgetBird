@@ -3,11 +3,13 @@ package edu.miracosta.financialassistant;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
 
+import edu.miracosta.financialassistant.database.DBHelper;
 import edu.miracosta.financialassistant.model.Income;
 
 public class IncomeDetails extends AppCompatActivity {
@@ -16,11 +18,15 @@ public class IncomeDetails extends AppCompatActivity {
     private TextView incomeDetailsValue;
     private TextView incomeDetailsDesc;
     private Button incomeDetailsButton;
+    private DBHelper db;
+    private Income mIncome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income_details);
+
+        db = new DBHelper(this);
 
         //Connect the views and Button
         incomeDetailsTitle = findViewById(R.id.incomeDetailsTitle);
@@ -30,17 +36,20 @@ public class IncomeDetails extends AppCompatActivity {
 
         //Get the Income object from the intent
         Intent intent = getIntent();
-        Income income = intent.getParcelableExtra("SelectedIncome");
+        mIncome = intent.getParcelableExtra("SelectedIncome");
 
         //Set the corresponding views
         NumberFormat format = NumberFormat.getCurrencyInstance();
 
-        incomeDetailsTitle.setText(income.getIncomeName());
-        incomeDetailsValue.setText(format.format(income.getIncomeValue()));
-        incomeDetailsDesc.setText(income.getIncomeDesc());
+        incomeDetailsTitle.setText(mIncome.getIncomeName());
+        incomeDetailsValue.setText(format.format(mIncome.getIncomeValue()));
+        incomeDetailsDesc.setText(mIncome.getIncomeDesc());
     }
 
-    public void removeIncome(){
-        //TODO: Finish the code for removing and income object
+    public void removeIncome(View v){
+        db.deleteIncome(mIncome);
+        Intent intent = new Intent(this, IncomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

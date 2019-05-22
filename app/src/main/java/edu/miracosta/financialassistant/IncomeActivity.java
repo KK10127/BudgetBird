@@ -71,5 +71,6 @@ public class IncomeActivity extends AppCompatActivity {
         Intent detailsIntent = new Intent(this, IncomeDetails.class);
         detailsIntent.putExtra("SelectedIncome", income);
         startActivity(detailsIntent);
+        finish();
     }
 }

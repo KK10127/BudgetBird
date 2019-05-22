@@ -67,5 +67,6 @@ public class ExpensesActivity extends AppCompatActivity {
         Intent detailsIntent = new Intent(this, ExpenseDetails.class);
         detailsIntent.putExtra("SelectedExpense", selectedExpense);
         startActivity(detailsIntent);
+        finish();
     }
 }
