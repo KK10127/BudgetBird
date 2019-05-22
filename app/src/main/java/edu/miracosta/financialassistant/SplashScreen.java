@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ public class SplashScreen extends AppCompatActivity {
 
     RotateAnimation r;
     private ImageView logo;
+    private Animation slideUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,12 @@ public class SplashScreen extends AppCompatActivity {
         r = new RotateAnimation(0,360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         r.setDuration((long) 600);
         r.setRepeatCount(2);
-        logo.startAnimation(r);
+        //logo.startAnimation(r);
+
+
+
+        slideUp = AnimationUtils.loadAnimation(this,R.anim.slide_up);
+        logo.startAnimation(slideUp);
 
         timer.schedule(task, 2500);
 

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private Account mAccount;
     private DBHelper db;
     private List<Account> mAccountList;
-
+    private Animation slide_down;
 
 
     @Override
@@ -69,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditTextSU);
         passwordEditText = findViewById(R.id.passwordEditTextSU);
         loginButton = findViewById(R.id.logInButton);
+
+        slide_down = AnimationUtils.loadAnimation(this,R.anim.slide_down);
+        appLogoImageView.startAnimation(slide_down);
     }
 
     //temporary
