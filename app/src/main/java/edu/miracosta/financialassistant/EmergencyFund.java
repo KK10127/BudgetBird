@@ -101,19 +101,29 @@ public class EmergencyFund extends AppCompatActivity
         double withdrawAmount;
         withdrawAmount = Double.valueOf(amountEditText.getText().toString());
 
-        //calculates new balance
-        emergencyFundAmount = emergencyFundAmount - withdrawAmount;
+        double emergencyFund = mDB.getEmergencyFund(mAccount.getId());
+        emergencyFund -= withdrawAmount;
+        if (emergencyFund < 0)
+            emergencyFund = 0.0;
+        mDB.setEmergencyFund(mAccount.getId(), emergencyFund);
 
-        //update model
-        mAccount.setEmergencyFundAmount(emergencyFundAmount);
+        //emergencyFundAmount = emergencyFundAmount + deposit;
 
-        //Displays balance
-        emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFundAmount));
+        //Update model
+        mAccount.setEmergencyFundAmount(emergencyFund);
+
+        //Displays the new balance
+        emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFund));
     }
 
     //Returns to the main screen
     public void back(View v)
     {
+        this.finish();
+    }
+
+    @Override
+    public void onBackPressed() {
         this.finish();
     }
 }

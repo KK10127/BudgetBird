@@ -279,6 +279,13 @@ public class DBHelper extends SQLiteOpenHelper
                 "_id='"+ id + "'");
     }
 
+    // added this method
+    public void setStudentFund(long id, double value) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE AccountInfo SET student_fund='"+ value + "' WHERE " +
+                "_id='"+ id + "'");
+    }
+
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN

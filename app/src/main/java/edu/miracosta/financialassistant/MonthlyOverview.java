@@ -103,6 +103,8 @@ public class MonthlyOverview extends AppCompatActivity {
         emergencyFund = db.getEmergencyFund(mAccount.getId());
 
         // DONE: Total up the expenses/incomes
+        expenseTotal = 0;
+        incomeTotal = 0;
         for (Expense item : allExpenses) {
             expenseTotal += item.getExpenseCost();
         }
