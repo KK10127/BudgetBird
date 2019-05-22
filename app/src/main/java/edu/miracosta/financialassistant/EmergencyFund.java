@@ -73,18 +73,22 @@ public class EmergencyFund extends AppCompatActivity
         deposit = Double.valueOf(amountEditText.getText().toString());
 
         //Creates an expense object from the deopist
-        mExpense = new Expense(deposit, "Deposited Into Emergency Fund.", "Emergency Fund");
+        //mExpense = new Expense(deposit, "Deposited Into Emergency Fund.", "Emergency Fund");
 
         //Then stores the expense in the ExpenseDataBase
-        mDB.addExpense(mExpense);
 
-        emergencyFundAmount = emergencyFundAmount + deposit;
+
+        double emergencyFund = mDB.getEmergencyFund(mAccount.getId());
+        emergencyFund += deposit;
+        mDB.setEmergencyFund(mAccount.getId(), emergencyFund);
+
+        //emergencyFundAmount = emergencyFundAmount + deposit;
 
         //Update model
-        mAccount.setEmergencyFundAmount(emergencyFundAmount);
+        mAccount.setEmergencyFundAmount(emergencyFund);
 
         //Displays the new balance
-        emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFundAmount));
+        emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFund));
     }
 
     //Withdraws from the fund

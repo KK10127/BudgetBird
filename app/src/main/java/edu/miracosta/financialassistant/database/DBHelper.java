@@ -272,6 +272,13 @@ public class DBHelper extends SQLiteOpenHelper
         return emergencyFund;
     }
 
+    // added this method
+    public void setEmergencyFund(long id, double value) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE AccountInfo SET emergency_fund='"+ value + "' WHERE " +
+                "_id='"+ id + "'");
+    }
+
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
