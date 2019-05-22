@@ -15,14 +15,17 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select The Section That Applies"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/select"
             android:textAlignment="center"
+            android:textColor="@color/lighterGray"
             android:textSize="34sp" />
 
         <ListView
             android:id="@+id/financeListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="viewOptionSelected"/>
+            android:background="@color/colorPrimary" />
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
