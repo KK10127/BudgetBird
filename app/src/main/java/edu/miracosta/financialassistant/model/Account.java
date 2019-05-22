@@ -15,22 +15,14 @@ public class Account implements Parcelable
     private double mEmergencyFundAmount;
     private double mStudentFundAmount;
 
-    public Account(long id, String email, String password, double monthlyIncome, double budget, double emergencyFund, double studentFund) {
+    public Account(long id, double emergencyFund, double studentFund) {
         mId = id;
-        mEmail = email;
-        mPassword = password;
-        mMonthlyIncome = monthlyIncome;
-        mBudget = budget;
         mEmergencyFundAmount = emergencyFund;
         mStudentFundAmount = studentFund;
     }
 
     public Account(String email, String password) {
         mId = 0;
-        mEmail = email;
-        mPassword = password;
-        mMonthlyIncome = 0.0;
-        mBudget = 0.0;
         mEmergencyFundAmount = 0.0;
         mStudentFundAmount = 0.0;
     }

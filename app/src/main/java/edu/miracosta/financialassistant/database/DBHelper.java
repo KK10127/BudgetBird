@@ -71,10 +71,6 @@ public class DBHelper extends SQLiteOpenHelper
 
         String accountTable = "CREATE TABLE IF NOT EXISTS " + ACCOUNT_TABLE + "("
                 + ACCOUNT_KEY_FIELD_ID + " REAL PRIMARY KEY, "
-                + FIELD_EMAIL + " TEXT, "
-                + FIELD_PASSWORD + " TEXT, "
-                + FIELD_INCOME + " REAL, "
-                + FIELD_BUDGET + " TEXT, "
                 + FIELD_EMERGENCY_FUND + " REAL, "
                 + FIELD_STUDENT_FUND + " REAL "
                 + ")";
@@ -528,7 +524,7 @@ public class DBHelper extends SQLiteOpenHelper
         SQLiteDatabase database = getReadableDatabase();
 
         //A cursor is the result of a database query
-        Cursor cursor = database.query(ACCOUNT_TABLE, new String[]{ACCOUNT_KEY_FIELD_ID, FIELD_EMAIL, FIELD_PASSWORD, FIELD_INCOME, FIELD_BUDGET, FIELD_EMERGENCY_FUND, FIELD_STUDENT_FUND},
+        Cursor cursor = database.query(ACCOUNT_TABLE, new String[]{ACCOUNT_KEY_FIELD_ID, FIELD_EMERGENCY_FUND, FIELD_STUDENT_FUND},
                 null,
                 null,
                 null,
@@ -542,13 +538,8 @@ public class DBHelper extends SQLiteOpenHelper
             do
             {
                 Account account = new Account(cursor.getLong(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getDouble(3),
-                        cursor.getDouble(4),
-                        cursor.getDouble(5),
-                        cursor.getDouble(6));
-
+                        cursor.getDouble(1),
+                        cursor.getDouble(2));
                 accountList.add(account);
             }
             while(cursor.moveToNext());
