@@ -67,16 +67,16 @@ public class MonthlyOverview extends AppCompatActivity {
     private List<Income> allIncomes;
 
     //
-    private static int EXPENSE_COLOR = Color.GRAY;
-    private static int EMERGENCY_COLOR = Color.GRAY;
-    private static int STUDENT_COLOR = Color.GRAY;
-    private static int BUDGET_COLOR = Color.MAGENTA;
+    private static int EXPENSE_COLOR = Color.rgb(146, 127, 40);
+    private static int EMERGENCY_COLOR = Color.rgb(153, 42, 70);
+    private static int STUDENT_COLOR = Color.rgb(41, 101, 147);
+    private static int BUDGET_COLOR = Color.rgb(123, 145, 39);
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.monthly_overview);
+    public void onResume(){
+        super.onResume();
+        // put your code here...
 
         NumberFormat format = NumberFormat.getCurrencyInstance();
 
@@ -118,9 +118,17 @@ public class MonthlyOverview extends AppCompatActivity {
         SliceValue studentSlice = new SliceValue((float) studentFund, STUDENT_COLOR);
         SliceValue emergencySlice = new SliceValue((float) emergencyFund, EMERGENCY_COLOR);
 
+        if (studentFund != 0)
+            studentSlice.setLabel("Student Spending");
+        else
+            studentSlice.setLabel("");
+
         expensesSlice.setLabel("Expenses");
-        studentSlice.setLabel("Student Spending");
-        emergencySlice.setLabel("Emergencies");
+
+        if (emergencyFund != 0)
+            emergencySlice.setLabel("Emergencies");
+        else
+            emergencySlice.setLabel("");
 
         pieData.add(expensesSlice);
         pieData.add(studentSlice);
@@ -129,13 +137,16 @@ public class MonthlyOverview extends AppCompatActivity {
         // calculate the budget gap
         budgetGap = incomeTotal - expenseTotal;
         if (budgetGap > 0) {
-            SliceValue budgetSlice = new SliceValue((float) budgetGap, Color.MAGENTA);
+            SliceValue budgetSlice = new SliceValue((float) budgetGap, BUDGET_COLOR);
             budgetSlice.setLabel("Budget Gap");
             pieData.add(budgetSlice);
         }
 
         // create pieChartData using the list of pie slices
         PieChartData pieChartData = new PieChartData(pieData);
+        pieChartData.setHasLabels(true);
+        pieChartData.setHasLabelsOutside(false);
+        pieChartData.setHasCenterCircle(true);
 
         // set the pieCharData to update the pieChartView
         pieChartView.setPieChartData(pieChartData);
@@ -222,6 +233,15 @@ public class MonthlyOverview extends AppCompatActivity {
                 return true;
             }
         });
+
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.monthly_overview);
+
     }
 
     @Override
