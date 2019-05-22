@@ -284,12 +284,36 @@ public class DBHelper extends SQLiteOpenHelper
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE AccountInfo SET student_fund='"+ value + "' WHERE " +
                 "_id='"+ id + "'");
+        db.close();
     }
 
-    // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
-    // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
-    // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
+    public double getTodaysSpending(long id) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TRENDS_TABLE,
+                new String[]{TRENDS_KEY_FIELD_ID, FIELD_TREND_DATE, FIELD_TREND_SPENT},
+                TRENDS_KEY_FIELD_ID + " = ?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
 
+        double todaysSpending = -1;
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+
+            todaysSpending = cursor.getDouble(2);
+
+            cursor.close();
+        }
+        db.close();
+        return todaysSpending;
+    }
+
+    public void setTotalSpendingAmount(long id, double value) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE Activity SET how_much_spent='"+ value + "' WHERE " +
+                "_id='"+ id + "'");
+        db.close();
+
+    }
 
     //Trends database methods
     public void addTrend(Trends trend)
