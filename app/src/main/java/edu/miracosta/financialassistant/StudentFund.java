@@ -62,7 +62,7 @@ public class StudentFund extends AppCompatActivity {
     public void addDepositSF(View v)
     {
         //Grabs the current total(before the deposit)
-        mFundTotal = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1));
+        mFundTotal = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1).replaceAll(",", ""));
 
         //Grabs the amount to be deposited into the fund
         double deposit;
