@@ -104,4 +104,8 @@ public class TodayActivity extends AppCompatActivity {
         // update the model
     }
 
+    @Override
+    public void onBackPressed() {
+        this.finish();
+    }
 }

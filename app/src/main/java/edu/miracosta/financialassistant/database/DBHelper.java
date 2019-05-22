@@ -291,11 +291,12 @@ public class DBHelper extends SQLiteOpenHelper
 
     public void setTotalSpendingAmount(double value) {
         SQLiteDatabase db = getWritableDatabase();
-        /*
-        db.execSQL("UPDATE Activity SET how_much_spent='"+ value + "' WHERE " +
-                "_id='"+ 1 + "'");
 
-        */
+        db.execSQL("UPDATE Activity SET how_much_spent='"+ value + "' WHERE " +
+                "_id='1'");
+        db.close();
+
+        /*
         ContentValues values = new ContentValues();
         values.put(FIELD_TREND_SPENT, value);
 
@@ -303,13 +304,14 @@ public class DBHelper extends SQLiteOpenHelper
         String where = "rowid=(SELECT MIN(rowid) FROM " + TRENDS_TABLE + ")";
         db.update(TRENDS_TABLE, values, where, null);
         db.close();
+        */
     }
 
     public double getTodaysSpending() {
         SQLiteDatabase database = getReadableDatabase();
         double todaysSpending = 0;
         //A cursor is the result of a database query
-        Cursor cursor = database.query(MONTHLY_EXPENSES_TABLE, new String[]{MONTHLY_EXPENSES_KEY_FIELD_ID, FIELD_EXPENSE_NAME, FIELD_EXPENSE_VALUE},
+        Cursor cursor = database.query(TRENDS_TABLE, new String[]{TRENDS_KEY_FIELD_ID, FIELD_TREND_DATE, FIELD_TREND_SPENT},
                 null,
                 null,
                 null,
@@ -571,6 +573,16 @@ public class DBHelper extends SQLiteOpenHelper
 
         //Update the expense with the newly assigned id from the database
         account.setId(id);
+
+        /*
+        BELOW IS FOR THE TRENDS TABLE
+
+         */
+        ContentValues values2 = new ContentValues(); // values for the TRENDS table
+        values2.put(FIELD_TREND_DATE, "dummy_data");
+        values2.put(FIELD_TREND_SPENT, "0.0");
+        db.insert(TRENDS_TABLE, null, values2);
+
 
         //Close the connection
         db.close();
