@@ -18,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper
 {
     //Define the data base version, name and table name
     public static final String DATABASE_NAME = "BudgetBirdDatabase";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
 
     // DEFINE THE FIELDS FOR THE ACCOUNT TABLE
@@ -113,6 +113,8 @@ public class DBHelper extends SQLiteOpenHelper
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
         db.execSQL("DROP TABLE IF EXISTS " + MONTHLY_EXPENSES_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + ACCOUNT_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + MONTHLY_INCOMES_TABLE);
         onCreate(db);
     }
 

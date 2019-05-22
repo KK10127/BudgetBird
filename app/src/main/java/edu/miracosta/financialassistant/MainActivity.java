@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     {
         mAccountList = new ArrayList<>();
         db = new DBHelper(this);
+        //db.onUpgrade(db.getReadableDatabase(), 1, 2);
 
         mAccountList = db.getAllAccounts();
 
