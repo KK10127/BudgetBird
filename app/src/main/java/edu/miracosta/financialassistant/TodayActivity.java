@@ -3,6 +3,7 @@ package edu.miracosta.financialassistant;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,8 @@ import java.util.Date;
 
 import edu.miracosta.financialassistant.database.DBHelper;
 import edu.miracosta.financialassistant.model.Account;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class TodayActivity extends AppCompatActivity {
 
@@ -50,9 +53,10 @@ public class TodayActivity extends AppCompatActivity {
 
         DBHelper db = new DBHelper(this);
 
+
         // get the current day's total spending (e.g. the top most column of the database): its value
         // set to 'amountToAdd'
-        totalSpendingAmount = db.getTodaysSpending(mAccount.getId());
+        totalSpendingAmount = db.getTodaysSpending();
 
         // set the spendingTotalTextView value
         spendingTotalTextView = findViewById(R.id.spendingTotalTextView);
@@ -67,7 +71,7 @@ public class TodayActivity extends AppCompatActivity {
      */
     public void addAmount(View v) {
         // TODO: Make sure the amount in the amountEditText is not zero or negative
-        amountToAdd = Integer.parseInt(amountEditText.getText().toString());
+        amountToAdd = Double.parseDouble(amountEditText.getText().toString());
         if(amountToAdd <= 0)
         {
             return;
@@ -79,7 +83,7 @@ public class TodayActivity extends AppCompatActivity {
 
             // place back into the database
             DBHelper db = new DBHelper(this);
-            db.setTotalSpendingAmount(mAccount.getId(), totalSpendingAmount);
+            db.setTotalSpendingAmount(totalSpendingAmount);
 
             // update the view
             spendingTotalTextView.setText(format.format(totalSpendingAmount));

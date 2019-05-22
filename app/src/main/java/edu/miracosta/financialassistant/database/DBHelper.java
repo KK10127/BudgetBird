@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,8 @@ import edu.miracosta.financialassistant.model.Account;
 import edu.miracosta.financialassistant.model.Expense;
 import edu.miracosta.financialassistant.model.Income;
 import edu.miracosta.financialassistant.model.Trends;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class DBHelper extends SQLiteOpenHelper
 {
@@ -264,8 +267,6 @@ public class DBHelper extends SQLiteOpenHelper
 
 
             emergencyFund = cursor.getDouble(1);
-
-
             cursor.close();
         }
         db.close();
@@ -287,33 +288,50 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
-    public double getTodaysSpending(long id) {
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(TRENDS_TABLE,
-                new String[]{TRENDS_KEY_FIELD_ID, FIELD_TREND_DATE, FIELD_TREND_SPENT},
-                TRENDS_KEY_FIELD_ID + " = ?",
-                new String[]{String.valueOf(id)}, null, null, null, null);
 
-        double todaysSpending = -1;
-        if (cursor.getCount() > 0) {
-            cursor.moveToFirst();
+    public void setTotalSpendingAmount(double value) {
+        SQLiteDatabase db = getWritableDatabase();
+        /*
+        db.execSQL("UPDATE Activity SET how_much_spent='"+ value + "' WHERE " +
+                "_id='"+ 1 + "'");
+
+        */
+        ContentValues values = new ContentValues();
+        values.put(FIELD_TREND_SPENT, value);
 
 
-            todaysSpending = cursor.getDouble(2);
-
-            cursor.close();
-        }
+        String where = "rowid=(SELECT MIN(rowid) FROM " + TRENDS_TABLE + ")";
+        db.update(TRENDS_TABLE, values, where, null);
         db.close();
+    }
+
+    public double getTodaysSpending() {
+        SQLiteDatabase database = getReadableDatabase();
+        double todaysSpending = 0;
+        //A cursor is the result of a database query
+        Cursor cursor = database.query(MONTHLY_EXPENSES_TABLE, new String[]{MONTHLY_EXPENSES_KEY_FIELD_ID, FIELD_EXPENSE_NAME, FIELD_EXPENSE_VALUE},
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        //Collect each row in the table
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+
+                todaysSpending = cursor.getDouble(2);
+            }
+            while(cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
         return todaysSpending;
     }
 
-    public void setTotalSpendingAmount(long id, double value) {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE Activity SET how_much_spent='"+ value + "' WHERE " +
-                "_id='"+ id + "'");
-        db.close();
-
-    }
 
     //Trends database methods
     public void addTrend(Trends trend)
