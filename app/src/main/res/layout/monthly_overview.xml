@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/secondaryColor"
+    android:background="@color/colorPrimaryDark"
     tools:context=".MonthlyOverview">
 
     <include
@@ -19,11 +19,12 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:theme="@style/AppTheme"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <View
         android:id="@+id/divider"
@@ -49,7 +50,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/share_tech"
         android:text="@string/zero"
-        android:textColor="@color/moneyGreen"
+        android:textColor="@color/pastelBlue"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +67,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/share_tech"
         android:text="@string/zero"
-        android:textColor="@color/emergencyFund"
+        android:textColor="@color/pastelPink"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +84,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/share_tech"
         android:text="@string/zero"
-        android:textColor="@color/emergencyFund"
+        android:textColor="@color/pastelGreen"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +101,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/share_tech"
         android:text="@string/your_monthly_budget"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/lightGray"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +118,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/share_tech"
         android:text="@string/emergency_fund"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/lightGray"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,7 +134,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/share_tech"
         android:text="@string/student_fund"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/lightGray"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

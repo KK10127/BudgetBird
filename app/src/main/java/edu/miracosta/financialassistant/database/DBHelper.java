@@ -133,7 +133,7 @@ public class DBHelper extends SQLiteOpenHelper
         values.put(FIELD_EXPENSE_DESCRIPTION, expense.getExpenseDescription());
 
         //Add key-value pair information for the expense cost
-        values.put(FIELD_COST, expense.getExpenseCost());
+        values.put(FIELD_EXPENSE_VALUE, expense.getExpenseCost());
 
         //insert row in the table
         long id = db.insert(MONTHLY_EXPENSES_TABLE, null, values);
