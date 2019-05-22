@@ -55,10 +55,10 @@ public class DBHelper extends SQLiteOpenHelper
 
     //Define the fields (Column Names) for the table
     private static final String KEY_FIELD_ID = "_id";
-    private static final String FIELD_DESCRIPTION= "desctiption";
+    private static final String FIELD_DESCRIPTION= "description";
     private static final String FIELD_COST = "ExpenseCost";
 
-    //Contructor for the DB
+    //Constructor for the DB
     public DBHelper(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -68,6 +68,7 @@ public class DBHelper extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
         // Create the account table
+
         String accountTable = "CREATE TABLE IF NOT EXISTS " + ACCOUNT_TABLE + "("
                 + ACCOUNT_KEY_FIELD_ID + " REAL PRIMARY KEY, "
                 + FIELD_EMERGENCY_FUND + " REAL, "
@@ -271,7 +272,7 @@ public class DBHelper extends SQLiteOpenHelper
 
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
-    // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
+    // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
 
 
     //Trends database methods
@@ -547,6 +548,4 @@ public class DBHelper extends SQLiteOpenHelper
         database.close();
         return accountList;
     }
-
-
 }

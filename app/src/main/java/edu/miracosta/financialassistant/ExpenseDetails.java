@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.text.NumberFormat;
 
+import edu.miracosta.financialassistant.database.DBHelper;
 import edu.miracosta.financialassistant.model.Expense;
 
 public class ExpenseDetails extends AppCompatActivity {
@@ -18,11 +19,15 @@ public class ExpenseDetails extends AppCompatActivity {
     private TextView expenseDetailsValue;
     private TextView expenseDetailsDesc;
     private Button expenseDetailsButton;
+    private Expense mExpense;
+    private DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_details);
+
+        db = new DBHelper(this);
 
         //Connect the views and button
         expenseDetailsTitle = findViewById(R.id.expenseDetailsTitle);
@@ -31,20 +36,23 @@ public class ExpenseDetails extends AppCompatActivity {
         expenseDetailsButton = findViewById(R.id.expenseDetailsButton);
 
         Intent detailsIntent = getIntent();
-        Expense expense = detailsIntent.getParcelableExtra("SelectedExpense");
+         mExpense = detailsIntent.getParcelableExtra("SelectedExpense");
 
         //NumberFormatter for currency
         NumberFormat format = NumberFormat.getCurrencyInstance();
 
         //setting the views
-        expenseDetailsTitle.setText(expense.getExpenseName());
-        expenseDetailsValue.setText(format.format(expense.getExpenseCost()));
-        expenseDetailsDesc.setText(expense.getExpenseDescription());
+        expenseDetailsTitle.setText(mExpense.getExpenseName());
+        expenseDetailsValue.setText(format.format(mExpense.getExpenseCost()));
+        expenseDetailsDesc.setText(mExpense.getExpenseDescription());
 
     }
 
     public void removeExpense(View v){
         //TODO: Finish the code for removing an expense
         //TODO: Remove from DB and listAdapter, then return to Expense Activity
+        db.deleteExpense(mExpense);
+        Intent intent = new Intent(this, ExpensesActivity.class);
+        startActivity(intent);
     }
 }
