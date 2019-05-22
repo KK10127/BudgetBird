@@ -67,10 +67,10 @@ public class MonthlyOverview extends AppCompatActivity {
     private List<Income> allIncomes;
 
     //
-    private static int EXPENSE_COLOR = Color.rgb(146, 127, 40);
-    private static int EMERGENCY_COLOR = Color.rgb(153, 42, 70);
-    private static int STUDENT_COLOR = Color.rgb(41, 101, 147);
-    private static int BUDGET_COLOR = Color.rgb(123, 145, 39);
+    private static int EXPENSE_COLOR = Color.rgb(255, 80, 130);
+    private static int EMERGENCY_COLOR = Color.rgb(255, 0, 0);
+    private static int STUDENT_COLOR = Color.rgb(80, 235, 242);
+    private static int BUDGET_COLOR = Color.rgb(80, 255, 70);
 
 
     @Override

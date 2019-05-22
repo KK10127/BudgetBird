@@ -35,6 +35,15 @@ import static edu.miracosta.financialassistant.database.DBHelper.TRENDS_TABLE;
  * The first activity (other than the splash screen) that the user will encounter.
  * Responsible for authenticating users and adding new ones with firebase when possible.
  */
+
+/**
+ * TODO: TO FIX:
+ *              1)Delete preset text in activity_main.xml for EMAIL and PASSWORD
+ *              2)Instead, set these values as HINTS in the EditText
+ *              3)Handle exception of an empty email/password
+ *              4) ?? Handle exception of wrong password??
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = "FinancialAssistant";
