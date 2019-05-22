@@ -88,4 +88,7 @@ While some of these promotional offers may be beneficial to the users, you shoul
     <string name="add_a_purchase">Enter a purchase value:</string>
     <string name="today">Today</string>
     <string name="select">Select The Section That Applies</string>
+    <string name="todays_total">Today\'s Spending Total</string>
+    <string name="add">Add!</string>
+    <string name="new_day">Start a new day!</string>
 </resources>

@@ -16,12 +16,16 @@ public class TodayActivity extends AppCompatActivity {
 
     private Intent mIntent;
     private Account mAccount;
-    private int amount;
+    private double amountToAdd;
+    private double totalSpendingAmount;
     LocalDate date;
 
 
     private EditText amountEditText;
     private Button addAmountButton;
+    private Button newDayButton;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,15 @@ public class TodayActivity extends AppCompatActivity {
 
         amountEditText = findViewById(R.id.amountEditText);
         addAmountButton = findViewById(R.id.addAmountButton);
+        newDayButton = findViewById(R.id.newDayButton);
+
+        // get the current day's total spending (e.g. the top most column of the database): its value
+        // set to 'amountToAdd'
+
+
+        // set the spendingTotalTextView value
+
+        // thats it
 
     }
 
@@ -42,19 +55,30 @@ public class TodayActivity extends AppCompatActivity {
      */
     public void addAmount(View v) {
         // TODO: Make sure the amount in the amountEditText is not zero or negative
-        amount = Integer.parseInt(amountEditText.getText().toString());
-        if(amount <= 0)
+        amountToAdd = Integer.parseInt(amountEditText.getText().toString());
+        if(amountToAdd <= 0)
         {
             return;
         }
         else
         {
+            // grab the total spending amount and add 'amountToAdd'
+
+            // place back into the database
+
+            // update the view
+
+            // update the model
 
         }
-        // TODO: Grab the amount in the edit text, use the Date class to get the current date as a
-        // TODO: string. Store the string/value in the 'Activity database table' using the DB helper.
+    }
 
-        // TODO: Make a toast indicating success to the user.
+    public void startNewDay(View v) {
+        // add a new row into the database initialized to a 0.0 value
+
+        // update the view
+
+        // update the model
     }
 
 }
