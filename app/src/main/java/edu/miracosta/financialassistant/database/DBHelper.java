@@ -18,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper
 {
     //Define the data base version, name and table name
     public static final String DATABASE_NAME = "BudgetBirdDatabase";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
 
     // DEFINE THE FIELDS FOR THE ACCOUNT TABLE
@@ -55,10 +55,10 @@ public class DBHelper extends SQLiteOpenHelper
 
     //Define the fields (Column Names) for the table
     private static final String KEY_FIELD_ID = "_id";
-    private static final String FIELD_DESCRIPTION= "desctiption";
+    private static final String FIELD_DESCRIPTION= "description";
     private static final String FIELD_COST = "ExpenseCost";
 
-    //Contructor for the DB
+    //Constructor for the DB
     public DBHelper(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -68,6 +68,7 @@ public class DBHelper extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
         // Create the account table
+
         String accountTable = "CREATE TABLE IF NOT EXISTS " + ACCOUNT_TABLE + "("
                 + ACCOUNT_KEY_FIELD_ID + " REAL PRIMARY KEY, "
                 + FIELD_EMAIL + " TEXT, "
@@ -117,6 +118,8 @@ public class DBHelper extends SQLiteOpenHelper
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
         db.execSQL("DROP TABLE IF EXISTS " + MONTHLY_EXPENSES_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + ACCOUNT_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + MONTHLY_INCOMES_TABLE);
         onCreate(db);
     }
 
@@ -242,7 +245,7 @@ public class DBHelper extends SQLiteOpenHelper
         if(cursor != null)
         {
             cursor.moveToFirst();
-            studentFund = cursor.getDouble(1);
+            studentFund = cursor.getDouble(2);
             cursor.close();
         }
         db.close();
@@ -273,7 +276,7 @@ public class DBHelper extends SQLiteOpenHelper
 
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
     // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
-    // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
+    // TODO: THIS METHOD IS BROKEN        // TODO: THIS METHOD IS BROKEN
 
 
     //Trends database methods
@@ -554,6 +557,4 @@ public class DBHelper extends SQLiteOpenHelper
         database.close();
         return accountList;
     }
-
-
 }
