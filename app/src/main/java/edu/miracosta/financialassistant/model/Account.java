@@ -26,13 +26,7 @@ public class Account implements Parcelable
     }
 
     public Account(String email, String password) {
-        mId = 0;
-        mEmail = email;
-        mPassword = password;
-        mMonthlyIncome = 0.0;
-        mBudget = 0.0;
-        mEmergencyFundAmount = 0.0;
-        mStudentFundAmount = 0.0;
+        this(0, email, password, 0.0, 0.0, 0.0, 0.0);
     }
 
     public long getId() {
@@ -115,6 +109,7 @@ public class Account implements Parcelable
                 "mId=" + mId +
                 ", mEmail='" + mEmail + '\'' +
                 ", mMonthlyIncome=" + mMonthlyIncome +
+                ", mPassword=" + mPassword +
                 ", mBudget=" + mBudget +
                 ", mEmergencyFundAmount=" + mEmergencyFundAmount +
                 ", mStudentFundAmount=" + mStudentFundAmount +
@@ -131,6 +126,7 @@ public class Account implements Parcelable
     {
         dest.writeLong(mId);
         dest.writeString(mEmail);
+        dest.writeString(mPassword);
         dest.writeDouble(mMonthlyIncome);
         dest.writeDouble(mBudget);
         dest.writeDouble(mEmergencyFundAmount);
@@ -141,13 +137,13 @@ public class Account implements Parcelable
     //Private constructor to create a new Account from the parcel
     public Account(Parcel parcel)
     {
-        mId = parcel.readInt();
+        mId = parcel.readLong();
         mEmail = parcel.readString();
+        mPassword = parcel.readString();
         mMonthlyIncome = parcel.readDouble();
         mBudget = parcel.readDouble();
         mEmergencyFundAmount = parcel.readDouble();
         mStudentFundAmount = parcel.readDouble();
-
     }
 
     public static final Parcelable.Creator<Account> CREATOR = new Creator<Account>() {

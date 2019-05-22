@@ -1,6 +1,7 @@
 package edu.miracosta.financialassistant;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,11 @@ import java.util.List;
 
 import edu.miracosta.financialassistant.database.DBHelper;
 import edu.miracosta.financialassistant.model.Account;
+
+import static edu.miracosta.financialassistant.database.DBHelper.ACCOUNT_TABLE;
+import static edu.miracosta.financialassistant.database.DBHelper.MONTHLY_EXPENSES_TABLE;
+import static edu.miracosta.financialassistant.database.DBHelper.MONTHLY_INCOMES_TABLE;
+import static edu.miracosta.financialassistant.database.DBHelper.TRENDS_TABLE;
 
 /**
  * The first activity (other than the splash screen) that the user will encounter.
@@ -62,14 +68,36 @@ public class MainActivity extends AppCompatActivity {
         mAccountList = new ArrayList<>();
         db = new DBHelper(this);
 
+//        db.getWritableDatabase();
+
+//        SQLiteDatabase database = db.getWritableDatabase();
+//
+//        database.execSQL("DROP TABLE IF EXISTS " + ACCOUNT_TABLE);
+//        database.execSQL("DROP TABLE IF EXISTS " + MONTHLY_EXPENSES_TABLE);
+//        database.execSQL("DROP TABLE IF EXISTS " + MONTHLY_INCOMES_TABLE);
+//        database.execSQL("DROP TABLE IF EXISTS " + TRENDS_TABLE);
+//
+//        database.close();
+//
+//        db.deleteAccounts();
+
         mAccountList = db.getAllAccounts();
+
+        mAccount = db.getAccount(emailEditText.getText().toString(),
+                passwordEditText.getText().toString());
 
         if(mAccount == null)
         {
             mAccount = new Account(emailEditText.getText().toString(), passwordEditText.getText().toString());
+            mAccount.setMonthlyIncome(0.0);
+            mAccount.setBudget(0.0);
+            mAccount.setEmergencyFundAmount(0.0);
+            mAccount.setStudentFundAmount(0.0);
+
             db.addAccount(mAccount);
+
             Intent intent= new Intent(this, MonthlyOverview.class);
-            intent.putExtra("Account", mAccount);
+            intent.putExtra("Account",mAccount);
             startActivity(intent);
         }
         else

@@ -90,6 +90,7 @@ public class MonthlyOverview extends AppCompatActivity {
         mIntent = getIntent();
         mAccount = mIntent.getParcelableExtra("Account");
 
+
         emergencyFundTextView.setText(String.valueOf(mAccount.getEmergencyFundAmount()));
 
         // TODO: gather needed details from the database
@@ -98,8 +99,8 @@ public class MonthlyOverview extends AppCompatActivity {
 
         allExpenses = db.getAllExpenses();
         allIncomes = db.getAllIncomes();
-        studentFund = db.getStudentFund();
-        emergencyFund = db.getEmergencyFund();
+        studentFund = db.getStudentFund(mAccount.getId());
+        emergencyFund = db.getEmergencyFund(mAccount.getId());
 
         // DONE: Total up the expenses/incomes
         for (Expense item : allExpenses) {
