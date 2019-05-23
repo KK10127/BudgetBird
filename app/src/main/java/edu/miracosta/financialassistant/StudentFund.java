@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -80,6 +81,8 @@ public class StudentFund extends AppCompatActivity {
 
         //Displays the new balance
         mStudentFundTotalTextView.setText(mCurrencyFormat.format(studentFund));
+
+        Toast.makeText(this, "Amount deposited successfully!", Toast.LENGTH_SHORT).show();
     }
 
     public void withdrawSF(View v)
@@ -104,6 +107,8 @@ public class StudentFund extends AppCompatActivity {
 
         //Displays the new balance
         mStudentFundTotalTextView.setText(mCurrencyFormat.format(studentFund));
+
+        Toast.makeText(this, "Amount withdrawn successfully!", Toast.LENGTH_SHORT).show();
     }
 
     //Returns to the main screen
