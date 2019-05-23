@@ -289,11 +289,11 @@ public class DBHelper extends SQLiteOpenHelper
     }
 
 
+
     public void setTotalSpendingAmount(double value) {
         SQLiteDatabase db = getWritableDatabase();
 
-        db.execSQL("UPDATE Activity SET how_much_spent='"+ value + "' WHERE " +
-                "_id='1'");
+        db.execSQL("UPDATE Activity SET how_much_spent='"+ value + "' WHERE _id = (SELECT MAX(_id) FROM Activity)");
         db.close();
 
         /*
@@ -585,6 +585,19 @@ public class DBHelper extends SQLiteOpenHelper
 
 
         //Close the connection
+        db.close();
+    }
+
+    public void startNewDay() {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues(); // values to add a new column
+        values.put(FIELD_TREND_DATE, "dummy_data");
+        values.put(FIELD_TREND_SPENT, "0.0");
+
+        // add a new column into the table
+        db.insert(TRENDS_TABLE, null, values);
+
         db.close();
     }
 

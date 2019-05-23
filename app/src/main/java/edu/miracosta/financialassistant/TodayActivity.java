@@ -84,7 +84,6 @@ public class TodayActivity extends AppCompatActivity {
             // place back into the database
             DBHelper db = new DBHelper(this);
             db.setTotalSpendingAmount(totalSpendingAmount);
-
             // update the view
             spendingTotalTextView.setText(format.format(totalSpendingAmount));
             amountEditText.setText("");
@@ -98,10 +97,19 @@ public class TodayActivity extends AppCompatActivity {
 
     public void startNewDay(View v) {
         // add a new row into the database initialized to a 0.0 value
-
+        // place back into the database
+        DBHelper db = new DBHelper(this);
+        db.startNewDay();
+        db.setTotalSpendingAmount(0.0);
+        totalSpendingAmount = 0.0;
         // update the view
+        spendingTotalTextView.setText(format.format(0.0));
+        amountEditText.setText("");
 
-        // update the model
+        Toast.makeText(this, "New day started!", Toast.LENGTH_SHORT).show();
+
+        // done
+        db.close();
     }
 
     @Override
