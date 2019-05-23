@@ -26,7 +26,10 @@ public class ExpensesActivity extends AppCompatActivity {
     private ExpenseListAdapter mExpenseListAdapter;
     private ListView expensesListView;
 
-
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -51,6 +54,10 @@ public class ExpensesActivity extends AppCompatActivity {
         expensesListView.setAdapter(mExpenseListAdapter);
     }
 
+    /**
+     * <p>This adds an Expense to the database, then displays the expense on the listView</p>
+     * @param v this is used to connect the method to the onClick attribute
+     */
     public void addExpense(View v){
         String name = expenseNameEditText.getText().toString();
         String desc = expenseDescriptionEditText.getText().toString();
@@ -62,6 +69,10 @@ public class ExpensesActivity extends AppCompatActivity {
         mExpenseListAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * <p>This method takes you to the details of the expense item in the ListView</p>
+     * @param v this connects the method to the onClick attribute.
+     */
     public void viewExpenseDetails(View v){
         Expense selectedExpense = (Expense) v.getTag();
         Intent detailsIntent = new Intent(this, ExpenseDetails.class);

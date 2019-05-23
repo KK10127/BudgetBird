@@ -36,6 +36,10 @@ public class TodayActivity extends AppCompatActivity {
     NumberFormat format;
 
 
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +71,8 @@ public class TodayActivity extends AppCompatActivity {
     }
 
     /**
-     * This method adds an amount to
+     * <p>This method adds an amount to</p>
+     * @param v this connects the method to the onClick attribute
      */
     public void addAmount(View v) {
         // TODO: Make sure the amount in the amountEditText is not zero or negative
@@ -95,6 +100,10 @@ public class TodayActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * <p>This method creates a new day when the button associated with this method is pressed</p>
+     * @param v this connects the method to the onClick attribute
+     */
     public void startNewDay(View v) {
         // add a new row into the database initialized to a 0.0 value
         // place back into the database
@@ -112,6 +121,10 @@ public class TodayActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * <p>Returns the previous screen
+     * Not connected currently</p>
+     */
     @Override
     public void onBackPressed() {
         this.finish();

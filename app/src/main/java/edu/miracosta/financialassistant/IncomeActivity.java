@@ -29,6 +29,10 @@ public class IncomeActivity extends AppCompatActivity {
     private Account mAccount;
 
 
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,10 @@ public class IncomeActivity extends AppCompatActivity {
         incomesListView.setAdapter(mIncomeListAdapter);
     }
 
+    /**
+     * <p>This method adds an Income the the Income database</p>
+     * @param v this connects the method to the onClick attribute
+     */
     public void addIncome(View v){
         String name = incomeNameEditText.getText().toString();
         String desc = incomeDescriptionEditText.getText().toString();
@@ -66,6 +74,10 @@ public class IncomeActivity extends AppCompatActivity {
         mIncomeListAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * <p>This shows the details of the Income object in the listView</p>
+     * @param v this connects the method to the onClick attribute
+     */
     public void viewIncomeDetails(View v){
         Income income = (Income) v.getTag();
         Intent detailsIntent = new Intent(this, IncomeDetails.class);

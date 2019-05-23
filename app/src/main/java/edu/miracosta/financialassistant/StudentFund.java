@@ -30,6 +30,10 @@ public class StudentFund extends AppCompatActivity {
     NumberFormat mCurrencyFormat = NumberFormat.getCurrencyInstance();
     NumberFormat mNumberFormat = NumberFormat.getNumberInstance();
 
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -58,7 +62,10 @@ public class StudentFund extends AppCompatActivity {
         mStudentFundTotalTextView.setText("$ " + String.valueOf(mAccount.getStudentFundAmount()));
     }
 
-    //Adds a deposit to the fund
+    /**
+     * <p>Adds a deposit to the fund</p>
+     * @param v this connects the method to the onClick attribute
+     */
     public void addDepositSF(View v)
     {
         //Grabs the total fund currently (before the deposit)
@@ -87,6 +94,10 @@ public class StudentFund extends AppCompatActivity {
         mStudentFundTotalTextView.setText(mCurrencyFormat.format(studentFund));
     }
 
+    /**
+     * <p>This method withdraws from the fund</p>
+     * @param v this connects the method to the onClick attribute
+     */
     public void withdrawSF(View v)
     {
         //Grabs the sf amount
@@ -111,13 +122,20 @@ public class StudentFund extends AppCompatActivity {
         mStudentFundTotalTextView.setText(mCurrencyFormat.format(studentFund));
     }
 
-    //Returns to the main screen
+    /**
+     * <p>Returns to the main screen</p>
+     * @param v this connects the method to the onClick attribute
+     */
     public void backSF(View v)
     {
         this.finish();
     }
 
 
+    /**
+     * <p>Returns to the main screen</p>
+     * <p>Not Connected</p>
+     */
     @Override
     public void onBackPressed() {
         this.finish();

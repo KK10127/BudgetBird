@@ -21,6 +21,10 @@ public class IncomeDetails extends AppCompatActivity {
     private DBHelper db;
     private Income mIncome;
 
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,10 @@ public class IncomeDetails extends AppCompatActivity {
         incomeDetailsDesc.setText(mIncome.getIncomeDesc());
     }
 
+    /**
+     * <p>This removes an income from the income database</p>
+     * @param v
+     */
     public void removeIncome(View v){
         db.deleteIncome(mIncome);
         Intent intent = new Intent(this, IncomeActivity.class);

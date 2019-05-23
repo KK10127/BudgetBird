@@ -21,6 +21,13 @@ public class FinancialTipsListAdapter extends ArrayAdapter<String>
     private Context mContext;
     private List<String> mTips;
     private int mResourceID;
+
+    /**
+     * <p>Regular constructor</p>
+     * @param context The context of the current class
+     * @param resource the resource Id
+     * @param objects a List of strings
+     */
     public FinancialTipsListAdapter(Context context, int resource, List<String> objects) {
         super(context, resource, objects);
         mContext = context;
@@ -28,6 +35,13 @@ public class FinancialTipsListAdapter extends ArrayAdapter<String>
         mResourceID = resource;
     }
 
+    /**
+     * <p>This gets the view of how each item will look in the listView</p>
+     * @param position this tells us which item was selected in the listView
+     * @param convertView this is a view used for converting
+     * @param parent This is the view group that this view belongs too
+     * @return a <code>View</code> object
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 

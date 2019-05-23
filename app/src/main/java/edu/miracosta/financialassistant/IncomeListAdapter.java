@@ -21,6 +21,12 @@ public class IncomeListAdapter extends ArrayAdapter<Income> {
     private List<Income> mIncomes;
     private int mResourceID;
 
+    /**
+     * <p>Regular constructor</p>
+     * @param c
+     * @param rId
+     * @param incomes
+     */
     public IncomeListAdapter(Context c, int rId, List<Income> incomes){
         super(c, rId, incomes);
         mContext = c;
@@ -28,7 +34,13 @@ public class IncomeListAdapter extends ArrayAdapter<Income> {
         mIncomes = incomes;
     }
 
-
+    /**
+     * <p>This the the view that populates the listView</p>
+     * @param position this grabs the item index of the selected item in the listView
+     * @param convertView this view is used to convert
+     * @param parent this is the parent of the view.
+     * @return a <code>View</code> object
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Income selectedIncome = mIncomes.get(position);

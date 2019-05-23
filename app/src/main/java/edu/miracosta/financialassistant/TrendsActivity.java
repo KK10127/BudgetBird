@@ -22,6 +22,10 @@ public class TrendsActivity extends AppCompatActivity {
     private Intent mIntent;
     private Account mAccount;
 
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -8,6 +8,10 @@ import edu.miracosta.financialassistant.R;
 
 public class CreditScoreTips extends AppCompatActivity {
 
+    /**
+     * <p>This method starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

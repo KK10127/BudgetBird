@@ -22,6 +22,7 @@ import edu.miracosta.financialassistant.model.Account;
 
 //import edu.miracosta.financialassistant.CreditCard.NewCreditCardUser;
 
+
 public class FinancialTipsActivity extends ListActivity {
     private ListView mListView;
     private List<String> mStringList;
@@ -29,6 +30,10 @@ public class FinancialTipsActivity extends ListActivity {
     private Intent mIntent;
     private Account mAccount;
 
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -55,10 +60,18 @@ public class FinancialTipsActivity extends ListActivity {
 
     }
 
+    /**
+     *<p>This method figures out which item was selected in the listView and opens up the corresponding activity</p>
+     * @param l is the variable associated with the listView
+     * @param v this is the variable associated with the view
+     * @param position this is used to find what item was selected in the listView
+     * @param id this is used to find the id of the item selected.
+     */
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id)
     {
         Intent intent;
+
         //grabs which item was clicked on the listView
         String selectedTip = mStringList.get(position);
 
