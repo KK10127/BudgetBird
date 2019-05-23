@@ -5,7 +5,8 @@
     android:id="@+id/tipLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FinancialTipsListAdapter" >
+    android:background="@color/colorPrimaryDark"
+    tools:context=".FinancialTipsListAdapter">
 
     <ImageView
         android:id="@+id/imageView2"
