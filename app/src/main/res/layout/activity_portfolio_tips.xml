@@ -9,59 +9,78 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView56"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="1dp"
+            android:paddingLeft="@dimen/nav_header_vertical_spacing"
+            android:paddingRight="@dimen/nav_header_vertical_spacing"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
             android:text="@string/portfolio1"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textView57"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="1dp"
-            android:paddingBottom="1dp"
-            android:text="@string/portfolio2"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textView58"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="1dp"
-            android:paddingBottom="1dp"
-            android:text="@string/portfolio3"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textView59"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="1dp"
-            android:paddingBottom="1dp"
-            android:text="@string/portfolio4"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textView60"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="1dp"
-            android:paddingBottom="1dp"
-            android:text="@string/portfolio5"
+            android:textColor="@color/lighterGray"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textView61"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/nav_header_vertical_spacing"
             android:paddingTop="1dp"
-            android:paddingBottom="1dp"
+            android:paddingRight="@dimen/nav_header_vertical_spacing"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
             android:text="@string/portfolio6"
+            android:textColor="@color/lighterGray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView59"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="1dp"
+            android:paddingRight="@dimen/nav_header_vertical_spacing"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:text="@string/portfolio4"
+            android:textColor="@color/lighterGray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView57"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="1dp"
+            android:paddingRight="@dimen/nav_header_vertical_spacing"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:text="@string/portfolio2"
+            android:textColor="@color/lighterGray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView58"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="1dp"
+            android:paddingRight="@dimen/nav_header_vertical_spacing"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:text="@string/portfolio3"
+            android:textColor="@color/lighterGray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView60"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="1dp"
+            android:paddingRight="@dimen/nav_header_vertical_spacing"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:text="@string/portfolio5"
+            android:textColor="@color/lighterGray"
             android:textSize="16sp" />
 
     </LinearLayout>
