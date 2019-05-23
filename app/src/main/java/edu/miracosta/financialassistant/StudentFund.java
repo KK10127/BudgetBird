@@ -44,7 +44,8 @@ public class StudentFund extends AppCompatActivity {
         mWithdrawDepositEditText = findViewById(R.id.amountEditText);
 
         mDB = new DBHelper(this);
-        mDv.
+
+
         //Dont change this.
         intent = getIntent();
         mAccount = intent.getParcelableExtra("Account");
@@ -53,7 +54,7 @@ public class StudentFund extends AppCompatActivity {
 
         studentFundAmountTextView = findViewById(R.id.studentFundAmountTextView);
         //Placing all the account info into the Text Views
-        studentFundAmountTextView.setText("$ " + String.valueOf(mAccount.getStudentFundAmount()));
+        studentFundAmountTextView.setText("$ " + String.valueOf(studentFundAmount));
     }
 
     /**
@@ -103,7 +104,7 @@ public class StudentFund extends AppCompatActivity {
         double withdrawAmount;
         withdrawAmount = Double.valueOf(mWithdrawDepositEditText.getText().toString());
 
-        double studentFund = mDB.getEmergencyFund(mAccount.getId());
+        double studentFund = mDB.getStudentFund(mAccount.getId());
         studentFund -= withdrawAmount;
         if (studentFund < 0)
             studentFund = 0.0;
