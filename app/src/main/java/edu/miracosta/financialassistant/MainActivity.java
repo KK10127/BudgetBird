@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = "FinancialAssistant";
 
+    private TextView budgetBirdTitleTextView;
     private ImageView appLogoImageView;
     private EditText emailEditText;
     private EditText passwordEditText;
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private DBHelper db;
     private List<Account> mAccountList;
     private Animation slide_down;
+    private Animation fade_in;
 
 
     /**
@@ -71,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditTextSU);
         passwordEditText = findViewById(R.id.passwordEditTextSU);
         loginButton = findViewById(R.id.logInButton);
+        budgetBirdTitleTextView = findViewById(R.id.budgetBirdTitleTextView);
+
+        fade_in = AnimationUtils.loadAnimation(this,R.anim.fade_in);
+        budgetBirdTitleTextView.startAnimation(fade_in);
 
         slide_down = AnimationUtils.loadAnimation(this,R.anim.slide_down);
         appLogoImageView.startAnimation(slide_down);
