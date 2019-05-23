@@ -112,6 +112,49 @@ public class FinancialTipsActivity extends AppCompatActivity {
         }
     }
         **/
+
+    public void viewTip(View v){
+        String selectedTip = (String) v.getTag();
+        Intent intent;
+
+        if(mStringList.get(0).equals(selectedTip))
+        {
+            intent = new Intent(this, CreditCardTipsOld.class);
+            startActivity(intent);
+        }
+        else if(mStringList.get(1).equals(selectedTip))
+        {
+            intent = new Intent(this, CreditCardTipsNew.class);
+            startActivity(intent);
+        }
+        else if(mStringList.get(2).equals(selectedTip))
+        {
+            intent = new Intent(this, BuyingHouseTips.class);
+            startActivity(intent);
+        }
+        else if(mStringList.get(3).equals(selectedTip))
+        {
+            intent = new Intent(this, BuyingCarTips.class);
+            startActivity(intent);
+        }
+        else if(mStringList.get(4).equals(selectedTip))
+        {
+            intent = new Intent(this, CreditScoreTips.class);
+            startActivity(intent);
+        }
+        else if(mStringList.get(5).equals(selectedTip))
+        {
+            intent = new Intent(this, InvestmentTips.class);
+            startActivity(intent);
+        }
+        else if(mStringList.get(6).equals(selectedTip))
+        {
+            intent = new Intent(this, PortfolioTips.class);
+            startActivity(intent);
+        }
+    }
+
+
     public void goToMap(View v){
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
