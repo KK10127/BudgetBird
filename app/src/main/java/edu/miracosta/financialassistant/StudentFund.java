@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -17,12 +18,12 @@ public class StudentFund extends AppCompatActivity {
     private TextView mUserNameTextView;
     private TextView mMonthlyIncomeTextView;
     private TextView mBudgetTextView;
-    private TextView mStudentFundTotalTextView;
+    private TextView studentFundAmountTextView;
     private EditText mWithdrawDepositEditText;
 
     private Intent intent;
     private Account mAccount;
-    private double mFundTotal;
+    private double studentFundAmount;
     private Expense mExpense;
     private DBHelper mDB;
 
@@ -30,76 +31,124 @@ public class StudentFund extends AppCompatActivity {
     NumberFormat mCurrencyFormat = NumberFormat.getCurrencyInstance();
     NumberFormat mNumberFormat = NumberFormat.getNumberInstance();
 
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_fund);
 
-        mUserNameTextView = findViewById(R.id.UserNameTextView);
-        mMonthlyIncomeTextView = findViewById(R.id.MonthlyIncomeTextView);
-        mBudgetTextView = findViewById(R.id.BudgetTextView);
-        mStudentFundTotalTextView = findViewById(R.id.FundTotalTextView);
-        mWithdrawDepositEditText = findViewById(R.id.amountEditTextSF);
+        mWithdrawDepositEditText = findViewById(R.id.amountEditText);
+
+        mDB = new DBHelper(this);
+
 
         //Dont change this.
         intent = getIntent();
         mAccount = intent.getParcelableExtra("Account");
 
-        mFundTotal = mAccount.getStudentFundAmount();
+        studentFundAmount = mAccount.getStudentFundAmount();
 
-
+        studentFundAmountTextView = findViewById(R.id.studentFundAmountTextView);
         //Placing all the account info into the Text Views
-        mUserNameTextView.setText(mAccount.getEmail());
-        mMonthlyIncomeTextView.setText(mCurrencyFormat.format(mAccount.getMonthlyIncome()));
-        mBudgetTextView.setText(mCurrencyFormat.format(mAccount.getBudget()));
-        mStudentFundTotalTextView.setText("$ " + String.valueOf(mAccount.getStudentFundAmount()));
+        studentFundAmountTextView.setText("$ " + String.valueOf(studentFundAmount));
     }
 
-    //Adds a deposit to the fund
+    /**
+     * <p>Adds a deposit to the fund</p>
+     * @param v this connects the method to the onClick attribute
+     */
     public void addDepositSF(View v)
     {
-        //Grabs the current total(before the deposit)
-        mFundTotal = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1));
 
-        //Grabs the amount to be deposited into the fund
+        if (mWithdrawDepositEditText.getText().toString().equals("")) {
+            Toast.makeText(this,"Please Enter an Amount!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Grabs the total fund currently (before the deposit)
+        studentFundAmount = Double.valueOf(studentFundAmountTextView.getText().toString().substring(1).replaceAll(",", ""));
+
+        //Grabs how much is being deposited
         double deposit;
         deposit = Double.valueOf(mWithdrawDepositEditText.getText().toString());
 
-        //create an Expense object from data
-        mExpense = new Expense(deposit, "Deposited into Student Fund.", "Student Fund");
-        //Add the expense to the Expense database
-        mDB.addExpense(mExpense);
+        //Creates an expense object from the deopist
+        //mExpense = new Expense(deposit, "Deposited Into Emergency Fund.", "Emergency Fund");
 
-        //Calculates new total
-        mFundTotal = mFundTotal + deposit;
+        //Then stores the expense in the ExpenseDataBase
+
+
+        double studentFund = mDB.getStudentFund(mAccount.getId());
+        studentFund += deposit;
+        mDB.setStudentFund(mAccount.getId(), studentFund);
+
+        //emergencyFundAmount = emergencyFundAmount + deposit;
 
         //Update model
-        mAccount.setEmergencyFundAmount(mFundTotal);
+        mAccount.setEmergencyFundAmount(studentFund);
 
-        mStudentFundTotalTextView.setText(mCurrencyFormat.format(mFundTotal));
+        //Displays the new balance
+        studentFundAmountTextView.setText(mCurrencyFormat.format(studentFund));
+
+        Toast.makeText(this, "Amount deposited successfully!", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * <p>This method withdraws from the fund</p>
+     * @param v this connects the method to the onClick attribute
+     */
     public void withdrawSF(View v)
     {
-        mFundTotal = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1));
 
+        if (mWithdrawDepositEditText.getText().toString().equals("")) {
+            Toast.makeText(this,"Please Enter an Amount!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Grabs the sf amount
+        studentFundAmount = Double.valueOf( studentFundAmountTextView.getText().toString().substring(1).replaceAll(",", ""));
+
+        //Grabs how much to withdraw
         double withdrawAmount;
         withdrawAmount = Double.valueOf(mWithdrawDepositEditText.getText().toString());
 
-        //Calculate new balance
-        mFundTotal = mFundTotal - withdrawAmount;
+        double studentFund = mDB.getStudentFund(mAccount.getId());
+        studentFund -= withdrawAmount;
+        if (studentFund < 0)
+            studentFund = 0.0;
+        mDB.setStudentFund(mAccount.getId(), studentFund);
 
-        //Updating model
-        mAccount.setStudentFundAmount(mFundTotal);
+        //emergencyFundAmount = emergencyFundAmount + deposit;
 
-        //Display the balance
-        mStudentFundTotalTextView.setText(mCurrencyFormat.format(mFundTotal));
+        //Update model
+        mAccount.setStudentFundAmount(studentFund);
+
+        //Displays the new balance
+        studentFundAmountTextView.setText(mCurrencyFormat.format(studentFund));
+
+        Toast.makeText(this, "Amount withdrawn successfully!", Toast.LENGTH_SHORT).show();
     }
 
-    //Returns to the main screen
+    /**
+     * <p>Returns to the main screen</p>
+     * @param v this connects the method to the onClick attribute
+     */
     public void backSF(View v)
     {
+        this.finish();
+    }
+
+
+    /**
+     * <p>Returns to the main screen</p>
+     * <p>Not Connected</p>
+     */
+    @Override
+    public void onBackPressed() {
         this.finish();
     }
 }

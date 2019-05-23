@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -29,6 +30,10 @@ public class IncomeActivity extends AppCompatActivity {
     private Account mAccount;
 
 
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +60,19 @@ public class IncomeActivity extends AppCompatActivity {
         incomesListView.setAdapter(mIncomeListAdapter);
     }
 
+    /**
+     * <p>This method adds an Income the the Income database</p>
+     * @param v this connects the method to the onClick attribute
+     */
     public void addIncome(View v){
+
+        if(incomeAmountEditText.getText().toString().equals("") ||
+                incomeDescriptionEditText.getText().toString().equals("") ||
+                incomeNameEditText.getText().toString().equals("")){
+            Toast.makeText(this,"Please Complete all fields!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String name = incomeNameEditText.getText().toString();
         String desc = incomeDescriptionEditText.getText().toString();
         Double value = Double.parseDouble(incomeAmountEditText.getText().toString());
@@ -66,10 +83,15 @@ public class IncomeActivity extends AppCompatActivity {
         mIncomeListAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * <p>This shows the details of the Income object in the listView</p>
+     * @param v this connects the method to the onClick attribute
+     */
     public void viewIncomeDetails(View v){
         Income income = (Income) v.getTag();
         Intent detailsIntent = new Intent(this, IncomeDetails.class);
-        detailsIntent.putExtra("Income", income);
+        detailsIntent.putExtra("SelectedIncome", income);
         startActivity(detailsIntent);
+        finish();
     }
 }

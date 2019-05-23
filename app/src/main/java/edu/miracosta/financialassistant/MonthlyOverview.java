@@ -67,16 +67,18 @@ public class MonthlyOverview extends AppCompatActivity {
     private List<Income> allIncomes;
 
     //
-    private static int EXPENSE_COLOR = Color.GRAY;
-    private static int EMERGENCY_COLOR = Color.GRAY;
-    private static int STUDENT_COLOR = Color.GRAY;
-    private static int BUDGET_COLOR = Color.MAGENTA;
+    private static int EXPENSE_COLOR = Color.rgb(255, 80, 130);
+    private static int EMERGENCY_COLOR = Color.rgb(223, 174, 193);
+    private static int STUDENT_COLOR = Color.rgb(165, 225, 228);
+    private static int BUDGET_COLOR = Color.rgb(165,228,176);
 
-
+    /**
+     *<p>This method starts the app from where it was put onPause()</p>
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.monthly_overview);
+    public void onResume(){
+        super.onResume();
+        // put your code here...
 
         NumberFormat format = NumberFormat.getCurrencyInstance();
 
@@ -90,6 +92,7 @@ public class MonthlyOverview extends AppCompatActivity {
         mIntent = getIntent();
         mAccount = mIntent.getParcelableExtra("Account");
 
+
         emergencyFundTextView.setText(String.valueOf(mAccount.getEmergencyFundAmount()));
 
         // TODO: gather needed details from the database
@@ -98,10 +101,12 @@ public class MonthlyOverview extends AppCompatActivity {
 
         allExpenses = db.getAllExpenses();
         allIncomes = db.getAllIncomes();
-        studentFund = 15.00;//db.getStudentFund();
-        emergencyFund = 15.00;//db.getEmergencyFund();
+        studentFund = db.getStudentFund(mAccount.getId());
+        emergencyFund = db.getEmergencyFund(mAccount.getId());
 
         // DONE: Total up the expenses/incomes
+        expenseTotal = 0;
+        incomeTotal = 0;
         for (Expense item : allExpenses) {
             expenseTotal += item.getExpenseCost();
         }
@@ -117,9 +122,17 @@ public class MonthlyOverview extends AppCompatActivity {
         SliceValue studentSlice = new SliceValue((float) studentFund, STUDENT_COLOR);
         SliceValue emergencySlice = new SliceValue((float) emergencyFund, EMERGENCY_COLOR);
 
-        expensesSlice.setLabel("Expenses");
-        studentSlice.setLabel("Student Spending");
-        emergencySlice.setLabel("Emergencies");
+        if (studentFund != 0)
+            studentSlice.setLabel("Student Fund: " + format.format(studentFund));
+        else
+            studentSlice.setLabel("");
+
+        expensesSlice.setLabel("Expenses: " + format.format(expenseTotal));
+
+        if (emergencyFund != 0)
+            emergencySlice.setLabel("Emergency Fund: " + format.format(emergencyFund));
+        else
+            emergencySlice.setLabel("");
 
         pieData.add(expensesSlice);
         pieData.add(studentSlice);
@@ -128,13 +141,17 @@ public class MonthlyOverview extends AppCompatActivity {
         // calculate the budget gap
         budgetGap = incomeTotal - expenseTotal;
         if (budgetGap > 0) {
-            SliceValue budgetSlice = new SliceValue((float) budgetGap, Color.MAGENTA);
-            budgetSlice.setLabel("Budget Gap");
+            SliceValue budgetSlice = new SliceValue((float) budgetGap, BUDGET_COLOR);
+            budgetSlice.setLabel("Budget: " + format.format(budgetGap));
             pieData.add(budgetSlice);
         }
 
         // create pieChartData using the list of pie slices
         PieChartData pieChartData = new PieChartData(pieData);
+        pieChartData.setHasLabels(true);
+        pieChartData.setHasLabelsOutside(false);
+        pieChartData.setHasCenterCircle(true);
+        pieChartView.setInteractive(false);
 
         // set the pieCharData to update the pieChartView
         pieChartView.setPieChartData(pieChartData);
@@ -221,8 +238,25 @@ public class MonthlyOverview extends AppCompatActivity {
                 return true;
             }
         });
+
     }
 
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.monthly_overview);
+
+    }
+
+    /**
+     * <p>This method controls when to open the drawer and brings the drawer to the front of everything else</p>
+     * @param item this is the item selected from the drawer
+     * @return a <code>Boolean</code> value either; true or false.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

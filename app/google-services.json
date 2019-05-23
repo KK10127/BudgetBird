@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "996623874168",
-    "firebase_url": "https://financialassistant-b24e5.firebaseio.com",
-    "project_id": "financialassistant-b24e5",
-    "storage_bucket": "financialassistant-b24e5.appspot.com"
+    "project_number": "71273530491",
+    "firebase_url": "https://financialassistant-da43e.firebaseio.com",
+    "project_id": "financialassistant-da43e",
+    "storage_bucket": "financialassistant-da43e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:996623874168:android:096ea30ea96c7a55",
+        "mobilesdk_app_id": "1:71273530491:android:096ea30ea96c7a55",
         "android_client_info": {
           "package_name": "edu.miracosta.financialassistant"
         }
       },
       "oauth_client": [
         {
-          "client_id": "996623874168-smv61ajbs4in21qmfv6fhk3lujekrups.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "edu.miracosta.financialassistant",
-            "certificate_hash": "310eb724d99398428c01672adbccfcf6bb62e1c4"
-          }
-        },
-        {
-          "client_id": "996623874168-hgf41v1tt2m7tael9l6cvu9o89mst4bf.apps.googleusercontent.com",
+          "client_id": "71273530491-8paksb2jcgqct6cr7lq3pfb01qg2o92g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCjonLKizt856cgQiN_Zea6FByQ-IbyU5s"
+          "current_key": "AIzaSyAAnPJbQiQpp38jTPLxSJ8ZZQTmu1DsUyA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "996623874168-hgf41v1tt2m7tael9l6cvu9o89mst4bf.apps.googleusercontent.com",
+              "client_id": "71273530491-8paksb2jcgqct6cr7lq3pfb01qg2o92g.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.miracosta.financialassistant">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,12 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".IncomeDetails"></activity>
+        <activity android:name=".MapActivity"></activity>
+        <activity android:name=".TipDetailsFolder.PortfolioTips"></activity>
+        <activity android:name=".TipDetailsFolder.InvestmentTips" />
+        <activity android:name=".TipDetailsFolder.CreditScoreTips" />
+        <activity android:name=".TipDetailsFolder.BuyingCarTips" />
+        <activity android:name=".TipDetailsFolder.BuyingHouseTips" />
+        <activity android:name=".TipDetailsFolder.CreditCardTipsNew" />
+        <activity android:name=".TipDetailsFolder.CreditCardTipsOld" />
+        <activity android:name=".IncomeDetails" />
         <activity android:name=".ExpenseDetails" />
         <activity android:name=".EmergencyFund" />
         <activity android:name=".TodayActivity" />
         <activity android:name=".FinancialTipsActivity" />
-        <activity android:name=".UserSettingsActivity" />
+        <activity android:name=".UserSettingsActivity"
+            android:configChanges="locale|orientation"/>
         <activity android:name=".TrendsActivity" />
         <activity android:name=".StudentFund" />
         <activity android:name=".MonthlyOverview" />
@@ -29,6 +40,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCjonLKizt856cgQiN_Zea6FByQ-IbyU5s" />
     </application>
 
 </manifest>

@@ -22,6 +22,10 @@ public class ExpenseDetails extends AppCompatActivity {
     private Expense mExpense;
     private DBHelper db;
 
+    /**
+     * <p>This method starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +52,16 @@ public class ExpenseDetails extends AppCompatActivity {
 
     }
 
+    /**
+     * <p>This method removes and expense from the database</p>
+     * @param v This connects the method to the onClick attribute
+     */
     public void removeExpense(View v){
         //TODO: Finish the code for removing an expense
         //TODO: Remove from DB and listAdapter, then return to Expense Activity
         db.deleteExpense(mExpense);
         Intent intent = new Intent(this, ExpensesActivity.class);
         startActivity(intent);
+        finish();
     }
 }

@@ -1,12 +1,12 @@
 package edu.miracosta.financialassistant;
 
 import android.content.Intent;
-import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -36,17 +36,20 @@ public class EmergencyFund extends AppCompatActivity
     NumberFormat mNumberFormat = NumberFormat.getNumberInstance();
 
 
+    /**
+     * <p>This method starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_fund);
 
-        userNameTextView = findViewById(R.id.UserNameTextView);
-        budgetTextView = findViewById(R.id.BudgetTextView);
-        monthlyIncomeTextView = findViewById(R.id.MonthlyIncomeTextView);
-        emergencyFundAmountTextView = findViewById(R.id.EmergencyFundAmountTextView);
-        amountEditText = findViewById(R.id.amountEditTextSF);
+        emergencyFundAmountTextView = findViewById(R.id.studentFundAmountTextView);
+        amountEditText = findViewById(R.id.amountEditText);
+
+        mDB = new DBHelper(this);
 
         intent = getIntent();
         mAccount = intent.getParcelableExtra("Account");
@@ -54,59 +57,95 @@ public class EmergencyFund extends AppCompatActivity
         emergencyFundAmount = mAccount.getEmergencyFundAmount();
 
         //Placing all the account info into the Text Views
-        userNameTextView.setText(mAccount.getEmail());
-        monthlyIncomeTextView.setText(mCurrencyFormat.format(mAccount.getMonthlyIncome()));
-        budgetTextView.setText(mCurrencyFormat.format(mAccount.getBudget()));
-        emergencyFundAmountTextView.setText("$ " + String.valueOf(mAccount.getEmergencyFundAmount()));
+        emergencyFundAmountTextView.setText("$ " + String.valueOf(emergencyFundAmount));
     }
 
+
+    /**
+     * <p>This method deposits to the fund</p>
+     * @param v This is used to connect the method to the onClick attribute
+     */
     //Adds a deposit to the fund
     public void addDeposit(View v)
     {
+        if (amountEditText.getText().toString().equals("")) {
+            Toast.makeText(this,"Please Enter an Amount!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         //Grabs the total fund currently (before the deposit)
-        emergencyFundAmount = Double.valueOf(emergencyFundAmountTextView.getText().toString().substring(1));
+        emergencyFundAmount = Double.valueOf(emergencyFundAmountTextView.getText().toString().substring(1).replaceAll(",", ""));
 
         //Grabs how much is being deposited
         double deposit;
         deposit = Double.valueOf(amountEditText.getText().toString());
 
         //Creates an expense object from the deopist
-        mExpense = new Expense(deposit, "Deposited Into Emergency Fund.", "Emergency Fund");
-        //Then stores the expense in the ExpenseDataBase
-        mDB.addExpense(mExpense);
+        //mExpense = new Expense(deposit, "Deposited Into Emergency Fund.", "Emergency Fund");
 
-        emergencyFundAmount = emergencyFundAmount + deposit;
+        //Then stores the expense in the ExpenseDataBase
+
+
+        double emergencyFund = mDB.getEmergencyFund(mAccount.getId());
+        emergencyFund += deposit;
+        mDB.setEmergencyFund(mAccount.getId(), emergencyFund);
+
+        //emergencyFundAmount = emergencyFundAmount + deposit;
 
         //Update model
-        mAccount.setEmergencyFundAmount(emergencyFundAmount);
+        mAccount.setEmergencyFundAmount(emergencyFund);
 
         //Displays the new balance
-        emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFundAmount));
+        emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFund));
     }
 
-    //Withdraws from the fund
+    /**
+     * <p>This method withdraws from the fund</p>
+     * @param v This is used to connect the method to the onClick attribute
+     */
     public void withdraw(View v)
     {
+        if (amountEditText.getText().toString().equals("")) {
+            Toast.makeText(this,"Please Enter an Amount!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         //Grabs the E.F amount
-        emergencyFundAmount = Double.valueOf(emergencyFundAmountTextView.getText().toString().substring(1));
+        emergencyFundAmount = Double.valueOf(emergencyFundAmountTextView.getText().toString().substring(1).replaceAll(",", ""));
 
         //Grabs how much to withdraw
         double withdrawAmount;
         withdrawAmount = Double.valueOf(amountEditText.getText().toString());
 
-        //calculates new balance
-        emergencyFundAmount = emergencyFundAmount - withdrawAmount;
+        double emergencyFund = mDB.getEmergencyFund(mAccount.getId());
+        emergencyFund -= withdrawAmount;
+        if (emergencyFund < 0)
+            emergencyFund = 0.0;
+        mDB.setEmergencyFund(mAccount.getId(), emergencyFund);
 
-        //update model
-        mAccount.setEmergencyFundAmount(emergencyFundAmount);
+        //emergencyFundAmount = emergencyFundAmount + deposit;
 
-        //Displays balance
-        emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFundAmount));
+        //Update model
+        mAccount.setEmergencyFundAmount(emergencyFund);
+
+        //Displays the new balance
+        emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFund));
     }
 
-    //Returns to the main screen
+    /**
+     * <p>Returns to the main screen</p>
+     * @param v This is used to connect the method to the onClick attribute
+     */
     public void back(View v)
     {
+        this.finish();
+    }
+
+    /**
+     * <p>Returns to the main screen</p>
+     */
+    @Override
+    public void onBackPressed() {
         this.finish();
     }
 }

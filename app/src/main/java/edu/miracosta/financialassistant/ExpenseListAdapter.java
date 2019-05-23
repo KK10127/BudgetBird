@@ -20,6 +20,12 @@ public class ExpenseListAdapter extends ArrayAdapter<Expense> {
     private List<Expense> mExpenses;
     private int mResourceID;
 
+    /**
+     * <p>This is a regular constructor</p>
+     * @param c The context of the current class
+     * @param rId the resource Id
+     * @param expenses a List of expenses
+     */
     public ExpenseListAdapter(Context c, int rId, List<Expense> expenses){
         super(c, rId, expenses);
         mContext = c;
@@ -27,7 +33,13 @@ public class ExpenseListAdapter extends ArrayAdapter<Expense> {
         mExpenses = expenses;
     }
 
-
+    /**
+     * <p>This gets the view of how each item will look in the listView</p>
+     * @param position this tells us which item was selected in the listView
+     * @param convertView this is a view used for converting
+     * @param parent This is the view group that this view belongs too
+     * @return a <code>View</code> object
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Expense selectedExpense = mExpenses.get(position);
