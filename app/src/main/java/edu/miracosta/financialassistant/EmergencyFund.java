@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -57,11 +58,9 @@ public class EmergencyFund extends AppCompatActivity
         emergencyFundAmount = mAccount.getEmergencyFundAmount();
 
         //Placing all the account info into the Text Views
-        userNameTextView.setText(mAccount.getEmail());
-        monthlyIncomeTextView.setText(mCurrencyFormat.format(mAccount.getMonthlyIncome()));
-        budgetTextView.setText(mCurrencyFormat.format(mAccount.getBudget()));
         emergencyFundAmountTextView.setText("$ " + String.valueOf(emergencyFundAmount));
     }
+
 
 
 
@@ -92,6 +91,8 @@ public class EmergencyFund extends AppCompatActivity
 
         //Displays the new balance
         emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFund));
+
+        Toast.makeText(this, "Amount deposited successfully!", Toast.LENGTH_SHORT).show();
     }
 
     //Withdraws from the fund
@@ -114,9 +115,12 @@ public class EmergencyFund extends AppCompatActivity
 
         //Update model
         mAccount.setEmergencyFundAmount(emergencyFund);
+        amountEditText.setText("");
 
         //Displays the new balance
         emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFund));
+
+        Toast.makeText(this, "Amount withdrawn successfully!", Toast.LENGTH_SHORT).show();
     }
 
     //Returns to the main screen
