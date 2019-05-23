@@ -24,7 +24,8 @@
         <activity android:name=".EmergencyFund" />
         <activity android:name=".TodayActivity" />
         <activity android:name=".FinancialTipsActivity" />
-        <activity android:name=".UserSettingsActivity" />
+        <activity android:name=".UserSettingsActivity"
+            android:configChanges="locale|orientation"/>
         <activity android:name=".TrendsActivity" />
         <activity android:name=".StudentFund" />
         <activity android:name=".MonthlyOverview" />
