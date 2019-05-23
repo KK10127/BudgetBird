@@ -18,7 +18,7 @@ public class StudentFund extends AppCompatActivity {
     private TextView mUserNameTextView;
     private TextView mMonthlyIncomeTextView;
     private TextView mBudgetTextView;
-    private TextView mStudentFundTotalTextView;
+    private TextView studentFundAmountTextView;
     private EditText mWithdrawDepositEditText;
 
     private Intent intent;
@@ -41,21 +41,19 @@ public class StudentFund extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_fund);
 
-        mUserNameTextView = findViewById(R.id.UserNameTextView);
-        mStudentFundTotalTextView = findViewById(R.id.emergencyFundAmountTextView);
         mWithdrawDepositEditText = findViewById(R.id.amountEditText);
 
         mDB = new DBHelper(this);
-
+        mDv.
         //Dont change this.
         intent = getIntent();
         mAccount = intent.getParcelableExtra("Account");
 
         studentFundAmount = mAccount.getStudentFundAmount();
 
-
+        studentFundAmountTextView = findViewById(R.id.studentFundAmountTextView);
         //Placing all the account info into the Text Views
-        mStudentFundTotalTextView.setText("$ " + String.valueOf(mAccount.getStudentFundAmount()));
+        studentFundAmountTextView.setText("$ " + String.valueOf(mAccount.getStudentFundAmount()));
     }
 
     /**
@@ -65,7 +63,7 @@ public class StudentFund extends AppCompatActivity {
     public void addDepositSF(View v)
     {
         //Grabs the total fund currently (before the deposit)
-        studentFundAmount = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1).replaceAll(",", ""));
+        studentFundAmount = Double.valueOf(studentFundAmountTextView.getText().toString().substring(1).replaceAll(",", ""));
 
         //Grabs how much is being deposited
         double deposit;
@@ -87,7 +85,7 @@ public class StudentFund extends AppCompatActivity {
         mAccount.setEmergencyFundAmount(studentFund);
 
         //Displays the new balance
-        mStudentFundTotalTextView.setText(mCurrencyFormat.format(studentFund));
+        studentFundAmountTextView.setText(mCurrencyFormat.format(studentFund));
 
         Toast.makeText(this, "Amount deposited successfully!", Toast.LENGTH_SHORT).show();
     }
@@ -99,7 +97,7 @@ public class StudentFund extends AppCompatActivity {
     public void withdrawSF(View v)
     {
         //Grabs the sf amount
-        studentFundAmount = Double.valueOf(mStudentFundTotalTextView.getText().toString().substring(1).replaceAll(",", ""));
+        studentFundAmount = Double.valueOf( studentFundAmountTextView.getText().toString().substring(1).replaceAll(",", ""));
 
         //Grabs how much to withdraw
         double withdrawAmount;
@@ -117,7 +115,7 @@ public class StudentFund extends AppCompatActivity {
         mAccount.setStudentFundAmount(studentFund);
 
         //Displays the new balance
-        mStudentFundTotalTextView.setText(mCurrencyFormat.format(studentFund));
+        studentFundAmountTextView.setText(mCurrencyFormat.format(studentFund));
 
         Toast.makeText(this, "Amount withdrawn successfully!", Toast.LENGTH_SHORT).show();
     }
