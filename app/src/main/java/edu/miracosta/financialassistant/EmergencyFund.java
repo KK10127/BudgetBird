@@ -1,12 +1,12 @@
 package edu.miracosta.financialassistant;
 
 import android.content.Intent;
+import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -36,7 +36,10 @@ public class EmergencyFund extends AppCompatActivity
     NumberFormat mNumberFormat = NumberFormat.getNumberInstance();
 
 
-
+    /**
+     * <p>This method starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -44,7 +47,9 @@ public class EmergencyFund extends AppCompatActivity
         setContentView(R.layout.activity_emergency_fund);
 
         userNameTextView = findViewById(R.id.UserNameTextView);
-        emergencyFundAmountTextView = findViewById(R.id.FundTotalTextView);
+        budgetTextView = findViewById(R.id.BudgetTextView);
+        monthlyIncomeTextView = findViewById(R.id.MonthlyIncomeTextView);
+        emergencyFundAmountTextView = findViewById(R.id.EmergencyFundAmountTextView);
         amountEditText = findViewById(R.id.amountEditTextSF);
 
         mDB = new DBHelper(this);
@@ -55,12 +60,17 @@ public class EmergencyFund extends AppCompatActivity
         emergencyFundAmount = mAccount.getEmergencyFundAmount();
 
         //Placing all the account info into the Text Views
+        userNameTextView.setText(mAccount.getEmail());
+        monthlyIncomeTextView.setText(mCurrencyFormat.format(mAccount.getMonthlyIncome()));
+        budgetTextView.setText(mCurrencyFormat.format(mAccount.getBudget()));
         emergencyFundAmountTextView.setText("$ " + String.valueOf(emergencyFundAmount));
     }
 
 
-
-
+    /**
+     * <p>This method deposits to the fund</p>
+     * @param v This is used to connect the method to the onClick attribute
+     */
     //Adds a deposit to the fund
     public void addDeposit(View v)
     {
@@ -88,11 +98,12 @@ public class EmergencyFund extends AppCompatActivity
 
         //Displays the new balance
         emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFund));
-
-        Toast.makeText(this, "Amount deposited successfully!", Toast.LENGTH_SHORT).show();
     }
 
-    //Withdraws from the fund
+    /**
+     * <p>This method withdraws from the fund</p>
+     * @param v This is used to connect the method to the onClick attribute
+     */
     public void withdraw(View v)
     {
         //Grabs the E.F amount
@@ -112,20 +123,23 @@ public class EmergencyFund extends AppCompatActivity
 
         //Update model
         mAccount.setEmergencyFundAmount(emergencyFund);
-        amountEditText.setText("");
 
         //Displays the new balance
         emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFund));
-
-        Toast.makeText(this, "Amount withdrawn successfully!", Toast.LENGTH_SHORT).show();
     }
 
-    //Returns to the main screen
+    /**
+     * <p>Returns to the main screen</p>
+     * @param v This is used to connect the method to the onClick attribute
+     */
     public void back(View v)
     {
         this.finish();
     }
 
+    /**
+     * <p>Returns to the main screen</p>
+     */
     @Override
     public void onBackPressed() {
         this.finish();

@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
     private Animation slide_down;
 
 
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +80,11 @@ public class MainActivity extends AppCompatActivity {
         appLogoImageView.startAnimation(slide_down);
     }
 
-    //temporary
+    /**
+     * <p>This check to see if the account is in the database, if so then it sends them in with that account,
+     * if not it creates a new account</p>
+     * @param v this connects the method to the onClick attribute
+     */
     public void logIn(View v)
     {
         mAccountList = new ArrayList<>();

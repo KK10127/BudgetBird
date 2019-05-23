@@ -72,7 +72,9 @@ public class MonthlyOverview extends AppCompatActivity {
     private static int STUDENT_COLOR = Color.rgb(165, 225, 228);
     private static int BUDGET_COLOR = Color.rgb(165,228,176);
 
-
+    /**
+     *<p>This method starts the app from where it was put onPause()</p>
+     */
     @Override
     public void onResume(){
         super.onResume();
@@ -239,7 +241,10 @@ public class MonthlyOverview extends AppCompatActivity {
 
     }
 
-
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -247,6 +252,11 @@ public class MonthlyOverview extends AppCompatActivity {
 
     }
 
+    /**
+     * <p>This method controls when to open the drawer and brings the drawer to the front of everything else</p>
+     * @param item this is the item selected from the drawer
+     * @return a <code>Boolean</code> value either; true or false.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

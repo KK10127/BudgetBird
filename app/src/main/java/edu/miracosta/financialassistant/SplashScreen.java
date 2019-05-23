@@ -19,6 +19,10 @@ public class SplashScreen extends AppCompatActivity {
     private ImageView logo;
     private Animation slideUp;
 
+    /**
+     * <p>This starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

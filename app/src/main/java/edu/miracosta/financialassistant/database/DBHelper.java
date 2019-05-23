@@ -3,7 +3,6 @@ package edu.miracosta.financialassistant.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -62,12 +61,19 @@ public class DBHelper extends SQLiteOpenHelper
     private static final String FIELD_DESCRIPTION= "desctiption";
     //private static final String FIELD_COST = "ExpenseCost";
 
-    //Contructor for the DB
+    /**
+     * <p>Contructor for the DB</p>
+     * @param context the context the constructor is called in
+     */
     public DBHelper(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * <p>Creates the databses and tables</p>
+     * @param db an SQLite database object
+     */
     @Override
     public void onCreate(SQLiteDatabase db)
     {
@@ -117,6 +123,12 @@ public class DBHelper extends SQLiteOpenHelper
         db.execSQL(activityTable);
     }
 
+    /**
+     * <p>upgrades the database</p>
+     * @param db an SQLite database object
+     * @param oldVersion int value of the old database version
+     * @param newVersion int value of the new database version
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
@@ -126,6 +138,10 @@ public class DBHelper extends SQLiteOpenHelper
 
     //DataBase operations ADD, UPDATE, EDIT, DELETE
 
+    /**
+     * <p>Adds and expense object to the Expense table</p>
+     * @param expense the Expense being added to the table
+     */
     public void addExpense(Expense expense)
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -149,6 +165,10 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Gets every item in the Expense table and returns it in a list</p>
+     * @return a list containing all the expenses in the table
+     */
     public List<Expense> getAllExpenses()
     {
         List<Expense> expensesList = new ArrayList<Expense>();
@@ -180,35 +200,11 @@ public class DBHelper extends SQLiteOpenHelper
         return expensesList;
     }
 
-    public List<Float> getSpendingTrends() {
-        List<Float> spendingTrends = new ArrayList<>();
-        SQLiteDatabase database = getReadableDatabase();
 
-        //A cursor is the result of a database query
-        Cursor cursor = database.query(TRENDS_TABLE, new String[]{TRENDS_KEY_FIELD_ID, FIELD_TREND_DATE, FIELD_TREND_SPENT},
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
-
-        //Collect each row in the table
-        if(cursor.moveToFirst())
-        {
-            do
-            {
-                spendingTrends.add((float) cursor.getDouble(2));
-            }
-            while(cursor.moveToNext());
-        }
-        cursor.close();
-        database.close();
-        return spendingTrends;
-    }
-
-
-
+    /**
+     * <p>Deletes an expense from the Expense table</p>
+     * @param expense the expense to be deleted
+     */
     public void deleteExpense(Expense expense)
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -219,6 +215,9 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Deletes all Expenses in the Expense Table</p>
+     */
     public void deleteAllExpenses()
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -226,6 +225,10 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Updates the Expense tables</p>
+     * @param expense a new Expense thats added, so requires updating
+     */
     public void updateExpenses(Expense expense)
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -239,6 +242,11 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Gets an Expense from the Expense table</p>
+     * @param id the id used to find the Expense in the table
+     * @return the Expense object your looking for
+     */
     public Expense getExpense(long id)
     {
         SQLiteDatabase db = getReadableDatabase();
@@ -262,6 +270,11 @@ public class DBHelper extends SQLiteOpenHelper
         return expense;
     }
 
+    /**
+     * <p>Gets the Student Fund from the Account table</p>
+     * @param id the id used to find the Student fund in the Account table
+     * @return the Student fund as a double
+     */
     public double getStudentFund(long id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(ACCOUNT_TABLE,
@@ -281,6 +294,11 @@ public class DBHelper extends SQLiteOpenHelper
         return studentFund;
     }
 
+    /**
+     * <p>Gets the Emergency Fund from the Account table</p>
+     * @param id the id used to find the Emergency fund in the Account table
+     * @return the Emergency fund as a double
+     */
     public double getEmergencyFund(long id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(ACCOUNT_TABLE,
@@ -301,14 +319,22 @@ public class DBHelper extends SQLiteOpenHelper
         return emergencyFund;
     }
 
-    // added this method
+    /**
+     * <p>Sets the Emergency Fund value in the Account Table</p>
+     * @param id id used to find the right Account
+     * @param value the values to be set
+     */
     public void setEmergencyFund(long id, double value) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE AccountInfo SET emergency_fund='"+ value + "' WHERE " +
                 "_id='"+ id + "'");
     }
 
-    // added this method
+    /**
+     * <p>Sets the Student Fund value in the Account Table</p>
+     * @param id id used to find the right Account
+     * @param value the values to be set
+     */
     public void setStudentFund(long id, double value) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE AccountInfo SET student_fund='"+ value + "' WHERE " +
@@ -317,7 +343,10 @@ public class DBHelper extends SQLiteOpenHelper
     }
 
 
-
+    /**
+     * <p>Sets the Spending amount for the user</p>
+     * @param value the values of the spending amount to be set
+     */
     public void setTotalSpendingAmount(double value) {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -335,15 +364,10 @@ public class DBHelper extends SQLiteOpenHelper
         */
     }
 
-    public long getDaysCount() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        long count = DatabaseUtils.queryNumEntries(db, TRENDS_TABLE);
-        db.close();
-        return count;
-    }
-
-
-
+    /**
+     * <p>Gets the Spending that been done on this day</p>
+     * @return a double value that is the spending done today
+     */
     public double getTodaysSpending() {
         SQLiteDatabase database = getReadableDatabase();
         double todaysSpending = 0;
@@ -373,6 +397,11 @@ public class DBHelper extends SQLiteOpenHelper
 
 
     //Trends database methods
+
+    /**
+     * <p>Adds an Trend object to the Trend table</p>
+     * @param trend the Trend being added to the table
+     */
     public void addTrend(Trends trend)
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -394,6 +423,10 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Gets every item in the Trend table and returns it in a list</p>
+     * @return a list containing all the Trends in the table
+     */
     public List<Trends> getAllTrends()
     {
         List<Trends> trendsList = new ArrayList<Trends>();
@@ -425,6 +458,10 @@ public class DBHelper extends SQLiteOpenHelper
         return trendsList;
     }
 
+    /**
+     * <p>Deletes a Trends from the Trends table</p>
+     * @param trend the trend to be deleted
+     */
     public void deleteTrend(Trends trend)
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -435,6 +472,9 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Deletes all trends in the Trends Table</p>
+     */
     public void deleteAllTrends()
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -442,6 +482,10 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Updates the Trends tables</p>
+     * @param trend a new Trend that's added, so requires updating
+     */
     public void updateTrend(Trends trend)
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -455,6 +499,11 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Gets a Trend from the Trend table</p>
+     * @param id the id used to find the Trend in the table
+     * @return the trend object your looking for
+     */
     public Trends getTrend(int id)
     {
         SQLiteDatabase db = getReadableDatabase();
@@ -480,6 +529,10 @@ public class DBHelper extends SQLiteOpenHelper
 
     //Income database methods
 
+    /**
+     * <p>Adds and income object to the Income table</p>
+     * @param income the Income being added to the table
+     */
     public void addIncome(Income income)
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -501,6 +554,10 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Gets every item in the Income table and returns it in a list</p>
+     * @return a list containing all the Incomes in the table
+     */
     public List<Income> getAllIncomes()
     {
         List<Income> incomesList = new ArrayList<Income>();
@@ -533,6 +590,10 @@ public class DBHelper extends SQLiteOpenHelper
         return incomesList;
     }
 
+    /**
+     * <p>Deletes an Income from the Income table</p>
+     * @param income the income to be deleted
+     */
     public void deleteIncome(Income income)
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -543,6 +604,9 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Deletes all Incomes in the Income Table</p>
+     */
     public void deleteAllIncomes()
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -550,6 +614,10 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Updates the Income tables</p>
+     * @param income a new Income thats added, so requires updating
+     */
     public void updateIncome(Income income)
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -563,6 +631,11 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Gets an Income from the Income table</p>
+     * @param id the id used to find the Income in the table
+     * @return the Income object your looking for
+     */
     public Income getIncome(int id)
     {
         SQLiteDatabase db = getReadableDatabase();
@@ -586,6 +659,10 @@ public class DBHelper extends SQLiteOpenHelper
         return income;
     }
 
+    /**
+     * <p>Adds and Account object to the Account table</p>
+     * @param account the Account being added to the table
+     */
     public void addAccount(Account account)
     {
         SQLiteDatabase db = getWritableDatabase();
@@ -625,6 +702,9 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    /**
+     * <p>Creates a new day and stores it in the Trends Table</p>
+     */
     public void startNewDay() {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -638,6 +718,13 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
     }
 
+
+    /**
+     * <p>Gets an Expense from the Expense table</p>
+     * @param email the id used to find the Account in the table
+     * @param password to check if its a new Account
+     * @return the Account object your looking for, or null if not found
+     */
     public Account getAccount(String email, String password) {
         Account account = null;
 
@@ -667,6 +754,10 @@ public class DBHelper extends SQLiteOpenHelper
         return account;
     }
 
+    /**
+     * <p>Gets every item in the Account table and returns it in a list</p>
+     * @return a list containing all the Accounts in the table
+     */
     public List<Account> getAllAccounts()
     {
         List<Account> accountList = new ArrayList<Account>();
@@ -704,6 +795,9 @@ public class DBHelper extends SQLiteOpenHelper
         return accountList;
     }
 
+    /**
+     * <p>Deletes all Accounts in the Account Table</p>
+     */
     public void deleteAccounts()
     {
         SQLiteDatabase database = getReadableDatabase();
