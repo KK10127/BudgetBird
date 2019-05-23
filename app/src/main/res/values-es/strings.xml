@@ -63,6 +63,8 @@
     <string name="moneyHint">$00.00</string>
     <string name="incomeValue">$X,XXX.XX / Month</string>
     <string name="income">"Mis ingresos "</string>
+    <string name="english">Ingles</string>
+    <string name="Spanish">Espanol</string>
     <string name="tip6">6. No solo hagas pagos mínimos Si terminas con una deuda de tarjeta de crédito significativa en algún momento de tu vida, pagalo lo más rápido posible.</string>
     <string name="tip8">8. No tengas miedo de pedir descansos. Los contratos de tarjetas de crédito están llenos de términos y condiciones y letra pequeña, pero no asuma que están todos en piedra.</string>
     <string name="tip9">9. Esté atento a los cambios Finalmente, recuerde que las regulaciones sobre las tarjetas de crédito pueden cambiar con el tiempo.</string>

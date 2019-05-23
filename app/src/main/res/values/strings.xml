@@ -169,6 +169,8 @@ certificates of deposit, real estate investment trusts (via REITs), treasuries, 
     <string name="todays_total">Today\'s Total!</string>
     <string name="add">Add</string>
     <string name="new_day">New Day</string>
-    <string name="sdflc">Find Directions to the SDFLC!</string>
+    <string name="sdflc"> Find Directions to the SDFLC! </string>
     <string name="change_value_hint">Withdraw/Deposit an Amount</string>
+    <string name="english">English</string>
+    <string name="Spanish">Spanish</string>
 </resources>
