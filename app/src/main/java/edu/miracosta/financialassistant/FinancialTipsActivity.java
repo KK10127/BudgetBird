@@ -2,10 +2,9 @@ package edu.miracosta.financialassistant;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import edu.miracosta.financialassistant.model.Account;
 //import edu.miracosta.financialassistant.CreditCard.NewCreditCardUser;
 
 
-public class FinancialTipsActivity extends ListActivity {
+public class FinancialTipsActivity extends AppCompatActivity {
     private ListView mListView;
     private List<String> mStringList;
     private FinancialTipsListAdapter mListAdapter;
@@ -38,7 +37,7 @@ public class FinancialTipsActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_financial_tips);
+        setContentView(R.layout.activity_financial_tips);
 
         mStringList = new ArrayList<>();
 
@@ -50,9 +49,9 @@ public class FinancialTipsActivity extends ListActivity {
         mStringList.add("Tips to invest in the StockMarket");//index=5
         mStringList.add("How to make a Financial portfolio?");//index=6
 
-        mListView = findViewById(R.id.financeListView);
+        mListView = findViewById(R.id.list);
         mListAdapter = new FinancialTipsListAdapter(this, R.layout.activity_financial_tips_list_adapter, mStringList);
-        setListAdapter(mListAdapter);
+        mListView.setAdapter(mListAdapter);
 
         //Dont change this. This works so you can receive the account info
         mIntent = getIntent();
@@ -67,6 +66,7 @@ public class FinancialTipsActivity extends ListActivity {
      * @param position this is used to find what item was selected in the listView
      * @param id this is used to find the id of the item selected.
      */
+    /**
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id)
     {
@@ -110,5 +110,10 @@ public class FinancialTipsActivity extends ListActivity {
             intent = new Intent(this, PortfolioTips.class);
             startActivity(intent);
         }
+    }
+        **/
+    public void goToMap(View v){
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
     }
 }
