@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.miracosta.financialassistant">
+    package="edu.miracosta.financialassistant" >
 
     <application
         android:allowBackup="true"
@@ -8,8 +8,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".IncomeDetails"></activity>
+        android:theme="@style/AppTheme" >
+        <activity android:name=".TipDetailsFolder.PortfolioTips" >
+        </activity>
+        <activity android:name=".TipDetailsFolder.InvestmentTips" />
+        <activity android:name=".TipDetailsFolder.CreditScoreTips" />
+        <activity android:name=".TipDetailsFolder.BuyingCarTips" />
+        <activity android:name=".TipDetailsFolder.BuyingHouseTips" />
+        <activity android:name=".TipDetailsFolder.CreditCardTipsNew" />
+        <activity android:name=".TipDetailsFolder.CreditCardTipsOld" />
+        <activity android:name=".IncomeDetails" />
         <activity android:name=".ExpenseDetails" />
         <activity android:name=".EmergencyFund" />
         <activity android:name=".TodayActivity" />
@@ -22,7 +30,7 @@
         <activity android:name=".ExpensesActivity" />
         <activity android:name=".IncomeActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
