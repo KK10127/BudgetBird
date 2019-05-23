@@ -42,8 +42,8 @@ public class StudentFund extends AppCompatActivity {
         setContentView(R.layout.activity_student_fund);
 
         mUserNameTextView = findViewById(R.id.UserNameTextView);
-        mStudentFundTotalTextView = findViewById(R.id.FundTotalTextView);
-        mWithdrawDepositEditText = findViewById(R.id.amountEditTextSF);
+        mStudentFundTotalTextView = findViewById(R.id.emergencyFundAmountTextView);
+        mWithdrawDepositEditText = findViewById(R.id.amountEditText);
 
         mDB = new DBHelper(this);
 

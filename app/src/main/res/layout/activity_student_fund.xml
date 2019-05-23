@@ -8,7 +8,7 @@
     tools:context="StudentFund">
 
     <TextView
-        android:id="@+id/FundTotalTextView"
+        android:id="@+id/emergencyFundAmountTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -33,11 +33,11 @@
         android:onClick="addDepositSF"
         android:text="@string/deposit"
         android:textColor="@color/pastelGreen"
-        app:layout_constraintStart_toStartOf="@+id/amountEditTextSF"
-        app:layout_constraintTop_toBottomOf="@+id/amountEditTextSF" />
+        app:layout_constraintStart_toStartOf="@+id/amountEditText"
+        app:layout_constraintTop_toBottomOf="@+id/amountEditText" />
 
     <EditText
-        android:id="@+id/amountEditTextSF"
+        android:id="@+id/amountEditText"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginTop="52dp"
@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="@+id/UserNameTextView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/UserNameTextView"
-        app:layout_constraintTop_toBottomOf="@+id/FundTotalTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/emergencyFundAmountTextView" />
 
     <Button
         android:id="@+id/BackButton"
@@ -78,8 +78,8 @@
         android:onClick="withdrawSF"
         android:text="@string/withdraw"
         android:textColor="@color/pastelRED"
-        app:layout_constraintEnd_toEndOf="@+id/amountEditTextSF"
-        app:layout_constraintTop_toBottomOf="@+id/amountEditTextSF" />
+        app:layout_constraintEnd_toEndOf="@+id/amountEditText"
+        app:layout_constraintTop_toBottomOf="@+id/amountEditText" />
 
     <TextView
         android:id="@+id/UserNameTextView"

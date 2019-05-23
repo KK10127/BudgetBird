@@ -46,8 +46,8 @@ public class EmergencyFund extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_fund);
 
-        userNameTextView = findViewById(R.id.UserNameTextView);
-        amountEditText = findViewById(R.id.amountEditTextSF);
+        emergencyFundAmountTextView = findViewById(R.id.emergencyFundAmountTextView);
+        amountEditText = findViewById(R.id.amountEditText);
 
         mDB = new DBHelper(this);
 
@@ -57,9 +57,6 @@ public class EmergencyFund extends AppCompatActivity
         emergencyFundAmount = mAccount.getEmergencyFundAmount();
 
         //Placing all the account info into the Text Views
-        userNameTextView.setText(mAccount.getEmail());
-        monthlyIncomeTextView.setText(mCurrencyFormat.format(mAccount.getMonthlyIncome()));
-        budgetTextView.setText(mCurrencyFormat.format(mAccount.getBudget()));
         emergencyFundAmountTextView.setText("$ " + String.valueOf(emergencyFundAmount));
     }
 
