@@ -47,9 +47,6 @@ public class EmergencyFund extends AppCompatActivity
         setContentView(R.layout.activity_emergency_fund);
 
         userNameTextView = findViewById(R.id.UserNameTextView);
-        budgetTextView = findViewById(R.id.BudgetTextView);
-        monthlyIncomeTextView = findViewById(R.id.MonthlyIncomeTextView);
-        emergencyFundAmountTextView = findViewById(R.id.EmergencyFundAmountTextView);
         amountEditText = findViewById(R.id.amountEditTextSF);
 
         mDB = new DBHelper(this);
