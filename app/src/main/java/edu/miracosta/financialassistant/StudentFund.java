@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -41,8 +42,6 @@ public class StudentFund extends AppCompatActivity {
         setContentView(R.layout.activity_student_fund);
 
         mUserNameTextView = findViewById(R.id.UserNameTextView);
-        mMonthlyIncomeTextView = findViewById(R.id.MonthlyIncomeTextView);
-        mBudgetTextView = findViewById(R.id.BudgetTextView);
         mStudentFundTotalTextView = findViewById(R.id.FundTotalTextView);
         mWithdrawDepositEditText = findViewById(R.id.amountEditTextSF);
 
@@ -56,9 +55,6 @@ public class StudentFund extends AppCompatActivity {
 
 
         //Placing all the account info into the Text Views
-        mUserNameTextView.setText(mAccount.getEmail());
-        mMonthlyIncomeTextView.setText(mCurrencyFormat.format(mAccount.getMonthlyIncome()));
-        mBudgetTextView.setText(mCurrencyFormat.format(mAccount.getBudget()));
         mStudentFundTotalTextView.setText("$ " + String.valueOf(mAccount.getStudentFundAmount()));
     }
 
@@ -92,6 +88,8 @@ public class StudentFund extends AppCompatActivity {
 
         //Displays the new balance
         mStudentFundTotalTextView.setText(mCurrencyFormat.format(studentFund));
+
+        Toast.makeText(this, "Amount deposited successfully!", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -120,6 +118,8 @@ public class StudentFund extends AppCompatActivity {
 
         //Displays the new balance
         mStudentFundTotalTextView.setText(mCurrencyFormat.format(studentFund));
+
+        Toast.makeText(this, "Amount withdrawn successfully!", Toast.LENGTH_SHORT).show();
     }
 
     /**

@@ -68,9 +68,9 @@ public class MonthlyOverview extends AppCompatActivity {
 
     //
     private static int EXPENSE_COLOR = Color.rgb(255, 80, 130);
-    private static int EMERGENCY_COLOR = Color.rgb(255, 0, 0);
-    private static int STUDENT_COLOR = Color.rgb(80, 235, 242);
-    private static int BUDGET_COLOR = Color.rgb(80, 255, 70);
+    private static int EMERGENCY_COLOR = Color.rgb(223, 174, 193);
+    private static int STUDENT_COLOR = Color.rgb(165, 225, 228);
+    private static int BUDGET_COLOR = Color.rgb(165,228,176);
 
     /**
      *<p>This method starts the app from where it was put onPause()</p>
