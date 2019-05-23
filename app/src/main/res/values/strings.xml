@@ -3,125 +3,124 @@
     <string name="signUp">Sign Up!</string>
     <string name="logIn">Log In</string>
     <string name="password">Password</string>
-    <string name="establishing_your_will">Establishing Your Will: You must first establish the document as your last and only will, which requires you to title your will as the “Last Will and Testament of (Your Full Legal Name).” Below this title, you should revoke any and all prior wills and codicils you previously executed, even if you never knowingly established a will in the past. Including such a statement prevents any confusion over other documents you have established, which may appear to be your will, from superseding your actual instructions.</string>
+    <string name="establishing_your_will">Establishing your will: You must first establish the document as your last and only will, which requires you to title your will as the “Last Will and Testament of (Your Full Legal Name).” Below this title, you should revoke any and all prior wills and codicils you previously executed, even if you never knowingly established a will in the past. Including such a statement prevents any confusion over other documents you have established, which may appear to be your will, from superseding your actual instructions.</string>
     <string name="appoint_administrators">Appoint Administrators: For most wills, the very next section is the appointment of the estate’s administrators. These are the individuals you appoint to assume the responsibility of managing and administering your estate. You should name at least one executor to oversee your estate, submit your will for probate and divide your assets among your beneficiaries according to your instructions. If you have a more complicated estate, or you want to assign different tasks to various administrators, you can appoint “task-specific” administrators with explicit instructions on what powers and responsibilities each administrator shall have. Whenever possible, name an alternate administrator to serve on your behalf if your first choice is unwilling or unable to serve. Otherwise, the court will appoint someone for your estate following state intestacy guidelines.</string>
     <string name="list_assets">List Assets: Your will should contain a list of your larger assets, such as real property, monetary interests and cash assets, including bank accounts. You should describe each individual asset as best you can, providing physical addresses, account numbers and passwords whenever possible. You should also list your personal property if you intend to bequeath it to a certain beneficiary. Anything not explicitly defined in your will and appropriately bequeathed to a named beneficiary will become a part of your estate’s residual assets, which is either given to one specific beneficiary or liquidated for the estate’s use, depending on your instructions.</string>
     <string name="name_beneficiaries">Name Beneficiaries: After describing your assets, the next section of your will should contain a list of your estate’s beneficiaries. These are the individuals or entities who will inherit your estate’s assets after your passing. You can bequeath specific property or cash amounts to each beneficiary however you desire, or assign a portion of your estate by percentage. When you are finished, name a beneficiary to inherit the residual assets; this beneficiary will receive everything that you did not bequeath to a specific beneficiary.</string>
     <string name="define_additional_instructions">Define Additional Instructions: In addition to the above, you can define any other instructions for the administration of your estate as needed. What you include directly relates to your personal circumstances - for example, if you have minor children, you would appoint a guardian to assume custody of your children and instructions for how they should be raised in your absence. You can define instructions for your funeral arrangements, arrange care for an elderly parent, establish a trust for your surviving relatives or include directives for just about any legal purpose.</string>
-    <string name="tip1">1.) Choose your card(s) carefully
-Credit cards are not all alike, and you should choose the card(s) that best fit your needs and spending habits.</string>
-    <string name="tip2">2.) Only charge what you can afford
+    <string name="tip1">1. Choose your cards carefully
+Credit cards are not all alike, and you should choose the card that best fit your needs and spending habits.</string>
+    <string name="tip2">2. Only charge what you can afford
 It might seem like an obvious piece of advice, but enough people ignore it to make it worth stressing.</string>
-    <string name="tip3">3.) Pay off your bills in full each month - and on time
-If you only charge what you can afford, you\'ll be able to pay your credit card bills off in full each month - and you should absolutely do so.</string>
-    <string name="tip4">4.) Understand how dangerous debt can be If you let any debt accumulate, it can take on a life of its own - especially when it
-        \'s high-interest-rate debt.</string>
-    <string name="tip5">5.) Beware of fees
-Credit card issuers rake in a lot of money from fees.</string>
-    <string name="tip6">6.) Don\'t just make minimum payments
+    <string name="tip3">3. Pay off your bills in full each month - and on time
+        If you only charge what you can afford, you\'ll be able to pay your credit card bills off in full each month - and you should absolutely do so.</string>
+    <string name="tip4">4. Understand how dangerous debt can be If you let any debt accumulate, it can take on a life of its own - especially when it         \'s high-interest-rate debt.</string>
+    <string name="tip5">5. Beware of fees
+        Credit card issuers rake in a lot of money from fees.</string>
+    <string name="tip6">6. Don\'t just make minimum payments
 If you end up with significant credit card debt at some point in your life, pay it off as quickly as you can.</string>
-    <string name="tip7">7.) Check your statements for problems
+    <string name="tip7">7. Check your statements for problems
 Take a minute to review all the charges. Are they all yours? If an identity thief has been using your credit card (or just the information on the card) to buy things, let the company know. </string>
-    <string name="tip8">8.) Don\'t be afraid to ask for breaks
+    <string name="tip8">8. Don\'t be afraid to ask for breaks
 Credit card contracts are full of terms and conditions and fine print, but don\'t assume they\'re all set in stone.</string>
-    <string name="tip9">9.) Keep an eye out for changes
+    <string name="tip9">9. Keep an eye out for changes
 Finally, remember that regulations on credit cards can and do change over time.</string>
-    <string name="protip1">1.) Keep Your Credit Utilization Low
+    <string name="protip1">1. Keep Your Credit Utilization Low
 Don\’t max out your line of credit.</string>
-    <string name="protip2">2.) Use a Secured Credit Card to Build Your Credit
+    <string name="protip2">2. Use a Secured Credit Card to Build Your Credit
 Using a credit card is an effective method to build your credit. If you don\’t have credit yet, getting a loan is often difficult.</string>
-    <string name="protip3">3.) Pay Off Your Card Each Month to Maximize Rewards Value
+    <string name="protip3">3. Pay Off Your Card Each Month to Maximize Rewards Value
 If you get a rewards card, but carry a balance, the interest you pay will cancel out the rewards you earn.</string>
-    <string name="protip4">4.) Pay Off High-Interest Credit Cards First
+    <string name="protip4">4. Pay Off High-Interest Credit Cards First
 Accumulating credit card debt with high-interest rates is bad debt that should be paid off fast.</string>
-    <string name="protip5">5.) Stay Away from Cash Advances
+    <string name="protip5">5. Stay Away from Cash Advances
 Credit cards should not be treated as a bank account that you can get cash from whenever you need it. </string>
-    <string name="protip6">6.) Use a Personal Finance App to Monitor Your Credit Usage
+    <string name="protip6">6. Use a Personal Finance App to Monitor Your Credit Usage
 To help monitor and control your credit card usage, use a personal finance app on your cell phone that tracks, in real-time, your purchases by category.</string>
-    <string name="protip7">7.) Use Online Reporting from Your Credit Card to Monitor Spending Habits
+    <string name="protip7">7. Use Online Reporting from Your Credit Card to Monitor Spending Habits
 It’s critical to keep track of your spending habits, control your expenses, and avoid getting into debt.</string>
-    <string name="protip8">8.) Don\’t Share Credit Card Accounts with Your Spouse
+    <string name="protip8">8. Don\’t Share Credit Card Accounts with Your Spouse
 There is usually minimal benefit to having multiple cardholders on one account. One partner can have
 spending problems, obtain limit increases, or incur debt, and the other partner will also be liable for this.</string>
-    <string name="protip9">9.) Be Careful with Promotional Offers
+    <string name="protip9">9. Be Careful with Promotional Offers
 While some of these promotional offers may be beneficial to the users, you should still be careful and ensure you understand the terms thoroughly.</string>
-    <string name="housetip1">1.) Owning a home is expensive-much more expensive than renting. So,
+    <string name="housetip1">1. Owning a home is expensive-much more expensive than renting. So,
 before you even think about buying your first home, make sure you\’re debt-free and have an emergency fund of three to six months of expenses in place.</string>
-    <string name="housetip2">2.) Before you get emotionally attached to a beautiful house, check your
+    <string name="housetip2">2. Before you get emotionally attached to a beautiful house, check your
 monthly budget to determine how much house you can afford. So make sure your monthly housing costs are going to be no more than 25% of your monthly take-home pay.</string>
-    <string name="housetip3">3.) Save for a down payment of 20% or more. Then you won\’t have to
+    <string name="housetip3">3. Save for a down payment of 20% or more. Then you won\’t have to
 pay for private mortgage insurance (PMI), which protects the mortgage company in case you can\’t make your payments and end up in foreclosure.</string>
-    <string name="housetip4">4.) Along with your down payment, you\’ll also need to pay for closing costs.
+    <string name="housetip4">4. Along with your down payment, you\’ll also need to pay for closing costs.
 On average, closing costs are about 3–4% of the purchase price of your home. Your lender will give you a specific number.</string>
-    <string name="housetip5">5.) Get prequalified for a loan and take the extra time to get a preapproval letter before you start your home search.</string>
-    <string name="housetip6">6.) Find homes you like online and send them to your real estate agent so they have a good idea of what you\’re looking for.</string>
-    <string name="housetip7">7.) 78% of home buyers believe neighborhood quality is more important than the size of a home. And 57% of
+    <string name="housetip5">5. Get prequalified for a loan and take the extra time to get a preapproval letter before you start your home search.</string>
+    <string name="housetip6">6. Find homes you like online and send them to your real estate agent so they have a good idea of what you\’re looking for.</string>
+    <string name="housetip7">7. 78% of home buyers believe neighborhood quality is more important than the size of a home. And 57% of
 buyers would opt for a shorter commute over a larger yard.</string>
-    <string name="housetips8">8.) Attend a few open houses. Looking at homes that are for sale—even if they\’re not a perfect fit
+    <string name="housetips8">8. Attend a few open houses. Looking at homes that are for sale—even if they\’re not a perfect fit
 for you—is a great way to learn more about the area.</string>
-    <string name="housetip9">9.) If you\’re a first-time home buyer, it may be hard to know how much you should offer. That\’s when you can rely on the expertise of your real estate agent.
+    <string name="housetip9">9. If you\’re a first-time home buyer, it may be hard to know how much you should offer. That\’s when you can rely on the expertise of your real estate agent.
 Ask your agent to help you make sure your offer is competitive.</string>
-    <string name="cartip1">1.) It\’s a mistake to arrive at a car lot without first researching the car you want to buy.
+    <string name="cartip1">1. It\’s a mistake to arrive at a car lot without first researching the car you want to buy.
 You can find out just about anything you want to know about a car online.</string>
-    <string name="cartip2">2.) Look into Pre-financing Options. Your bank or credit union is one of the best places to start researching car loan rates,
+    <string name="cartip2">2. Look into Pre-financing Options. Your bank or credit union is one of the best places to start researching car loan rates,
 and you can obtain relationship discounts that you won\’t find anywhere else.</string>
-    <string name="cartip3">3.) Unless there is an emergency situation, shop around before you buy a car.
+    <string name="cartip3">3. Unless there is an emergency situation, shop around before you buy a car.
 I always make sure that I walk out of at least one dealership.</string>
-    <string name="cartip4">4.) Do everything you can do to negotiate the car loan and knock the purchase price down.
+    <string name="cartip4">4. Do everything you can do to negotiate the car loan and knock the purchase price down.
 Start with a ridiculous number, and work backwards.</string>
-    <string name="cartip5">5.) Make sure to go into the buying process with an open mind, considering both new and used
+    <string name="cartip5">5. Make sure to go into the buying process with an open mind, considering both new and used
 cars and running the numbers before making your final decision.</string>
-    <string name="cartip6">6.) Be sure to always negotiate based on the purchase price of the car, and not the monthly payment.</string>
-    <string name="cartip7">7.) Use the Internet. First, you completely avoid the hassle of dealing with annoying car salesmen.
+    <string name="cartip6">6. Be sure to always negotiate based on the purchase price of the car, and not the monthly payment.</string>
+    <string name="cartip7">7. Use the Internet. First, you completely avoid the hassle of dealing with annoying car salesmen.
 And second, you could end up with a much better price. </string>
-    <string name="cartip8">8.) Do not mention your trade-in until the end of the buying process. Why? The dealer will likely use
+    <string name="cartip8">8. Do not mention your trade-in until the end of the buying process. Why? The dealer will likely use
 this information against you.</string>
-    <string name="cartip9">9.) The cost of insuring a car is a major factor in the overall cost of the vehicle.
+    <string name="cartip9">9. The cost of insuring a car is a major factor in the overall cost of the vehicle.
 Get insurance premium quotes online from Liberty Mutual or Esurance. </string>
     <string name="creditintro">First, the makeup of your FICO score is broken up into a bunch of major factors: Payment History (35%),
 Debt Burden (30%), Length of History (15%), Types of Credit(10%), and Recent Credit Searches(10%).</string>
-    <string name="credittip1">1.) Your payment history is by and large the largest single component of your FICO score. The best way to think of your payment history
+    <string name="credittip1">1. Your payment history is by and large the largest single component of your FICO score. The best way to think of your payment history
 is to consider it a track record of all the things you\'ve done wrong when it comes to credit and a measure of how you behave when it comes to your
 debts. The most common problem consumers face in the payment history component is late payments. Whether it was because you simply forgot or were
 struggling to make ends meet, being late on a monthly payment for your credit card or a loan will usually cause a negative adjustment on your credit score.</string>
-    <string name="credittip2">2.) The other major component category of your credit score is the break up of your existing debt burden including how
+    <string name="credittip2">2. The other major component category of your credit score is the break up of your existing debt burden including how
 much you owe in total, what types of loans you have and any other quantitative indicators about your overall debt/credit profile.
 Credit Utilization or Debt to Limit ratio is often brought up when discussing the Debt Burden component. It is one of the pieces that make up this
 piece of your FICO score and is a measure of the total amount of debt on your credit card accounts against the total limit allowed on those accounts.</string>
-    <string name="credittip3">3.) Your score accounts for the length of time the various accounts under your name have been around, including the
+    <string name="credittip3">3. Your score accounts for the length of time the various accounts under your name have been around, including the
 average amount across all the accounts as well as the length of your oldest open account. </string>
-    <string name="credittip4">4.) The smallest component of your credit score, your FICO score takes into account the different types of debt or credit
+    <string name="credittip4">4. The smallest component of your credit score, your FICO score takes into account the different types of debt or credit
 used. Your accounts are classified into things like revolving credit (credit cards), mortgages, consumer finances or installment
 loans and a history of having a broader exposure may be a positive signal.</string>
-    <string name="credittip5">5.) The last component of the FICO score is an adjustment based on any recent searches or hard inquiries made into your
+    <string name="credittip5">5. The last component of the FICO score is an adjustment based on any recent searches or hard inquiries made into your
 credit profile.</string>
-    <string name="investtip1">1.) Before investing, you should know your purpose and the likely time in the future you may have need of the funds.
+    <string name="investtip1">1. Before investing, you should know your purpose and the likely time in the future you may have need of the funds.
 If you are likely to need your investment returned within a few years, consider another investment</string>
-    <string name="investtip2">2.) Understand Your Risk Tolerance. Your risk tolerance is how you feel about risk and the degree of anxiety you feel when risk is present.</string>
-    <string name="investtip3">3.) Control Your Emotions. In the short-term, the prices of companies reflect the combined emotions of
+    <string name="investtip2">2. Understand Your Risk Tolerance. Your risk tolerance is how you feel about risk and the degree of anxiety you feel when risk is present.</string>
+    <string name="investtip3">3. Control Your Emotions. In the short-term, the prices of companies reflect the combined emotions of
 the entire investment community. When a majority of investors are worried about a company, its stock price is likely to decline</string>
-    <string name="investtip4">4.) Handle Basics First. take the time to learn the basics about the stock market and the individual
+    <string name="investtip4">4. Handle Basics First. take the time to learn the basics about the stock market and the individual
 securities composing the market. </string>
-    <string name="investtip5">5.) Diversify Your Investments. The popular way to manage risk is to diversify your exposure. Prudent investors own
+    <string name="investtip5">5. Diversify Your Investments. The popular way to manage risk is to diversify your exposure. Prudent investors own
 stocks of different companies in different industries, sometimes in different countries, with the expectation that a single bad event will not
 affect all of their holdings or will otherwise affect them to different degrees.</string>
-    <string name="investtip6">6.) Avoid Leverage. Leverage simply means the use of borrowed money to execute your stock market strategy.
+    <string name="investtip6">6. Avoid Leverage. Leverage simply means the use of borrowed money to execute your stock market strategy.
 In a margin account, banks and brokerage firms can loan you money to buy stocks, usually 50% of the purchase value. In other words, if you wanted to
 buy 100 shares of a stock trading at $100 for a total cost of $10,000, your brokerage firm could loan you $5,000 to complete the purchase.</string>
-    <string name="portfolio1">1.) Make a list of everything you own (e.g., assets such as cars, stocks, bonds, mutual funds, cash, bank accounts) and
+    <string name="portfolio1">1. Make a list of everything you own (e.g., assets such as cars, stocks, bonds, mutual funds, cash, bank accounts) and
 everything you owe (e.g., liabilities such as student loans, credit card balances.)</string>
-    <string name="portfolio2">2.) Many businesses match contributions employees make to their 401k accounts. The amount of these matching contributions
+    <string name="portfolio2">2. Many businesses match contributions employees make to their 401k accounts. The amount of these matching contributions
 can vary widely from company to company; most providing an escalation in benefits based upon tenure.</string>
-    <string name="portfolio3">3.) Develop a plan for paying down high-interest credit card debt. Rank all of your debts by the interest rate you
+    <string name="portfolio3">3. Develop a plan for paying down high-interest credit card debt. Rank all of your debts by the interest rate you
 are paying starting with the highest. Decide how much you can afford to dedicate to debt reduction each month from your regular income.</string>
-    <string name="portfolio4">4.) Open and Fully Fund a Roth IRA. Contributions are made with after-tax dollars. All Roth IRA contributions
+    <string name="portfolio4">4. Open and Fully Fund a Roth IRA. Contributions are made with after-tax dollars. All Roth IRA contributions
 can be withdrawn at any time without any penalty. Once you\'re 59 1/2, all withdrawals are 100-percent tax-free. If you purchased $10,000 worth of the stock through your Roth IRA and hold it for 20 years, selling the stake at retirement for $5 million, you would owe nothing.</string>
-    <string name="portfolio5">5.) Buy a Home. By owning your own home, you are converting what was previously an expense into equity.
+    <string name="portfolio5">5. Buy a Home. By owning your own home, you are converting what was previously an expense into equity.
 To sweeten the deal, not only is the interest paid on your mortgage tax-deductible, but you are permitted a lifetime capital gains tax exemption
 of $250,000 (single) or $500,000 (married) if you sell your home at a profit.</string>
-    <string name="portfolio6">6.) it is more important than ever that you establish a six-month emergency cash reserve to cover basic living expenses.
+    <string name="portfolio6">6. it is more important than ever that you establish a six-month emergency cash reserve to cover basic living expenses.
 This will allow you to weather any unexpected storms, including home repairs, unemployment, and medical bills.</string>
-    <string name="portfolio7">7.) Open a brokerage account. A brokerage account will allow you to invest in stocks, bonds, mutual funds,
+    <string name="portfolio7">7. Open a brokerage account. A brokerage account will allow you to invest in stocks, bonds, mutual funds,
 certificates of deposit, real estate investment trusts (via REITs), treasuries, and more.</string>
     <string name="income">Income</string>
     <string name="incomeValue">$X,XXX.XX / Month</string>
