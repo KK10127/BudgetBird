@@ -3,6 +3,7 @@ package edu.miracosta.financialassistant.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -200,6 +201,33 @@ public class DBHelper extends SQLiteOpenHelper
         return expensesList;
     }
 
+    public List<Float> getSpendingTrends() {
+        List<Float> spendingTrends = new ArrayList<>();
+        SQLiteDatabase database = getReadableDatabase();
+
+        //A cursor is the result of a database query
+        Cursor cursor = database.query(TRENDS_TABLE, new String[]{TRENDS_KEY_FIELD_ID, FIELD_TREND_DATE, FIELD_TREND_SPENT},
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        //Collect each row in the table
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                spendingTrends.add((float) cursor.getDouble(2));
+            }
+            while(cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return spendingTrends;
+    }
+
 
     /**
      * <p>Deletes an expense from the Expense table</p>
@@ -364,10 +392,15 @@ public class DBHelper extends SQLiteOpenHelper
         */
     }
 
-    /**
-     * <p>Gets the Spending that been done on this day</p>
-     * @return a double value that is the spending done today
-     */
+    public long getDaysCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        long count = DatabaseUtils.queryNumEntries(db, TRENDS_TABLE);
+        db.close();
+        return count;
+    }
+
+
+
     public double getTodaysSpending() {
         SQLiteDatabase database = getReadableDatabase();
         double todaysSpending = 0;
