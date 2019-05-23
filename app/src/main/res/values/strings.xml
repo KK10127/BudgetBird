@@ -173,4 +173,10 @@ certificates of deposit, real estate investment trusts (via REITs), treasuries, 
     <string name="change_value_hint">Withdraw/Deposit an Amount</string>
     <string name="english">English</string>
     <string name="Spanish">Spanish</string>
+    <string name="emergencyFund">Emergency Fund</string>
+    <string name="expenses">Expenses</string>
+    <string name="financialTips">Financial Tips</string>
+    <string name="userSettings">User Settings</string>
+    <string name="studentFund" translatable="false" />
+    <string name="studentfund">Student Fund</string>
 </resources>

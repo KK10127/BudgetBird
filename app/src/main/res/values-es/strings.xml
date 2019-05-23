@@ -115,4 +115,9 @@
     <string name="portfolio5">5. Comprar una casa. Al ser dueño de su propia casa, usted está convirtiendo lo que antes era un gasto en capital. Para endulzar el acuerdo, no solo se paga el interés de su hipoteca deducible de impuestos, sino que también se le permite una exención de impuestos de ganancias de capital de por vida. de $ 250,000 (solo) o $ 500,000 (casado) si vende su casa con una ganancia.</string>
     <string name="portfolio6">6. es más importante que nunca que establezca una reserva de efectivo de emergencia de seis meses para cubrir los gastos básicos de la vida. Esto le permitirá sobrellevar cualquier tormenta inesperada, incluyendo reparaciones en el hogar, desempleo y gastos médicos.</string>
     <string name="portfolio7">7. Abra una cuenta de corretaje. Una cuenta de corretaje le permitirá invertir en acciones, bonos, fondos mutuos, certificados de depósito, fideicomisos de inversión en bienes raíces (a través de REIT), tesorerías y más.</string>
+    <string name="emergencyFund">Fondo de emergencia</string>
+    <string name="expenses">Gastos</string>
+    <string name="financialTips">Consejos financieros</string>
+    <string name="userSettings">Ajustes de usuario</string>
+    <string name="studentfund">Fondo estudiantil</string>
 </resources>

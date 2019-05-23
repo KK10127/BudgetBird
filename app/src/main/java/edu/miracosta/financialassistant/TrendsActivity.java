@@ -15,6 +15,7 @@ import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.Viewport;
+import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.LineChartView;
 
 public class TrendsActivity extends AppCompatActivity {
@@ -94,6 +95,7 @@ public class TrendsActivity extends AppCompatActivity {
 
         //
         Line line = new Line(yAxisValues);
+        line.setColor(ChartUtils.COLOR_VIOLET);
 
         //
         for(int i = 0; i < xAxisData.length; i++){

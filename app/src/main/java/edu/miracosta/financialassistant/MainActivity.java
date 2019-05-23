@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
     {
         mAccountList = new ArrayList<>();
         db = new DBHelper(this);
+        //db.onUpgrade(db.getWritableDatabase(),1,2);
         //db.onUpgrade(db.getReadableDatabase(), 1, 2);
         //db.onUpgrade(db.getReadableDatabase(), 1,2);
 
