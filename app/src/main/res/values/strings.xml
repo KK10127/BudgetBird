@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Financial Assistant</string>
+    <string name="app_name">Budget Bird</string>
     <string name="signUp">Sign Up!</string>
     <string name="logIn">Log In</string>
     <string name="password">Password</string>
