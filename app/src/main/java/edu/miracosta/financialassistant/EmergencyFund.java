@@ -1,7 +1,6 @@
 package edu.miracosta.financialassistant;
 
 import android.content.Intent;
-import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,9 +44,7 @@ public class EmergencyFund extends AppCompatActivity
         setContentView(R.layout.activity_emergency_fund);
 
         userNameTextView = findViewById(R.id.UserNameTextView);
-        budgetTextView = findViewById(R.id.BudgetTextView);
-        monthlyIncomeTextView = findViewById(R.id.MonthlyIncomeTextView);
-        emergencyFundAmountTextView = findViewById(R.id.EmergencyFundAmountTextView);
+        emergencyFundAmountTextView = findViewById(R.id.FundTotalTextView);
         amountEditText = findViewById(R.id.amountEditTextSF);
 
         mDB = new DBHelper(this);

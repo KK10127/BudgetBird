@@ -37,8 +37,6 @@ public class StudentFund extends AppCompatActivity {
         setContentView(R.layout.activity_student_fund);
 
         mUserNameTextView = findViewById(R.id.UserNameTextView);
-        mMonthlyIncomeTextView = findViewById(R.id.MonthlyIncomeTextView);
-        mBudgetTextView = findViewById(R.id.BudgetTextView);
         mStudentFundTotalTextView = findViewById(R.id.FundTotalTextView);
         mWithdrawDepositEditText = findViewById(R.id.amountEditTextSF);
 
@@ -52,9 +50,6 @@ public class StudentFund extends AppCompatActivity {
 
 
         //Placing all the account info into the Text Views
-        mUserNameTextView.setText(mAccount.getEmail());
-        mMonthlyIncomeTextView.setText(mCurrencyFormat.format(mAccount.getMonthlyIncome()));
-        mBudgetTextView.setText(mCurrencyFormat.format(mAccount.getBudget()));
         mStudentFundTotalTextView.setText("$ " + String.valueOf(mAccount.getStudentFundAmount()));
     }
 
