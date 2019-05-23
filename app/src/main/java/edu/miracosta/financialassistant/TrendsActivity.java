@@ -101,7 +101,8 @@ public class TrendsActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < yAxisData.length; i++){
-            yAxisValues.add(new PointValue(i, yAxisData[i]));
+            if (yAxisData[i] != null)
+                yAxisValues.add(new PointValue(i, yAxisData[i]));
         }
 
         //
