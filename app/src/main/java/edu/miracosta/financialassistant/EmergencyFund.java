@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -67,6 +68,11 @@ public class EmergencyFund extends AppCompatActivity
     //Adds a deposit to the fund
     public void addDeposit(View v)
     {
+        if (amountEditText.getText().toString().equals("")) {
+            Toast.makeText(this,"Please Enter an Amount!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         //Grabs the total fund currently (before the deposit)
         emergencyFundAmount = Double.valueOf(emergencyFundAmountTextView.getText().toString().substring(1).replaceAll(",", ""));
 
@@ -99,6 +105,11 @@ public class EmergencyFund extends AppCompatActivity
      */
     public void withdraw(View v)
     {
+        if (amountEditText.getText().toString().equals("")) {
+            Toast.makeText(this,"Please Enter an Amount!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         //Grabs the E.F amount
         emergencyFundAmount = Double.valueOf(emergencyFundAmountTextView.getText().toString().substring(1).replaceAll(",", ""));
 

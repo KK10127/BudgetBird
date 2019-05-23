@@ -63,6 +63,12 @@ public class StudentFund extends AppCompatActivity {
      */
     public void addDepositSF(View v)
     {
+
+        if (mWithdrawDepositEditText.getText().toString().equals("")) {
+            Toast.makeText(this,"Please Enter an Amount!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         //Grabs the total fund currently (before the deposit)
         studentFundAmount = Double.valueOf(studentFundAmountTextView.getText().toString().substring(1).replaceAll(",", ""));
 
@@ -97,6 +103,12 @@ public class StudentFund extends AppCompatActivity {
      */
     public void withdrawSF(View v)
     {
+
+        if (mWithdrawDepositEditText.getText().toString().equals("")) {
+            Toast.makeText(this,"Please Enter an Amount!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         //Grabs the sf amount
         studentFundAmount = Double.valueOf( studentFundAmountTextView.getText().toString().substring(1).replaceAll(",", ""));
 

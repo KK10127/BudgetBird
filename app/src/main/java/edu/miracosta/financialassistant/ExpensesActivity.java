@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -59,6 +60,14 @@ public class ExpensesActivity extends AppCompatActivity {
      * @param v this is used to connect the method to the onClick attribute
      */
     public void addExpense(View v){
+
+        if(expenseAmountEditText.getText().toString().equals("") ||
+            expenseDescriptionEditText.getText().toString().equals("") ||
+            expenseNameEditText.getText().toString().equals("")){
+            Toast.makeText(this,"Please Complete all fields!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String name = expenseNameEditText.getText().toString();
         String desc = expenseDescriptionEditText.getText().toString();
         Double value = Double.parseDouble(expenseAmountEditText.getText().toString());

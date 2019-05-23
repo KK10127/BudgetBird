@@ -75,6 +75,12 @@ public class TodayActivity extends AppCompatActivity {
      * @param v this connects the method to the onClick attribute
      */
     public void addAmount(View v) {
+
+        if(amountEditText.getText().toString().equals("")){
+            Toast.makeText(this,"Please Enter an Amount!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // TODO: Make sure the amount in the amountEditText is not zero or negative
         amountToAdd = Double.parseDouble(amountEditText.getText().toString());
         if(amountToAdd <= 0)

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -64,6 +65,14 @@ public class IncomeActivity extends AppCompatActivity {
      * @param v this connects the method to the onClick attribute
      */
     public void addIncome(View v){
+
+        if(incomeAmountEditText.getText().toString().equals("") ||
+                incomeDescriptionEditText.getText().toString().equals("") ||
+                incomeNameEditText.getText().toString().equals("")){
+            Toast.makeText(this,"Please Complete all fields!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String name = incomeNameEditText.getText().toString();
         String desc = incomeDescriptionEditText.getText().toString();
         Double value = Double.parseDouble(incomeAmountEditText.getText().toString());
