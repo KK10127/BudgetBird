@@ -36,7 +36,10 @@ public class EmergencyFund extends AppCompatActivity
     NumberFormat mNumberFormat = NumberFormat.getNumberInstance();
 
 
-
+    /**
+     * <p>This method starts the activity</p>
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -64,7 +67,10 @@ public class EmergencyFund extends AppCompatActivity
     }
 
 
-
+    /**
+     * <p>This method deposits to the fund</p>
+     * @param v This is used to connect the method to the onClick attribute
+     */
     //Adds a deposit to the fund
     public void addDeposit(View v)
     {
@@ -94,7 +100,10 @@ public class EmergencyFund extends AppCompatActivity
         emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFund));
     }
 
-    //Withdraws from the fund
+    /**
+     * <p>This method withdraws from the fund</p>
+     * @param v This is used to connect the method to the onClick attribute
+     */
     public void withdraw(View v)
     {
         //Grabs the E.F amount
@@ -119,12 +128,18 @@ public class EmergencyFund extends AppCompatActivity
         emergencyFundAmountTextView.setText(mCurrencyFormat.format(emergencyFund));
     }
 
-    //Returns to the main screen
+    /**
+     * <p>Returns to the main screen</p>
+     * @param v This is used to connect the method to the onClick attribute
+     */
     public void back(View v)
     {
         this.finish();
     }
 
+    /**
+     * <p>Returns to the main screen</p>
+     */
     @Override
     public void onBackPressed() {
         this.finish();
